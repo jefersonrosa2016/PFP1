@@ -14,13 +14,14 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class LoginRegister extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dimension; 
 	private JTextField txtCodigoUsuario;
-	private JTextField txtContrasena;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -82,11 +83,10 @@ public class LoginRegister extends JFrame {
 		lblNewLabel_2.setBounds(122, 120, 153, 26);
 		panel.add(lblNewLabel_2);
 		
-		txtContrasena = new JTextField();
-		txtContrasena.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(29, 159, 299, 34);
-		panel.add(txtContrasena);
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		passwordField.setBounds(29, 159, 299, 34);
+		panel.add(passwordField);
 		
 		JButton btnConectar = new JButton("Conectar");
 		btnConectar.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
