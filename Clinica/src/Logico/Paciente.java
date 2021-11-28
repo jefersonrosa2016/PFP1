@@ -12,9 +12,10 @@ public class Paciente {
 	private String telefono;
 	private HistoriaClinica historial;
 	private ArrayList<Consulta> misConsultas;
+	private String codigopaciente; 
 	
 	public Paciente(String cedula, String nombre, String genero, String diaNacimiento, String direccion,
-			String telefono,String codigoHistorial) {
+			String telefono,String codigoHistorial,String codigopaciente) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -24,6 +25,7 @@ public class Paciente {
 		this.telefono = telefono;
 		this.historial = new HistoriaClinica(codigoHistorial);
 		this.misConsultas = new ArrayList<Consulta> ();
+		this.codigopaciente= codigopaciente;
 	}
 
 	public String getCedula() {
@@ -88,6 +90,17 @@ public class Paciente {
 
 	public void setMisConsultas(ArrayList<Consulta> misConsultas) {
 		this.misConsultas = misConsultas;
+	}
+
+	public String getCodigopaciente() {
+		return codigopaciente;
+	}
+
+	public void añadirConsulta(Consulta consulta) {
+		misConsultas.add(consulta);
+		
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

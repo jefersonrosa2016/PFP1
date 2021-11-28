@@ -17,6 +17,7 @@ public class Clinica {
 	private int codigoHistorialclinico;
 	private int codigodeusuario;
 	private int codigodevacunacion;
+	private int codigopaciente;
 	
 	
 	public static Clinica getInstance() {
@@ -41,6 +42,7 @@ public class Clinica {
 		this.codigoHistorialclinico=1;
 		this.codigodeusuario=1;
 		this.codigodevacunacion=1;
+		this.codigopaciente= 1;
 	}
 
 
@@ -130,7 +132,78 @@ public class Clinica {
 	public int getCodigodevacunacion() {
 		return codigodevacunacion;
 	}
+	
+	public void ingresarPaciente (Paciente paciente) {
+		misPacientes.add(paciente);
+		codigopaciente = getCodigopaciente() + 1;
+		codigoHistorialclinico++;
+		
+		
+	}
+	public void ingresarUsuario (Usuario usuario) {
+		misUsuarios.add(usuario);
+		codigodeusuario++;
+		
+		if (usuario instanceof Medico ) {
+			codigomedico++;
+			
+			
+		}
+		
+	}
+	public void ingresarCitaMedica (CitaMedica citamedica) {
+		citasMedicas.add(citamedica);
+		codigocita++;	
+	}
+	
+	public void ingresarEnfermedad (Enfermedad enfermedad) {
+		misEnfermedades.add(enfermedad);
+		codigoenfermedad++;
+	}
+		
+		public void ingresarVacuna (Vacuna vacuna) {
+			misVacunas.add(vacuna);
+			codigodevacunacion++;
+			
+		}
+		public void añadirConsultaPaciente (String codigopaciente, Consulta consulta) {
+			int indice = IndiceDelPacienteByCodigo (codigopaciente);
+			if (indice != -1) {
+				misPacientes.get(indice).añadirConsulta(consulta);
+				codigoconsulta++;
+			}
+			
+			
+		}
 
-	
-	
+
+		private int IndiceDelPacienteByCodigo(String codigo) {
+			int posicion= -1; 
+			int i = 0;
+			boolean encontrado = false;
+			
+			while (!encontrado && i < misPacientes.size() ) {
+				if (misPacientes.get(i).getCodigopaciente().equalsIgnoreCase(codigo)) {
+					encontrado = true;
+					posicion= i;
+					
+				}
+				i++; 
+			}
+					
+			// TODO Auto-generated method stub
+			return posicion;
+		}
+
+
+		public int getCodigopaciente() {
+			return codigopaciente;
+		}
+		
+		
 }
+		
+		
+		
+		
+		
