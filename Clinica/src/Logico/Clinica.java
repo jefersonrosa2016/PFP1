@@ -2,10 +2,8 @@ package Logico;
 
 import java.util.ArrayList;
 
-
-
-
 public class Clinica {
+	
 	private ArrayList <Paciente> misPacientes;
 	private ArrayList <Usuario> misUsuarios;
 	private ArrayList <CitaMedica> citasMedicas;
