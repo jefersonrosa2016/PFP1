@@ -23,6 +23,7 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 public class RegisVacuna extends JDialog {
 
@@ -49,6 +50,8 @@ public class RegisVacuna extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegisVacuna() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisVacuna.class.getResource("/Imgenes/logitoventana.png")));
+		setTitle("Registrar Vacuna");
 		
 		setBounds(100, 100, 666, 308);
 		setLocationRelativeTo(null);
@@ -114,6 +117,11 @@ public class RegisVacuna extends JDialog {
 			}
 			{
 				btnSalir = new JButton("Salir");
+				btnSalir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				btnSalir.setIcon(sal);

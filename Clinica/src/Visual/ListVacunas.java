@@ -27,6 +27,7 @@ import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 
 public class ListVacunas extends JDialog {
@@ -54,6 +55,7 @@ public class ListVacunas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListVacunas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setResizable(false);
 		setModal(true);
 		setTitle("Listado de Vacunas");
@@ -118,6 +120,11 @@ public class ListVacunas extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				cancelButton.setIcon(sal);
@@ -146,6 +153,10 @@ public class ListVacunas extends JDialog {
 					row[0] = Clinica.getInstance().getMisVacunas().get(i).getCodigoVacunacion();
 					row[1] = Clinica.getInstance().getMisVacunas().get(i).getNombreVacuna();
 					modeloTabla.addRow(row);
+				}else if(busqueda .equalsIgnoreCase("")) {
+					row[0] = Clinica.getInstance().getMisVacunas().get(i).getCodigoVacunacion();
+					row[1] = Clinica.getInstance().getMisVacunas().get(i).getNombreVacuna();
+				modeloTabla.addRow(row);
 				}
 			}
 			
