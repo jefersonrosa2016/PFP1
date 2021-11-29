@@ -4,9 +4,9 @@ public class Medico extends Usuario {
 
 	private String codigoMedico;
 	private String especialidad;
-	public Medico(String codigoUsuario, String login, String idUsuario, String password, String nombre,
+	public Medico(String codigoUsuario, String login, String password, String nombre,
 			String telefono,String codigoMedico,String especialidad ) {
-		super(codigoUsuario, login, idUsuario, password, nombre, telefono);
+		super(codigoUsuario, login, password, nombre, telefono);
 		this.codigoMedico=codigoMedico;
 		this.especialidad=especialidad;
 		// TODO Auto-generated constructor stub
