@@ -48,6 +48,7 @@ public class RegistrarUsuario extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setForeground(Color.LIGHT_GRAY);
 			panel.setLayout(null);
 			panel.setToolTipText("");
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -68,6 +69,7 @@ public class RegistrarUsuario extends JDialog {
 		}
 		{
 			JPanel panel = new JPanel();
+			panel.setForeground(Color.GRAY);
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panel.setBounds(10, 11, 503, 205);
