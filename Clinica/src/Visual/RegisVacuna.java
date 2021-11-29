@@ -10,13 +10,20 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import Logico.Clinica;
+import Logico.Vacuna;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JTextField;
+import java.awt.Toolkit;
 
 public class RegisVacuna extends JDialog {
 
@@ -43,6 +50,9 @@ public class RegisVacuna extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegisVacuna() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisVacuna.class.getResource("/Imgenes/logitoventana.png")));
+		setTitle("Registrar Vacuna");
+		
 		setBounds(100, 100, 666, 308);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -69,11 +79,13 @@ public class RegisVacuna extends JDialog {
 		contentPanel.add(txtCodigoVacuna);
 		txtCodigoVacuna.setColumns(10);
 		
+		
 		txtNombreVacuna = new JTextField();
 		txtNombreVacuna.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		txtNombreVacuna.setColumns(10);
 		txtNombreVacuna.setBounds(307, 147, 299, 30);
 		contentPanel.add(txtNombreVacuna);
+		limpiarCampos();
 		
 		JLabel lblNombreDeVacuna = new JLabel("Nombre de Vacuna:");
 		lblNombreDeVacuna.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -91,7 +103,13 @@ public class RegisVacuna extends JDialog {
 				btnRegistrar.setIcon(guarda);
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						Vacuna aux =  new Vacuna(txtCodigoVacuna.getText(),txtNombreVacuna.getText());
+						Clinica.getInstance().ingresarVacuna(aux);
+						JOptionPane.showMessageDialog(null, "VACUNA INGRESADA CORRECTAMENTE");
+						limpiarCampos();
 					}
+
+				
 				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
@@ -99,6 +117,11 @@ public class RegisVacuna extends JDialog {
 			}
 			{
 				btnSalir = new JButton("Salir");
+				btnSalir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				btnSalir.setIcon(sal);
@@ -107,5 +130,10 @@ public class RegisVacuna extends JDialog {
 				buttonPane.add(btnSalir);
 			}
 		}
+	}
+	private void limpiarCampos() {
+		txtCodigoVacuna.setText("VAC"+ Clinica.getInstance().getCodigodevacunacion());
+		txtNombreVacuna.setText("");
+		
 	}
 }

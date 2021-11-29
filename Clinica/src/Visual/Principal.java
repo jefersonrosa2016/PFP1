@@ -17,6 +17,8 @@ import java.awt.Image;
 import javax.swing.JSeparator;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
@@ -153,6 +155,12 @@ public class Principal extends JFrame {
 		menuBar.add(menuVacuna);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Registrar");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisVacuna vacu = new RegisVacuna();
+				vacu.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_9.setIcon(regii);
 		mntmNewMenuItem_9.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuVacuna.add(mntmNewMenuItem_9);
@@ -161,6 +169,12 @@ public class Principal extends JFrame {
 		menuVacuna.add(separator_5);
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Listado");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListVacunas lisvacu = new ListVacunas();
+				lisvacu.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_10.setIcon(liti);
 		mntmNewMenuItem_10.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuVacuna.add(mntmNewMenuItem_10);
