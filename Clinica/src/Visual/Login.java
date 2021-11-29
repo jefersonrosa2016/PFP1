@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.Toolkit;
+import java.awt.Window.Type;
 
 public class Login extends JFrame {
 
@@ -44,6 +45,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		setTitle("Inicio de seccion ");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/Imgenes/logitoventana.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
