@@ -1,31 +1,31 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import javax.swing.border.TitledBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
-import java.awt.Color;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import com.toedter.calendar.JDateChooser;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
-public class RegisPaciente extends JDialog {
+import com.toedter.calendar.JDateChooser;
+
+public class Verpaciente extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigoCliente;
@@ -35,13 +35,12 @@ public class RegisPaciente extends JDialog {
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
 	private JDateChooser fechamedico;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegisPaciente dialog = new RegisPaciente();
+			Verpaciente dialog = new Verpaciente();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,8 +51,8 @@ public class RegisPaciente extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegisPaciente() {
-		setTitle("Registrar Paciente");
+	public Verpaciente() {
+		setTitle("Vizualizacion del Paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisPaciente.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 941, 386);
 		setLocationRelativeTo(null);
@@ -94,6 +93,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(txtCodigoCliente);
 			
 			txtnombrePaciente = new JTextField();
+			txtnombrePaciente.setEditable(false);
 			txtnombrePaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtnombrePaciente.setColumns(10);
 			txtnombrePaciente.setBounds(292, 69, 244, 30);
@@ -105,6 +105,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblNombre);
 			
 			txtApellido = new JTextField();
+			txtApellido.setEditable(false);
 			txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtApellido.setColumns(10);
 			txtApellido.setBounds(635, 69, 244, 30);
@@ -116,6 +117,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblApellidos);
 			
 			txtCedula = new JTextField();
+			txtCedula.setEditable(false);
 			txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtCedula.setColumns(10);
 			txtCedula.setBounds(635, 26, 244, 30);
@@ -127,6 +129,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblCedula);
 			
 			txtTelefono = new JTextField();
+			txtTelefono.setEditable(false);
 			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTelefono.setColumns(10);
 			txtTelefono.setBounds(635, 112, 244, 30);
@@ -143,6 +146,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblGenero);
 			
 			JComboBox cbxGenero = new JComboBox();
+			cbxGenero.setEnabled(false);
 			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer", "Otros"}));
 			cbxGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			cbxGenero.setBounds(292, 112, 244, 30);
@@ -159,6 +163,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblDireccion);
 			
 			txtDireccion = new JTextField();
+			txtDireccion.setEditable(false);
 			txtDireccion.setToolTipText("");
 			txtDireccion.setHorizontalAlignment(SwingConstants.LEFT);
 			txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -167,6 +172,7 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(txtDireccion);
 			
 			fechamedico = new JDateChooser();
+			fechamedico.setEnabled(false);
 			fechamedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			fechamedico.setBounds(406, 155, 474, 30);
 			
@@ -179,19 +185,19 @@ public class RegisPaciente extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Registrar");
-				okButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/iconoGuardar.png"));
-				Icon guarda= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
-				okButton.setIcon(guarda);
-				okButton.addActionListener(new ActionListener() {
+				JButton btnModificar = new JButton("Modificar");
+				btnModificar.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/modificacion.png"));
+				Icon modifica= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
+				btnModificar.setIcon(modifica);
+				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
 					}
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				btnModificar.setActionCommand("OK");
+				buttonPane.add(btnModificar);
+				getRootPane().setDefaultButton(btnModificar);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
@@ -204,4 +210,5 @@ public class RegisPaciente extends JDialog {
 			}
 		}
 	}
+
 }

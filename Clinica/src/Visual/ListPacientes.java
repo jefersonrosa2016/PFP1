@@ -141,9 +141,11 @@ public class ListPacientes extends JDialog {
 				});
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
-				
+				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/visualizarIcono.png"));
+				Icon ver= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				JButton btnVisualizar = new JButton("Visualizar");
 				btnVisualizar.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				btnVisualizar.setIcon(ver);
 				btnVisualizar.setEnabled(false);
 				buttonPane.add(btnVisualizar);
 				cancelButton.setIcon(sal);
