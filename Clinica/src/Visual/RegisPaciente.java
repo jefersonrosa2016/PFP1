@@ -53,6 +53,7 @@ public class RegisPaciente extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegisPaciente() {
+		
 		setTitle("Registrar Paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisPaciente.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 941, 386);
