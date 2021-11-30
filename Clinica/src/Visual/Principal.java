@@ -97,6 +97,16 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuPacientes.add(mntmNewMenuItem_3);
 		
+		JSeparator separator_6 = new JSeparator();
+		menuPacientes.add(separator_6);
+		
+		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Agregar Vacunas");
+		ImageIcon vacc =new ImageIcon(getClass().getResource("/Imgenes/vacunaColocar.png"));
+		Icon vaco= new ImageIcon(vacc.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
+		mntmNewMenuItem_11.setIcon(vaco);
+		mntmNewMenuItem_11.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		menuPacientes.add(mntmNewMenuItem_11);
+		
 		JSeparator separator_2 = new JSeparator();
 		menuPacientes.add(separator_2);
 		

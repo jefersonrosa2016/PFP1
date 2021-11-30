@@ -30,10 +30,10 @@ public class RegisPaciente extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigoCliente;
 	private JTextField txtnombrePaciente;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_4;
+	private JTextField txtApellido;
+	private JTextField txtCedula;
+	private JTextField txtTelefono;
+	private JTextField txtDireccion;
 	private JDateChooser fechamedico;
 
 	/**
@@ -104,33 +104,33 @@ public class RegisPaciente extends JDialog {
 			lblNombre.setBounds(206, 71, 76, 26);
 			panel_1.add(lblNombre);
 			
-			textField = new JTextField();
-			textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField.setColumns(10);
-			textField.setBounds(635, 69, 244, 30);
-			panel_1.add(textField);
+			txtApellido = new JTextField();
+			txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtApellido.setColumns(10);
+			txtApellido.setBounds(635, 69, 244, 30);
+			panel_1.add(txtApellido);
 			
 			JLabel lblApellidos = new JLabel("Apellidos:");
 			lblApellidos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblApellidos.setBounds(549, 71, 85, 26);
 			panel_1.add(lblApellidos);
 			
-			textField_1 = new JTextField();
-			textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField_1.setColumns(10);
-			textField_1.setBounds(635, 26, 244, 30);
-			panel_1.add(textField_1);
+			txtCedula = new JTextField();
+			txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtCedula.setColumns(10);
+			txtCedula.setBounds(635, 26, 244, 30);
+			panel_1.add(txtCedula);
 			
 			JLabel lblCedula = new JLabel("Cedula:");
 			lblCedula.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblCedula.setBounds(549, 28, 76, 26);
 			panel_1.add(lblCedula);
 			
-			textField_2 = new JTextField();
-			textField_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField_2.setColumns(10);
-			textField_2.setBounds(635, 112, 244, 30);
-			panel_1.add(textField_2);
+			txtTelefono = new JTextField();
+			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtTelefono.setColumns(10);
+			txtTelefono.setBounds(635, 112, 244, 30);
+			panel_1.add(txtTelefono);
 			
 			JLabel lblTelefono = new JLabel("Telefono:");
 			lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -142,11 +142,11 @@ public class RegisPaciente extends JDialog {
 			lblGenero.setBounds(206, 114, 76, 26);
 			panel_1.add(lblGenero);
 			
-			JComboBox comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Hombre", "Mujer", "Otros"}));
-			comboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			comboBox.setBounds(292, 112, 244, 30);
-			panel_1.add(comboBox);
+			JComboBox cbxGenero = new JComboBox();
+			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer", "Otros"}));
+			cbxGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			cbxGenero.setBounds(292, 112, 244, 30);
+			panel_1.add(cbxGenero);
 			
 			JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
 			lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -158,13 +158,13 @@ public class RegisPaciente extends JDialog {
 			lblDireccion.setBounds(206, 199, 95, 26);
 			panel_1.add(lblDireccion);
 			
-			textField_4 = new JTextField();
-			textField_4.setToolTipText("");
-			textField_4.setHorizontalAlignment(SwingConstants.LEFT);
-			textField_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField_4.setColumns(10);
-			textField_4.setBounds(292, 198, 588, 30);
-			panel_1.add(textField_4);
+			txtDireccion = new JTextField();
+			txtDireccion.setToolTipText("");
+			txtDireccion.setHorizontalAlignment(SwingConstants.LEFT);
+			txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtDireccion.setColumns(10);
+			txtDireccion.setBounds(292, 198, 588, 30);
+			panel_1.add(txtDireccion);
 			
 			fechamedico = new JDateChooser();
 			fechamedico.setBounds(406, 155, 474, 30);
@@ -178,7 +178,11 @@ public class RegisPaciente extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("Registrar");
+				okButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/iconoGuardar.png"));
+				Icon guarda= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
+				okButton.setIcon(guarda);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -189,7 +193,11 @@ public class RegisPaciente extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
+				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
+				cancelButton.setIcon(sal);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
