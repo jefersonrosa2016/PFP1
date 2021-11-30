@@ -2,19 +2,21 @@ package Visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
@@ -22,15 +24,10 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Logico.Clinica;
+import javax.swing.UIManager;
+import java.awt.Color;
 
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JTextField;
-import java.awt.Toolkit;
-
-
-public class ListVacunas extends JDialog {
+public class ListPacientes extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable tblListadoVacunas;
@@ -43,7 +40,7 @@ public class ListVacunas extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListVacunas dialog = new ListVacunas();
+			ListPacientes dialog = new ListPacientes();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,12 +51,12 @@ public class ListVacunas extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListVacunas() {
+	public ListPacientes() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setResizable(false);
 		setModal(true);
-		setTitle("Listado de Vacunas");
-		setBounds(100, 100, 618, 469);
+		setTitle("Listado de Pacientes");
+		setBounds(100, 100, 601, 469);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,19 +64,19 @@ public class ListVacunas extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Listado Vacunas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(15, 16, 585, 358);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Pacientes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(15, 16, 565, 358);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Codigo de Vacuna:");
+		JLabel lblNewLabel = new JLabel("Nombre:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		lblNewLabel.setBounds(15, 36, 164, 26);
+		lblNewLabel.setBounds(23, 36, 164, 26);
 		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(15, 97, 556, 245);
+		panel_1.setBounds(15, 97, 535, 245);
 		panel.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
@@ -98,7 +95,7 @@ public class ListVacunas extends JDialog {
 		
 		TxtcodBusqueda = new JTextField();
 		TxtcodBusqueda.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		TxtcodBusqueda.setBounds(180, 34, 244, 30);
+		TxtcodBusqueda.setBounds(199, 39, 189, 25);
 		panel.add(TxtcodBusqueda);
 		TxtcodBusqueda.setColumns(10);
 		
@@ -112,7 +109,7 @@ public class ListVacunas extends JDialog {
 		Icon icono= new ImageIcon(imagen.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 		btnNewButton.setIcon(icono);
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		btnNewButton.setBounds(436, 37, 116, 25);
+		btnNewButton.setBounds(410, 39, 116, 25);
 		panel.add(btnNewButton);
 		{
 			JPanel buttonPane = new JPanel();
@@ -163,4 +160,5 @@ public class ListVacunas extends JDialog {
 		}
 		
 	}
+
 }
