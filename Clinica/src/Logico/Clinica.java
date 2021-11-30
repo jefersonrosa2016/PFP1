@@ -2,6 +2,8 @@ package Logico;
 
 import java.util.ArrayList;
 
+
+
 public class Clinica {
 	
 	private ArrayList <Paciente> misPacientes;
@@ -198,6 +200,18 @@ public class Clinica {
 
 		public int getCodigopaciente() {
 			return codigopaciente;
+		}
+
+
+		public Paciente Buscarpaciente(String codpaciente) {
+			for(Paciente p: misPacientes) {
+				if(p != null) {
+					if(p.getCodigopaciente().equalsIgnoreCase(codpaciente)) {
+						return p;
+					}
+				}
+			}
+			return null;
 		}
 		
 		
