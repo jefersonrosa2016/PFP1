@@ -32,7 +32,7 @@ public class ListUsuario extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListUsuario() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 553, 393);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -41,43 +41,43 @@ public class ListUsuario extends JDialog {
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Listado de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setToolTipText("");
-			panel.setBounds(10, 11, 414, 206);
+			panel.setBounds(10, 11, 517, 258);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
 				JLabel lblNewLabel = new JLabel("Codigo de usuario");
 				lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel.setBounds(100, 25, 160, 23);
+				lblNewLabel.setBounds(178, 29, 160, 23);
 				panel.add(lblNewLabel);
 			}
 			{
 				JLabel lblNewLabel_1 = new JLabel("Username");
 				lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel_1.setBounds(110, 99, 160, 23);
+				lblNewLabel_1.setBounds(178, 103, 160, 23);
 				panel.add(lblNewLabel_1);
 			}
 			{
 				JLabel lblNewLabel_2 = new JLabel("Password");
 				lblNewLabel_2.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel_2.setBounds(110, 120, 160, 23);
+				lblNewLabel_2.setBounds(178, 124, 160, 23);
 				panel.add(lblNewLabel_2);
 			}
 			{
 				JLabel lblNewLabel_3 = new JLabel("Tipo de Usuario");
 				lblNewLabel_3.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel_3.setBounds(100, 145, 160, 23);
+				lblNewLabel_3.setBounds(178, 149, 160, 23);
 				panel.add(lblNewLabel_3);
 			}
 			{
 				JLabel lblNewLabel_4 = new JLabel("Nombre");
 				lblNewLabel_4.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel_4.setBounds(110, 50, 160, 23);
+				lblNewLabel_4.setBounds(178, 54, 160, 23);
 				panel.add(lblNewLabel_4);
 			}
 			{
 				JLabel lblNewLabel_5 = new JLabel("Telef");
 				lblNewLabel_5.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblNewLabel_5.setBounds(110, 74, 160, 23);
+				lblNewLabel_5.setBounds(178, 78, 160, 23);
 				panel.add(lblNewLabel_5);
 			}
 		}

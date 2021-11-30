@@ -1,31 +1,34 @@
 package Logico;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Paciente {
 
 	private String cedula;
 	private String nombre;
 	private String genero;
-	private String diaNacimiento;
+	private String apellidos;
+	private Date fechadenacimiento;
 	private String direccion;
 	private String telefono;
 	private HistoriaClinica historial;
 	private ArrayList<Consulta> misConsultas;
 	private String codigopaciente; 
 	
-	public Paciente(String cedula, String nombre, String genero, String diaNacimiento, String direccion,
-			String telefono,String codigoHistorial,String codigopaciente) {
+	public Paciente(String cedula, String nombre, String genero, String direccion,
+			String telefono,String codigoHistorial,String codigopaciente, String apellidos, Date fechadenacimiento) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.genero = genero;
-		this.diaNacimiento = diaNacimiento;
+		this.setFechadenacimiento(fechadenacimiento);
 		this.direccion = direccion;
 		this.telefono = telefono;
 		this.historial = new HistoriaClinica(codigoHistorial);
 		this.misConsultas = new ArrayList<Consulta> ();
 		this.codigopaciente= codigopaciente;
+		this.setApellidos(apellidos);
 	}
 
 	public String getCedula() {
@@ -52,14 +55,7 @@ public class Paciente {
 		this.genero = genero;
 	}
 
-	public String getDiaNacimiento() {
-		return diaNacimiento;
-	}
-
-	public void setDiaNacimiento(String diaNacimiento) {
-		this.diaNacimiento = diaNacimiento;
-	}
-
+	
 	public String getDireccion() {
 		return direccion;
 	}
@@ -101,6 +97,22 @@ public class Paciente {
 		
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public Date getFechadenacimiento() {
+		return fechadenacimiento;
+	}
+
+	public void setFechadenacimiento(Date fechadenacimiento) {
+		this.fechadenacimiento = fechadenacimiento;
 	}
 	
 	
