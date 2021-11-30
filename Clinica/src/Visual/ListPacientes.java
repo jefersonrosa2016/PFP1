@@ -40,7 +40,7 @@ public class ListPacientes extends JDialog {
 	private static Object[] row;//Arreglo de objeto.
 	private JTextField TxtcodBusqueda;
 	private Paciente selected=null; 
-	private JButton btnVisualizar;
+	private JButton btnVisualizar_1;
 	/**
 	 * Launch the application.
 	 */
@@ -95,7 +95,7 @@ public class ListPacientes extends JDialog {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnVisualizar.setEnabled(true);
+				btnVisualizar_1.setEnabled(true);
 				int select = table.getSelectedRow();
 				
 				if(select !=-1 ) {
@@ -143,11 +143,16 @@ public class ListPacientes extends JDialog {
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/visualizarIcono.png"));
 				Icon ver= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
-				JButton btnVisualizar = new JButton("Visualizar");
-				btnVisualizar.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-				btnVisualizar.setIcon(ver);
-				btnVisualizar.setEnabled(false);
-				buttonPane.add(btnVisualizar);
+				btnVisualizar_1 = new JButton("Visualizar");
+				btnVisualizar_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
+				btnVisualizar_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				btnVisualizar_1.setIcon(ver);
+				btnVisualizar_1.setEnabled(false);
+				buttonPane.add(btnVisualizar_1);
 				cancelButton.setIcon(sal);
 				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				cancelButton.setActionCommand("Cancel");
@@ -164,7 +169,7 @@ public class ListPacientes extends JDialog {
 			for (int i = 0; i<Clinica.getInstance().getMisPacientes().size(); i++) {
 				row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
 				row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
-			//	row[2] = Clinica.getInstance().getMisPacientes().get(i).get
+				row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
 				row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
 				row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 			modeloTabla.addRow(row);
@@ -176,14 +181,14 @@ public class ListPacientes extends JDialog {
 				if( codigo .equalsIgnoreCase(busqueda)) {
 					row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
 					row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
-				//	row[2] = Clinica.getInstance().getMisPacientes().get(i).get
+					row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
 					row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
 					row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 					modeloTabla.addRow(row);
 				}else if(busqueda .equalsIgnoreCase("")) {
 					row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
 					row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
-				//	row[2] = Clinica.getInstance().getMisPacientes().get(i).get
+					row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
 					row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
 					row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 				modeloTabla.addRow(row);

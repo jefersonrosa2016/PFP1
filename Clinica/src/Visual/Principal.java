@@ -85,6 +85,12 @@ public class Principal extends JFrame {
 		menuBar.add(menuPacientes);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Registrar");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisPaciente paci= new RegisPaciente();
+				paci.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_2.setIcon(regii);
 		mntmNewMenuItem_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuPacientes.add(mntmNewMenuItem_2);
@@ -93,6 +99,12 @@ public class Principal extends JFrame {
 		menuPacientes.add(separator_1);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listado");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListPacientes lispaci = new ListPacientes();
+				lispaci.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_3.setIcon(liti);
 		mntmNewMenuItem_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuPacientes.add(mntmNewMenuItem_3);

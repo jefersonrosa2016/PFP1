@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -21,6 +23,10 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JDateChooser;
+
+import Logico.Clinica;
+import Logico.Paciente;
+
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -35,6 +41,7 @@ public class RegisPaciente extends JDialog {
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
 	private JDateChooser fechamedico;
+	private JComboBox cbxGenero;
 
 	/**
 	 * Launch the application.
@@ -143,7 +150,7 @@ public class RegisPaciente extends JDialog {
 			lblGenero.setBounds(206, 114, 76, 26);
 			panel_1.add(lblGenero);
 			
-			JComboBox cbxGenero = new JComboBox();
+			cbxGenero = new JComboBox();
 			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer", "Otros"}));
 			cbxGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			cbxGenero.setBounds(292, 112, 244, 30);
@@ -173,6 +180,7 @@ public class RegisPaciente extends JDialog {
 			
 			
 			panel_1.add(fechamedico);
+			limpiarCampos();
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -187,7 +195,10 @@ public class RegisPaciente extends JDialog {
 				okButton.setIcon(guarda);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						Paciente aux= new Paciente(txtCedula.getText(), txtnombrePaciente.getText(),(String) cbxGenero.getSelectedItem(), txtDireccion.getText(), txtTelefono.getText(),""+ Clinica.getInstance().getCodigoHistorialclinico(), txtCodigoCliente.getText(), txtApellido.getText(),fechamedico.getDate());
+						Clinica.getInstance().ingresarPaciente(aux);
+						JOptionPane.showMessageDialog(null, "Paciente Ingresado CORRECTAMENTE");
+						limpiarCampos();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -196,6 +207,11 @@ public class RegisPaciente extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
@@ -204,5 +220,14 @@ public class RegisPaciente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	private void limpiarCampos() {
+		txtCodigoCliente.setText("PAC"+ Clinica.getInstance().getCodigopaciente());
+		txtnombrePaciente.setText("");
+		txtApellido.setText("");
+		txtCedula.setText("");
+		txtDireccion.setText("");
+		txtTelefono.setText("");
+		fechamedico.setDate(null);
 	}
 }
