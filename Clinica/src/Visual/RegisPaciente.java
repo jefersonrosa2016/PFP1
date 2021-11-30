@@ -20,6 +20,10 @@ import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.awt.event.ActionEvent;
 
 public class RegisPaciente extends JDialog {
 
@@ -29,8 +33,8 @@ public class RegisPaciente extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
 	private JTextField textField_4;
+	private JDateChooser fechamedico;
 
 	/**
 	 * Launch the application.
@@ -144,12 +148,6 @@ public class RegisPaciente extends JDialog {
 			comboBox.setBounds(292, 112, 244, 30);
 			panel_1.add(comboBox);
 			
-			textField_3 = new JTextField();
-			textField_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField_3.setColumns(10);
-			textField_3.setBounds(405, 155, 474, 30);
-			panel_1.add(textField_3);
-			
 			JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
 			lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblFechaDeNacimiento.setBounds(206, 153, 200, 26);
@@ -167,6 +165,12 @@ public class RegisPaciente extends JDialog {
 			textField_4.setColumns(10);
 			textField_4.setBounds(292, 198, 588, 30);
 			panel_1.add(textField_4);
+			
+			fechamedico = new JDateChooser();
+			fechamedico.setBounds(406, 155, 474, 30);
+			
+			
+			panel_1.add(fechamedico);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -175,6 +179,11 @@ public class RegisPaciente extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
