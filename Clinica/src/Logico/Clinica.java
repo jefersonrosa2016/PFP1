@@ -179,7 +179,7 @@ public class Clinica {
 		}
 
 
-		private int IndiceDelPacienteByCodigo(String codigo) {
+		public int IndiceDelPacienteByCodigo(String codigo) {
 			int posicion= -1; 
 			int i = 0;
 			boolean encontrado = false;
@@ -208,6 +208,30 @@ public class Clinica {
 				if(p != null) {
 					if(p.getCodigopaciente().equalsIgnoreCase(codpaciente)) {
 						return p;
+					}
+				}
+			}
+			return null;
+		}
+
+
+		public Paciente buscarPacienteByCedula(String cedula) {
+			for(Paciente p: misPacientes) {
+				if(p != null) {
+					if(p.getCedula().equalsIgnoreCase(cedula)) {
+						return p;
+					}
+				}
+			}
+			return null;
+		}
+
+
+		public Vacuna buscarVacunaPorCodigo(String cod) {
+			for(Vacuna v: misVacunas) {
+				if(v != null) {
+					if(v.getCodigoVacunacion().equalsIgnoreCase(cod)) {
+						return v;
 					}
 				}
 			}

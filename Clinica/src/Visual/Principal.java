@@ -113,6 +113,12 @@ public class Principal extends JFrame {
 		menuPacientes.add(separator_6);
 		
 		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Agregar Vacunas");
+		mntmNewMenuItem_11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgregarVacunaPaciente agregi= new AgregarVacunaPaciente();
+				agregi.setVisible(true);
+			}
+		});
 		ImageIcon vacc =new ImageIcon(getClass().getResource("/Imgenes/vacunaColocar.png"));
 		Icon vaco= new ImageIcon(vacc.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
 		mntmNewMenuItem_11.setIcon(vaco);
