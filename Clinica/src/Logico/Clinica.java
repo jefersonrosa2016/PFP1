@@ -11,15 +11,17 @@ public class Clinica {
 	private ArrayList <CitaMedica> citasMedicas;
 	private ArrayList <Enfermedad> misEnfermedades;
 	private ArrayList <Vacuna> misVacunas;
+	private ArrayList <Consulta> misConsultas;
+	
 	public static Clinica instanciaGlobal = null;
 	private int codigocita;
 	private int codigomedico;
-	private int codigoconsulta;
 	private int codigoenfermedad;
 	private int codigoHistorialclinico;
 	private int codigodeusuario;
 	private int codigodevacunacion;
 	private int codigopaciente;
+	private int codigoConsulta;
 	
 	
 	public static Clinica getInstance() {
@@ -39,12 +41,12 @@ public class Clinica {
 		this.misVacunas= new ArrayList <Vacuna>();
 		this.codigocita=1;
 		this.codigomedico=1;
-		this.codigoconsulta=1;
 		this.codigoenfermedad=1;
 		this.codigoHistorialclinico=1;
 		this.codigodeusuario=1;
 		this.codigodevacunacion=1;
 		this.codigopaciente= 1;
+		this.codigoConsulta= 1;
 	}
 
 
@@ -109,10 +111,6 @@ public class Clinica {
 	}
 
 
-	public int getCodigoconsulta() {
-		return codigoconsulta;
-	}
-
 
 	public int getCodigoenfermedad() {
 		return codigoenfermedad;
@@ -134,6 +132,11 @@ public class Clinica {
 	public int getCodigodevacunacion() {
 		return codigodevacunacion;
 	}
+	
+	public int getCodigoConsulta() {
+		return codigoConsulta;
+	}
+	
 	
 	public void ingresarPaciente (Paciente paciente) {
 		misPacientes.add(paciente);
@@ -172,7 +175,7 @@ public class Clinica {
 			int indice = IndiceDelPacienteByCodigo (codigopaciente);
 			if (indice != -1) {
 				misPacientes.get(indice).añadirConsulta(consulta);
-				codigoconsulta++;
+				codigoConsulta++;
 			}
 			
 			
@@ -237,10 +240,32 @@ public class Clinica {
 			}
 			return null;
 		}
-		
-		
+
+		public Usuario ingresarUsuario(String codigo) {
+			for(Usuario u: misUsuarios) {
+				if(u != null) {
+					if(u.getCodigoUsuario().equalsIgnoreCase(codigo)) {
+						return u;
+					}
+				}
+			}
+			return null;
+		}
+
+
+		public Consulta ingresarconsulta(Consulta cod) {
+			for(Consulta c: misConsultas) {
+				if(c != null) {
+					if(c.getCodigoConsulta().equalsIgnoreCase(cod) {
+						return c;
+					}
+				}
+		}
+			return null;
+
+	
 }
-		
+}	
 		
 		
 		

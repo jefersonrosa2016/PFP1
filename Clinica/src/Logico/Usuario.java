@@ -8,8 +8,10 @@ public class Usuario {
 	private String nombre;
 	private String telefono;
 	
+	private String apellidos; 
+	
 	public Usuario(String codigoUsuario, String login, String password, String nombre,
-			String telefono) {
+			String telefono, String apellidos) {
 		super();
 		this.codigoUsuario = codigoUsuario;
 		this.login = login;
@@ -17,6 +19,7 @@ public class Usuario {
 		this.password = password;
 		this.nombre = nombre;
 		this.telefono = telefono;
+		this.apellidos = apellidos;
 	}
 
 	public String getLogin() {
@@ -54,6 +57,11 @@ public class Usuario {
 
 	public String getCodigoUsuario() {
 		return codigoUsuario;
+	}
+
+	public Object getApellidos() {
+		
+		return apellidos;
 	}
 	
 
