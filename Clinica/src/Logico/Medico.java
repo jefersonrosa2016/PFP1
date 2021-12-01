@@ -2,13 +2,13 @@ package Logico;
 
 public class Medico extends Usuario {
 
-	private String codigoMedico;
+
 	private String especialidad;
 	public Medico(String codigoUsuario, String login, String password, String nombre,
-			String telefono,String codigoMedico,String especialidad ) {
+			String apellidos, String telefono,String especialidad ) {
 		
-		super(codigoUsuario, login, password, nombre, telefono, codigoMedico, especialidad);
-		this.codigoMedico=codigoMedico;
+	super(codigoUsuario, login, password, nombre, telefono, apellidos);
+		
 		this.especialidad=especialidad;
 		// TODO Auto-generated constructor stub
 	}
@@ -18,9 +18,7 @@ public class Medico extends Usuario {
 	public void setEspecialidad(String especialidad) {
 		this.especialidad = especialidad;
 	}
-	public String getCodigoMedico() {
-		return codigoMedico;
-	}
+
 	
 
 }

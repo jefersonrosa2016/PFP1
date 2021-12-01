@@ -256,7 +256,8 @@ public class Clinica {
 		public Consulta ingresarconsulta(Consulta cod) {
 			for(Consulta c: misConsultas) {
 				if(c != null) {
-					if(c.getCodigoConsulta().equalsIgnoreCase(cod) {
+					if(c.getCodigoConsulta().equalsIgnoreCase(cod.getCodigoConsulta())) {
+					
 						return c;
 					}
 				}

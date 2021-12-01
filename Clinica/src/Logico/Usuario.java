@@ -15,7 +15,6 @@ public class Usuario {
 		super();
 		this.codigoUsuario = codigoUsuario;
 		this.login = login;
-		
 		this.password = password;
 		this.nombre = nombre;
 		this.telefono = telefono;

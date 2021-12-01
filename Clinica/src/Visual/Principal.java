@@ -60,7 +60,13 @@ public class Principal extends JFrame {
 		menuUsuarios.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		menuBar.add(menuUsuarios);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Regsitrar");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Registrar");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			RegistrarUsuario a= new RegistrarUsuario();
+			a.setVisible(true);
+			}
+		});
 		ImageIcon regi =new ImageIcon(getClass().getResource("/Imgenes/RegistrarUsuarioIcono.png"));
 		Icon regii= new ImageIcon(regi.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
 		mntmNewMenuItem.setIcon(regii);
@@ -71,6 +77,12 @@ public class Principal extends JFrame {
 		menuUsuarios.add(separator);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListUsuario b= new ListUsuario ();
+				b.setVisible(true);
+			}
+		});
 		ImageIcon lsit =new ImageIcon(getClass().getResource("/Imgenes/ListadoIcono.png"));
 		Icon liti= new ImageIcon(lsit.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
 		mntmNewMenuItem_1.setIcon(liti);
@@ -163,6 +175,12 @@ public class Principal extends JFrame {
 		menuBar.add(menuConsulta);
 		
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Registrar");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisConsulta c= new RegisConsulta();
+				c.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_7.setIcon(regii);
 		mntmNewMenuItem_7.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuConsulta.add(mntmNewMenuItem_7);
