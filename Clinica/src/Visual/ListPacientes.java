@@ -58,9 +58,8 @@ public class ListPacientes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListPacientes() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
-		setResizable(false);
 		setModal(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Listado de Pacientes");
 		setBounds(100, 100, 601, 469);
 		setLocationRelativeTo(null);
@@ -139,6 +138,7 @@ public class ListPacientes extends JDialog {
 						dispose();
 					}
 				});
+				loadTable("", 1);
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/visualizarIcono.png"));
@@ -146,7 +146,9 @@ public class ListPacientes extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						Verpaciente elOella = new Verpaciente(selected);
+						elOella.setVisible(true);
+						dispose();
 					}
 				});
 				btnVisualizar_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -159,7 +161,7 @@ public class ListPacientes extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTable("", 1);
+		
 	}
 	
 	public void loadTable(String busqueda, int opcion) {
