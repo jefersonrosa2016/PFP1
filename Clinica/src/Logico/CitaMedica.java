@@ -42,6 +42,7 @@ public class CitaMedica {
 	public void setTelefonoPersona(String telefonoPersona) {
 		this.telefonoPersona = telefonoPersona;
 	}
+	
 	public Medico getMedico() {
 		return medico;
 	}
