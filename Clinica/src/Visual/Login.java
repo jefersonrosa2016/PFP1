@@ -16,8 +16,16 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+
+import Logico.Administrador;
+import Logico.Clinica;
+import Logico.Medico;
+import Logico.Usuario;
+
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -45,6 +53,12 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		if(Clinica.getInstance().getMisUsuarios().size()==0) {
+			Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
+			Clinica.getInstance().ingresarUsuario(admin);
+		}
+		
+		
 		setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		setTitle("Inicio de seccion ");
 		setResizable(false);
@@ -79,6 +93,14 @@ public class Login extends JFrame {
 		contentPane.add(contraseña);
 		
 		JButton button = new JButton("Conectar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 String contra= new String (contraseña.getPassword());
+				verificaciondecuenta(txtUsuario.getText(),contra);
+			}
+
+			
+		});
 		button.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		button.setBounds(369, 222, 124, 25);
 		contentPane.add(button);
@@ -89,5 +111,25 @@ public class Login extends JFrame {
 		logo.setIcon(icono);
 		logo.setBounds(36, 49, 237, 187);
 		contentPane.add(logo);
+	}
+	public void verificaciondecuenta(String user, String pass) {
+		for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
+			if(user.equalsIgnoreCase(Clinica.getInstance().getMisUsuarios().get(i).getLogin()) && pass.equalsIgnoreCase(Clinica.getInstance().getMisUsuarios().get(i).getPassword())) {
+				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Administrador) {
+					Principal adminviu = new Principal(Clinica.getInstance().getMisUsuarios().get(i));
+					dispose();
+					adminviu.setVisible(true);
+				}
+				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Medico) {
+					VistaMedico medicoviu= new VistaMedico(Clinica.getInstance().getMisUsuarios().get(i));
+					dispose();
+					medicoviu.setVisible(true);
+				}
+				
+				
+			}
+			
+		}
+		
 	}
 }

@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logico.Usuario;
+
 import java.awt.Toolkit;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -32,7 +35,7 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					Principal frame = new Principal(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +44,7 @@ public class Principal extends JFrame {
 		});
 	}
 
-	public Principal() {
+	public Principal(Usuario usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Gestion de Clinica");
 		dimension= getToolkit().getScreenSize();
@@ -224,6 +227,19 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_10.setIcon(liti);
 		mntmNewMenuItem_10.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuVacuna.add(mntmNewMenuItem_10);
+		
+		JMenu mnNewMenu = new JMenu("Mi Perfil");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Cerrar Seccion");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login salida = new Login();
+				dispose();
+				salida.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_12);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

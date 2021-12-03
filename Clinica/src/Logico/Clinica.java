@@ -241,7 +241,7 @@ public class Clinica {
 			return null;
 		}
 
-		public Usuario ingresarUsuario(String codigo) {
+		public Usuario BuscarUsuarioPorCodigo(String codigo) {
 			for(Usuario u: misUsuarios) {
 				if(u != null) {
 					if(u.getCodigoUsuario().equalsIgnoreCase(codigo)) {

@@ -11,8 +11,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logico.Usuario;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VistaMedico extends JFrame {
 
@@ -25,7 +32,7 @@ public class VistaMedico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VistaMedico frame = new VistaMedico();
+					VistaMedico frame = new VistaMedico(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +43,9 @@ public class VistaMedico extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param usuario 
 	 */
-	public VistaMedico() {
+	public VistaMedico(Usuario usuario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		dimension= getToolkit().getScreenSize();
@@ -53,9 +61,19 @@ public class VistaMedico extends JFrame {
 		mnNewMenu.setIcon(citita);
 		mnNewMenu.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		menuBar.add(mnNewMenu);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		
+		JMenu menuPacientes = new JMenu("Pacientes");
+		menuPacientes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ListadepacientesMedico lispaci = new ListadepacientesMedico();
+				lispaci.setVisible(true);
+			}
+		});
+		ImageIcon pacienteee =new ImageIcon(getClass().getResource("/Imgenes/PacienteIcono.png"));
+		Icon pacien= new ImageIcon(pacienteee.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
+		menuPacientes.setIcon(pacien);
+		menuPacientes.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		menuBar.add(menuPacientes);
 	}
 }

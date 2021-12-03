@@ -151,15 +151,10 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblGenero);
 			
 			cbxGenero = new JComboBox();
-			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer", "Otros"}));
+			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer"}));
 			cbxGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			cbxGenero.setBounds(292, 112, 244, 30);
 			panel_1.add(cbxGenero);
-			
-			JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
-			lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblFechaDeNacimiento.setBounds(206, 153, 200, 26);
-			panel_1.add(lblFechaDeNacimiento);
 			
 			JLabel lblDireccion = new JLabel("Direccion:");
 			lblDireccion.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -176,10 +171,26 @@ public class RegisPaciente extends JDialog {
 			
 			fechamedico = new JDateChooser();
 			fechamedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			fechamedico.setBounds(406, 155, 474, 30);
+			fechamedico.setBounds(719, 155, 161, 30);
 			
 			
 			panel_1.add(fechamedico);
+			
+			JComboBox cbxTipoSangre = new JComboBox();
+			cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"}));
+			cbxTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			cbxTipoSangre.setBounds(355, 156, 181, 30);
+			panel_1.add(cbxTipoSangre);
+			
+			JLabel label = new JLabel("Tipo de Sangre:");
+			label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			label.setBounds(206, 159, 148, 26);
+			panel_1.add(label);
+			
+			JLabel label_1 = new JLabel("F. de Nacimiento:");
+			label_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			label_1.setBounds(549, 155, 158, 26);
+			panel_1.add(label_1);
 			limpiarCampos();
 		}
 		{
