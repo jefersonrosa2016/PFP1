@@ -42,6 +42,7 @@ public class RegisPaciente extends JDialog {
 	private JTextField txtDireccion;
 	private JDateChooser fechamedico;
 	private JComboBox cbxGenero;
+	private JComboBox cbxTipoSangre;
 
 	/**
 	 * Launch the application.
@@ -176,7 +177,7 @@ public class RegisPaciente extends JDialog {
 			
 			panel_1.add(fechamedico);
 			
-			JComboBox cbxTipoSangre = new JComboBox();
+			cbxTipoSangre = new JComboBox();
 			cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"}));
 			cbxTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			cbxTipoSangre.setBounds(355, 156, 181, 30);
@@ -206,7 +207,7 @@ public class RegisPaciente extends JDialog {
 				okButton.setIcon(guarda);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Paciente aux= new Paciente(txtCedula.getText(), txtnombrePaciente.getText(),(String) cbxGenero.getSelectedItem(), txtDireccion.getText(), txtTelefono.getText(),""+ Clinica.getInstance().getCodigoHistorialclinico(), txtCodigoCliente.getText(), txtApellido.getText(),fechamedico.getDate());
+						Paciente aux= new Paciente(txtCedula.getText(), txtnombrePaciente.getText(),(String) cbxGenero.getSelectedItem(), txtDireccion.getText(), txtTelefono.getText(),""+ Clinica.getInstance().getCodigoHistorialclinico(), txtCodigoCliente.getText(), txtApellido.getText(),fechamedico.getDate(),(String) cbxTipoSangre.getSelectedItem());
 						Clinica.getInstance().ingresarPaciente(aux);
 						JOptionPane.showMessageDialog(null, "Paciente Ingresado CORRECTAMENTE");
 						limpiarCampos();

@@ -15,9 +15,10 @@ public class Paciente {
 	private HistoriaClinica historial;
 	private ArrayList<Consulta> misConsultas;
 	private String codigopaciente; 
+	private String tipoSangre;
 	
 	public Paciente(String cedula, String nombre, String genero, String direccion,
-			String telefono,String codigoHistorial,String codigopaciente, String apellidos, Date fechadenacimiento) {
+			String telefono,String codigoHistorial,String codigopaciente, String apellidos, Date fechadenacimiento, String tipoSangre) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -29,6 +30,7 @@ public class Paciente {
 		this.misConsultas = new ArrayList<Consulta> ();
 		this.codigopaciente= codigopaciente;
 		this.setApellidos(apellidos);
+		this.setTipoSangre(tipoSangre);
 	}
 
 	public String getCedula() {
@@ -113,6 +115,14 @@ public class Paciente {
 
 	public void setFechadenacimiento(Date fechadenacimiento) {
 		this.fechadenacimiento = fechadenacimiento;
+	}
+
+	public String getTipoSangre() {
+		return tipoSangre;
+	}
+
+	public void setTipoSangre(String tipoSangre) {
+		this.tipoSangre = tipoSangre;
 	}
 	
 	

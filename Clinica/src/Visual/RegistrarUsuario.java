@@ -142,6 +142,7 @@ public class RegistrarUsuario extends JDialog {
 			}
 			{
 				txtCodigo = new JTextField();
+				txtCodigo.setEditable(false);
 				txtCodigo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtCodigo.setColumns(10);
 				txtCodigo.setBounds(482, 21, 244, 30);
@@ -187,9 +188,9 @@ public class RegistrarUsuario extends JDialog {
 				panel.add(txtpassword);
 			}
 			{
-				lblTelef = new JLabel("Telef.:");
+				lblTelef = new JLabel("Telefono:");
 				lblTelef.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblTelef.setBounds(350, 224, 76, 26);
+				lblTelef.setBounds(350, 224, 89, 26);
 				panel.add(lblTelef);
 			}
 			{
