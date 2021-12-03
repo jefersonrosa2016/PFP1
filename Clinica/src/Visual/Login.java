@@ -71,10 +71,10 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("Codigo de Usuario");
-		label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		label.setBounds(350, 33, 160, 34);
-		contentPane.add(label);
+		JLabel lblUsername = new JLabel("Usuario");
+		lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblUsername.setBounds(397, 33, 74, 34);
+		contentPane.add(lblUsername);
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -84,7 +84,7 @@ public class Login extends JFrame {
 		
 		JLabel label_1 = new JLabel("Contrase\u00F1a");
 		label_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		label_1.setBounds(379, 127, 153, 26);
+		label_1.setBounds(381, 127, 107, 26);
 		contentPane.add(label_1);
 		
 		contraseña = new JPasswordField();
@@ -102,7 +102,7 @@ public class Login extends JFrame {
 			
 		});
 		button.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		button.setBounds(369, 222, 124, 25);
+		button.setBounds(372, 222, 124, 25);
 		contentPane.add(button);
 		
 		JLabel logo = new JLabel("");
