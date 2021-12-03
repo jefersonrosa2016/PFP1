@@ -165,6 +165,12 @@ public class Principal extends JFrame {
 		menuBar.add(menuCitas);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Crear");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCitas cita=  new CrearCitas();
+				cita.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_5.setIcon(regii);
 		mntmNewMenuItem_5.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuCitas.add(mntmNewMenuItem_5);

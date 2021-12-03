@@ -9,7 +9,8 @@ public class CitaMedica {
 	private String telefonoPersona;
 	private String horario;
 	private Medico medico;
-	public CitaMedica(String codigoCita, Date fechaCita, String nombrePersona, String telefonoPersona, Medico medico, String horario) {
+	private String estado;
+	public CitaMedica(String codigoCita, Date fechaCita, String nombrePersona, String telefonoPersona, Medico medico, String horario,String estado) {
 		super();
 		this.codigoCita = codigoCita;
 		this.fechaCita = fechaCita;
@@ -17,6 +18,7 @@ public class CitaMedica {
 		this.telefonoPersona = telefonoPersona;
 		this.medico = medico;
 		this.horario= horario;
+		this.estado = estado;
 	}
 	public String getCodigoCita() {
 		return codigoCita;
@@ -54,6 +56,12 @@ public class CitaMedica {
 	}
 	public void setHorario(String horario) {
 		this.horario = horario;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }
