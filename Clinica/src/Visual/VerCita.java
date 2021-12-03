@@ -302,10 +302,10 @@ public class VerCita extends JDialog {
 			btncancelada.setSelected(false);
 			btnrealizada.setSelected(true);
 		}
-		if (selected.getEstado().equalsIgnoreCase("Pendiente")) {
+		if (selected.getEstado().equalsIgnoreCase("Cancelada")) {
 			btnpendiente.setSelected(false);
-			btncancelada.setSelected(false);
-			btnrealizada.setSelected(true);
+			btncancelada.setSelected(true);
+			btnrealizada.setSelected(false);
 			
 		}
 		

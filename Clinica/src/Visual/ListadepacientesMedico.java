@@ -46,7 +46,7 @@ public class ListadepacientesMedico extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListadepacientesMedico dialog = new ListadepacientesMedico(null);
+			ListadepacientesMedico dialog = new ListadepacientesMedico();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -57,7 +57,7 @@ public class ListadepacientesMedico extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListadepacientesMedico(Medico medico) {
+	public ListadepacientesMedico() {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Listado de Pacientes");
@@ -146,7 +146,7 @@ public class ListadepacientesMedico extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected,medico);
+						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected);
 						dispose();
 						vi.setVisible(true);
 						

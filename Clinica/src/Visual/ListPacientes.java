@@ -58,6 +58,7 @@ public class ListPacientes extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListPacientes() {
+		setResizable(false);
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Listado de Pacientes");

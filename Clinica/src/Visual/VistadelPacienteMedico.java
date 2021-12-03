@@ -72,7 +72,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			VistadelPacienteMedico dialog = new VistadelPacienteMedico(null, null);
+			VistadelPacienteMedico dialog = new VistadelPacienteMedico(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -84,7 +84,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 * Create the dialog.
 	 * @param selected 
 	 */
-	public VistadelPacienteMedico(Paciente selected, Medico medico) {
+	public VistadelPacienteMedico(Paciente selected) {
 		setBounds(100, 100, 960, 512);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -230,8 +230,8 @@ public class VistadelPacienteMedico extends JDialog {
 				
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
-				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Consultas Realizadas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-				panel.setBounds(12, 0, 443, 358);
+				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Consultas Realizadas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+				panel.setBounds(12, 0, 451, 358);
 				panelConsultas.add(panel);
 				
 				JLabel lblCodigoDeConsulta = new JLabel("Codigo de Consulta:");
@@ -241,7 +241,7 @@ public class VistadelPacienteMedico extends JDialog {
 				
 				JPanel panel_1 = new JPanel();
 				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_1.setBounds(15, 75, 414, 245);
+				panel_1.setBounds(15, 75, 414, 270);
 				panel.add(panel_1);
 				panel_1.setLayout(new BorderLayout(0, 0));
 				
@@ -385,6 +385,7 @@ public class VistadelPacienteMedico extends JDialog {
 						loadTableVacunasPendientes(selected,1,"");
 						loadTableVacuna(selected, 1, "");
 						JOptionPane.showMessageDialog(null, "Vacuna Ingresadas Correctamente");
+						btnColocar.setEnabled(false);
 					}
 				});
 				btnColocar.setEnabled(false);
@@ -408,6 +409,10 @@ public class VistadelPacienteMedico extends JDialog {
 				JPanel panelHistorialClinico = new JPanel();
 				tabbedPane.addTab("Historial Clinico", null, panelHistorialClinico, null);
 			}
+			
+			JPanel Paneldiagnostico = new JPanel();
+			Paneldiagnostico.setToolTipText("");
+			tabbedPane.addTab("New tab", null, Paneldiagnostico, null);
 			
 			
 		}
@@ -525,5 +530,4 @@ public class VistadelPacienteMedico extends JDialog {
 		}
 		
 	}
-	
 }

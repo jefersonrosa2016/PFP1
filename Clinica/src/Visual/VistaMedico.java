@@ -32,6 +32,7 @@ public class VistaMedico extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dimension;
+	public static Medico elmedico = null;
 	/**
 	 * Launch the application.
 	 */
@@ -53,6 +54,7 @@ public class VistaMedico extends JFrame {
 	 * @param usuario 
 	 */
 	public VistaMedico(Usuario usuario) {
+		elmedico=(Medico) usuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		dimension= getToolkit().getScreenSize();
@@ -73,7 +75,7 @@ public class VistaMedico extends JFrame {
 		menuPacientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ListadepacientesMedico lispaci = new ListadepacientesMedico((Medico) usuario);
+				ListadepacientesMedico lispaci = new ListadepacientesMedico();
 				lispaci.setVisible(true);
 			}
 		});
