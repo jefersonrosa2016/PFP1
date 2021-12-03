@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Logico.Clinica;
+import Logico.Medico;
 import Logico.Paciente;
 
 public class ListadepacientesMedico extends JDialog {
@@ -45,7 +46,7 @@ public class ListadepacientesMedico extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListadepacientesMedico dialog = new ListadepacientesMedico();
+			ListadepacientesMedico dialog = new ListadepacientesMedico(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -56,7 +57,7 @@ public class ListadepacientesMedico extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListadepacientesMedico() {
+	public ListadepacientesMedico(Medico medico) {
 		setModal(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Listado de Pacientes");
@@ -145,7 +146,7 @@ public class ListadepacientesMedico extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected);
+						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected,medico);
 						dispose();
 						vi.setVisible(true);
 						

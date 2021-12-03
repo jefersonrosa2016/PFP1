@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Logico.Medico;
 import Logico.Usuario;
 
 import javax.swing.JMenuBar;
@@ -72,7 +73,7 @@ public class VistaMedico extends JFrame {
 		menuPacientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ListadepacientesMedico lispaci = new ListadepacientesMedico();
+				ListadepacientesMedico lispaci = new ListadepacientesMedico((Medico) usuario);
 				lispaci.setVisible(true);
 			}
 		});

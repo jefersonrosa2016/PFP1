@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JDateChooser;
 
 import Logico.Clinica;
+import Logico.Medico;
 import Logico.Paciente;
 import Logico.Vacuna;
 
@@ -62,6 +63,8 @@ public class VistadelPacienteMedico extends JDialog {
 	private JTextField txtTipoSangre;
 	private Vacuna Vdeseada=null;
 	private JButton btnColocar;
+	private JTextField textField;
+	private JTable TabladeConsultas;
 	
 
 	/**
@@ -69,7 +72,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			VistadelPacienteMedico dialog = new VistadelPacienteMedico(null);
+			VistadelPacienteMedico dialog = new VistadelPacienteMedico(null, null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -81,7 +84,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 * Create the dialog.
 	 * @param selected 
 	 */
-	public VistadelPacienteMedico(Paciente selected) {
+	public VistadelPacienteMedico(Paciente selected, Medico medico) {
 		setBounds(100, 100, 960, 512);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -224,6 +227,42 @@ public class VistadelPacienteMedico extends JDialog {
 				JPanel panelConsultas = new JPanel();
 				tabbedPane.addTab("Consultas", null, panelConsultas, null);
 				panelConsultas.setLayout(null);
+				
+				JPanel panel = new JPanel();
+				panel.setLayout(null);
+				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Consultas Realizadas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+				panel.setBounds(12, 0, 443, 358);
+				panelConsultas.add(panel);
+				
+				JLabel lblCodigoDeConsulta = new JLabel("Codigo de Consulta:");
+				lblCodigoDeConsulta.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+				lblCodigoDeConsulta.setBounds(15, 36, 164, 26);
+				panel.add(lblCodigoDeConsulta);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBounds(15, 75, 414, 245);
+				panel.add(panel_1);
+				panel_1.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+				panel_1.add(scrollPane, BorderLayout.CENTER);
+				
+				TabladeConsultas = new JTable();
+				TabladeConsultas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				scrollPane.setViewportView(TabladeConsultas);
+				
+				textField = new JTextField();
+				textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				textField.setColumns(10);
+				textField.setBounds(171, 34, 140, 30);
+				panel.add(textField);
+				
+				JButton btnBuscarC = new JButton("Buscar");
+				btnBuscarC.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				btnBuscarC.setBounds(313, 37, 116, 25);
+				panel.add(btnBuscarC);
 			}
 			{
 				JPanel panelVacunas = new JPanel();
@@ -279,7 +318,7 @@ public class VistadelPacienteMedico extends JDialog {
 				
 				JPanel panel_2 = new JPanel();
 				panel_2.setLayout(null);
-				panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Vacunas Pendientes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+				panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Vacunas Disponibles", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 				panel_2.setBounds(467, 0, 443, 358);
 				panelVacunas.add(panel_2);
 				
