@@ -132,6 +132,7 @@ public class RegistrarUsuario extends JDialog {
 					txtEspecialidad.setVisible(false);
 					btnAdmins.setSelected(false);
 					btnMedico.setSelected(false);
+					
 				}
 			});
 			btnSecretaria.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -317,6 +318,17 @@ public class RegistrarUsuario extends JDialog {
 	}
 	
 	public void limpiarCampos() {
+		txtapellidos.setText("");
+		txtCodigo.setText("USR"+Clinica.getInstance().getCodigodeusuario());
+		txtEspecialidad.setText("");
+		txtnombre.setText("");
+		txtpassword.setText("");
+		txtPuesto.setText("");
+		txttelef.setText("");
+		txtusername.setText("");
+		btnAdmins.setSelected(false);
+		btnMedico.setSelected(true);
+		btnSecretaria.setSelected(false);
 		
 	}
 }
