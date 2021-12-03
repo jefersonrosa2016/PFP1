@@ -253,7 +253,7 @@ public class Clinica {
 		}
 
 
-		public Consulta ingresarconsulta(Consulta cod) {
+		public Consulta buscarconsulta(Consulta cod) {
 			for(Consulta c: misConsultas) {
 				if(c != null) {
 					if(c.getCodigoConsulta().equalsIgnoreCase(cod.getCodigoConsulta())) {
@@ -266,6 +266,18 @@ public class Clinica {
 
 	
 }
+		public CitaMedica buscarCitaPorCodigo(String cod) {
+	for(CitaMedica c: citasMedicas) {
+		if(c != null) {
+			if(c.getCodigoCita().equalsIgnoreCase(cod)) {
+				return c;
+			}
+		}
+	}
+	return null;
+}
+		
+		
 }	
 		
 		
