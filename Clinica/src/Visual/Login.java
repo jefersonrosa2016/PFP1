@@ -114,7 +114,7 @@ public class Login extends JFrame {
 	}
 	public void verificaciondecuenta(String user, String pass) {
 		for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
-			if(user.equalsIgnoreCase(Clinica.getInstance().getMisUsuarios().get(i).getLogin()) && pass.equalsIgnoreCase(Clinica.getInstance().getMisUsuarios().get(i).getPassword())) {
+			if(user.equals(Clinica.getInstance().getMisUsuarios().get(i).getLogin()) && pass.equals(Clinica.getInstance().getMisUsuarios().get(i).getPassword())) {
 				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Administrador) {
 					Principal adminviu = new Principal((Administrador) Clinica.getInstance().getMisUsuarios().get(i));
 					dispose();

@@ -74,6 +74,7 @@ public class CrearCitas extends JDialog {
 	public CrearCitas() {
 		setBounds(100, 100, 951, 563);
 		getContentPane().setLayout(new BorderLayout());
+		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -162,6 +163,17 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn8 = new JRadioButton("8:00-9:00");
+					btn8.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn8.setEnabled(false);
 					btn8.setBounds(26, 63, 127, 25);
 					panel_1.add(btn8);
@@ -169,6 +181,17 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn9 = new JRadioButton("9:00-10:00");
+					btn9.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn9.setEnabled(false);
 					btn9.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn9.setBounds(26, 104, 127, 25);
@@ -176,6 +199,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn10 = new JRadioButton("10:00-11:00");
+					btn10.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+						
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn10.setEnabled(false);
 					btn10.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn10.setBounds(26, 141, 138, 25);
@@ -183,6 +218,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn11 = new JRadioButton("11:00-12:00");
+					btn11.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+					
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn11.setEnabled(false);
 					btn11.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn11.setBounds(26, 180, 138, 25);
@@ -190,6 +237,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn14 = new JRadioButton("14:00-15:00");
+					btn14.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+						
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn14.setEnabled(false);
 					btn14.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn14.setBounds(194, 63, 144, 25);
@@ -197,6 +256,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn16 = new JRadioButton("16:00-17:00");
+					btn16.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							
+							btn17.setSelected(false);
+						}
+					});
 					btn16.setEnabled(false);
 					btn16.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn16.setBounds(194, 141, 138, 25);
@@ -204,6 +275,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn15 = new JRadioButton("15:00-16:00");
+					btn15.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							
+							btn16.setSelected(false);
+							btn17.setSelected(false);
+						}
+					});
 					btn15.setEnabled(false);
 					btn15.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn15.setBounds(194, 106, 138, 25);
@@ -211,6 +294,18 @@ public class CrearCitas extends JDialog {
 				}
 				{
 					btn17 = new JRadioButton("17:00-18:00");
+					btn17.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							btn8.setSelected(false);
+							btn9.setSelected(false);
+							btn10.setSelected(false);
+							btn11.setSelected(false);
+							btn14.setSelected(false);
+							btn15.setSelected(false);
+							btn16.setSelected(false);
+			
+						}
+					});
 					btn17.setEnabled(false);
 					btn17.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 					btn17.setBounds(194, 182, 138, 25);
@@ -490,6 +585,8 @@ public class CrearCitas extends JDialog {
 		txtTelefono.setText("");
 		dateCita.setDate(null);
 		btnDisponibles.setEnabled(false);
+		loadTable("", 1);
+		
 		
 	}
 }
