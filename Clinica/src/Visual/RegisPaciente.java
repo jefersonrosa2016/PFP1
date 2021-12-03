@@ -241,5 +241,7 @@ public class RegisPaciente extends JDialog {
 		txtDireccion.setText("");
 		txtTelefono.setText("");
 		fechamedico.setDate(null);
+		cbxGenero.setSelectedIndex(0);
+		cbxTipoSangre.setSelectedIndex(0);
 	}
 }

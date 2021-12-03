@@ -1,8 +1,7 @@
 package Logico;
 
 public class Medico extends Usuario {
-
-
+	
 	private String especialidad;
 	public Medico(String codigoUsuario, String login, String password, String nombre,
 			String apellidos, String telefono,String especialidad ) {

@@ -7,7 +7,6 @@ public class Usuario {
 	private String password;
 	private String nombre;
 	private String telefono;
-	
 	private String apellidos; 
 	
 	public Usuario(String codigoUsuario, String login, String password, String nombre,
