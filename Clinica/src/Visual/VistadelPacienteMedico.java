@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
@@ -35,6 +36,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VistadelPacienteMedico extends JDialog {
 
@@ -56,6 +59,9 @@ public class VistadelPacienteMedico extends JDialog {
 	private JTable tblListaDeVacunasPendiente;
 	private static DefaultTableModel modeloTablaVacunaspendientes;
 	private static Object[] rowVacunaspendientes;//Arreglo de objeto.
+	private JTextField txtTipoSangre;
+	private Vacuna Vdeseada=null;
+	private JButton btnColocar;
 	
 
 	/**
@@ -197,19 +203,19 @@ public class VistadelPacienteMedico extends JDialog {
 				lblTipoDeSangre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				panelPaciente.add(lblTipoDeSangre);
 				
-				JComboBox cbxTipoSangre = new JComboBox();
-				cbxTipoSangre.setBounds(355, 214, 181, 30);
-				cbxTipoSangre.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+"}));
-				cbxTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				cbxTipoSangre.setEnabled(false);
-				panelPaciente.add(cbxTipoSangre);
-				
 				txtgenero = new JTextField();
 				txtgenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtgenero.setEditable(false);
 				txtgenero.setColumns(10);
 				txtgenero.setBounds(292, 173, 244, 30);
 				panelPaciente.add(txtgenero);
+				
+				txtTipoSangre = new JTextField();
+				txtTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				txtTipoSangre.setEditable(false);
+				txtTipoSangre.setColumns(10);
+				txtTipoSangre.setBounds(355, 215, 181, 30);
+				panelPaciente.add(txtTipoSangre);
 								
 				infodelpaciente(selected);
 				
@@ -293,6 +299,19 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_3.add(scrollPane_1, BorderLayout.CENTER);
 				
 				tblListaDeVacunasPendiente = new JTable();
+				tblListaDeVacunasPendiente.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						btnColocar.setEnabled(true);
+						int select= tblListaDeVacunasPendiente.getSelectedRow();
+						if(select !=-1 ) {
+							Vdeseada=Clinica.getInstance().buscarVacunaPorCodigo((String) tblListaDeVacunasPendiente.getValueAt(select,0));
+									
+									
+						}
+						
+					}
+				});
 				tblListaDeVacunasPendiente.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				modeloTablaVacunaspendientes =  new DefaultTableModel();
 				String[] colum = {"Codigo", "Nombre"};
@@ -319,7 +338,16 @@ public class VistadelPacienteMedico extends JDialog {
 				button.setBounds(313, 37, 116, 25);
 				panel_2.add(button);
 				
-				JButton btnColocar = new JButton("Colocar");
+				btnColocar = new JButton("Colocar");
+				btnColocar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						int posicionDelpaciente= Clinica.getInstance().IndiceDelPacienteByCodigo(selected.getCodigopaciente());
+						Clinica.getInstance().getMisPacientes().get(posicionDelpaciente).getHistorial().getMisVacunas().add(Vdeseada);
+						loadTableVacunasPendientes(selected,1,"");
+						loadTableVacuna(selected, 1, "");
+						JOptionPane.showMessageDialog(null, "Vacuna Ingresadas Correctamente");
+					}
+				});
 				btnColocar.setEnabled(false);
 				btnColocar.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				btnColocar.setBounds(313, 320, 116, 25);
@@ -373,6 +401,7 @@ public class VistadelPacienteMedico extends JDialog {
 			txtnombrePaciente.setText(selected.getNombre());
 			txtTelefono.setText(selected.getTelefono());
 			fechamedico.setDate(selected.getFechadenacimiento());
+			txtTipoSangre.setText(selected.getTipoSangre());
 		}
 		
 	}

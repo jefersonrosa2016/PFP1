@@ -311,16 +311,12 @@ public class AgregarVacunaPaciente extends JDialog {
 							int posicionDelpaciente= Clinica.getInstance().IndiceDelPacienteByCodigo(paciente.getCodigopaciente());
 							for (int i = 0; i <Derecha.size(); i++) {
 								String[] splits = Derecha.get(i).split(":");
-								System.out.println(splits[0]);
 							
-								System.out.println(posicionDelpaciente);
 								Vacuna vacuna = Clinica.getInstance().buscarVacunaPorCodigo(splits[0]);
 								Clinica.getInstance().getMisPacientes().get(posicionDelpaciente).getHistorial().getMisVacunas().add(vacuna);
-								System.out.println(Clinica.getInstance().getMisPacientes().get(posicionDelpaciente).getHistorial().getMisVacunas().size());
+								
 							}
-							for (int i = 0; i <Clinica.getInstance().getMisPacientes().get(posicionDelpaciente).getHistorial().getMisVacunas().size(); i++) {
-								JOptionPane.showMessageDialog(null,"vacuna ingre: "+ Clinica.getInstance().getMisPacientes().get(posicionDelpaciente).getHistorial().getMisVacunas().get(i).getCodigoVacunacion());
-							}
+							
 							
 							
 							JOptionPane.showMessageDialog(null, "Vacunas Ingresadas Correctamente");
