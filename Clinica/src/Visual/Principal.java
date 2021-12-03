@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Logico.Administrador;
 import Logico.Usuario;
 
 import java.awt.Toolkit;
@@ -22,6 +23,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class Principal extends JFrame {
 
@@ -44,7 +51,7 @@ public class Principal extends JFrame {
 		});
 	}
 
-	public Principal(Usuario usuario) {
+	public Principal(Administrador usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Gestion de Clinica");
 		dimension= getToolkit().getScreenSize();
@@ -227,22 +234,41 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_10.setIcon(liti);
 		mntmNewMenuItem_10.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuVacuna.add(mntmNewMenuItem_10);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JMenu mnNewMenu = new JMenu("Mi Perfil");
-		menuBar.add(mnNewMenu);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Cuenta", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(1579, 13, 311, 164);
+		contentPane.add(panel);
 		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Cerrar Seccion");
-		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+		JLabel nombre = new JLabel("");
+		nombre.setHorizontalAlignment(SwingConstants.CENTER);
+		nombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		nombre.setBounds(12, 26, 287, 32);
+		nombre.setText(usuario.getNombre()+" "+usuario.getApellidos());
+		panel.add(nombre);
+		
+		JLabel TipodeCuenta = new JLabel("");
+		TipodeCuenta.setHorizontalAlignment(SwingConstants.CENTER);
+		TipodeCuenta.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		TipodeCuenta.setBounds(12, 69, 287, 32);
+		TipodeCuenta.setText(usuario.getPuestoLaboral());
+		panel.add(TipodeCuenta);
+		
+		JButton button = new JButton("Cerrar seccion");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login salida = new Login();
 				dispose();
 				salida.setVisible(true);
 			}
 		});
-		mnNewMenu.add(mntmNewMenuItem_12);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		button.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		button.setBounds(78, 114, 159, 25);
+		panel.add(button);
 	}
 }

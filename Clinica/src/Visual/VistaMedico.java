@@ -20,6 +20,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.border.TitledBorder;
+import javax.swing.JButton;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class VistaMedico extends JFrame {
 
@@ -75,5 +81,38 @@ public class VistaMedico extends JFrame {
 		menuPacientes.setIcon(pacien);
 		menuPacientes.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		menuBar.add(menuPacientes);
+		getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Cuenta", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(1579, 13, 311, 164);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel nombre = new JLabel("");
+		nombre.setHorizontalAlignment(SwingConstants.CENTER);
+		nombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		nombre.setBounds(12, 26, 287, 32);
+		nombre.setText(usuario.getNombre()+" "+usuario.getApellidos());
+		panel.add(nombre);
+		
+		JLabel TipodeCuenta = new JLabel("");
+		TipodeCuenta.setHorizontalAlignment(SwingConstants.CENTER);
+		TipodeCuenta.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		TipodeCuenta.setBounds(12, 69, 287, 32);
+		TipodeCuenta.setText("Medico");
+		panel.add(TipodeCuenta);
+		
+		JButton btnNewButton = new JButton("Cerrar seccion");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login salir = new Login();
+				dispose();
+				salir.setVisible(true);
+			}
+		});
+		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnNewButton.setBounds(78, 114, 159, 25);
+		panel.add(btnNewButton);
 	}
 }
