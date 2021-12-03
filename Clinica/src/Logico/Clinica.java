@@ -276,6 +276,25 @@ public class Clinica {
 	}
 	return null;
 }
+
+
+		public int indicedecitaBycod(String codigo) {
+			int posicion= -1; 
+			int i = 0;
+			boolean encontrado = false;
+			
+			while (!encontrado && i < citasMedicas.size() ) {
+				if (citasMedicas.get(i).getCodigoCita().equalsIgnoreCase(codigo)) {
+					encontrado = true;
+					posicion= i;
+					
+				}
+				i++; 
+			}
+					
+			// TODO Auto-generated method stub
+			return posicion;
+		}
 		
 		
 }	

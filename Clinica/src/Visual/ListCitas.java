@@ -147,9 +147,10 @@ public class ListCitas extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-					//	Verpaciente elOella = new Verpaciente(selected);
-				//		elOella.setVisible(true);
-					//	dispose();
+						VerCita elOella = new VerCita(selected);
+						
+						dispose();
+						elOella.setVisible(true);
 					}
 				});
 				btnVisualizar_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));

@@ -428,7 +428,13 @@ public class CrearCitas extends JDialog {
 				getRootPane().setDefaultButton(btnCrear);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
