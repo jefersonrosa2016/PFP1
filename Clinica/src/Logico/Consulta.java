@@ -8,9 +8,9 @@ public class Consulta {
 	private String sintomas;
 	private String diagnostico;
 	private Enfermedad enfermedad;
-	private String medico;
+	private Medico medico;
 	public Consulta(String codigoConsulta, String sintomas, String diagnostico,
-			Enfermedad enfermedad, String medico) {
+			Enfermedad enfermedad, Medico medico) {
 		super();
 		this.codigoConsulta = codigoConsulta;
 		this.fechaConsulta = new Date();
@@ -46,10 +46,10 @@ public class Consulta {
 	public String getCodigoConsulta() {
 		return codigoConsulta;
 	}
-	public String getMedico() {
+	public Medico getMedico() {
 		return medico;
 	}
-	public void setMedico(String medico) {
+	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
 }
