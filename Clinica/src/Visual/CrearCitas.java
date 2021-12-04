@@ -432,6 +432,7 @@ public class CrearCitas extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
+						
 					}
 				});
 				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
