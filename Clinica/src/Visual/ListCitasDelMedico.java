@@ -225,6 +225,10 @@ public class ListCitasDelMedico extends JDialog {
 					
 					limpiardatos();
 				}
+				if(tabbedPane.getSelectedIndex()==0) {
+					
+					limpiardatos();
+				}
 			}
 
 			
