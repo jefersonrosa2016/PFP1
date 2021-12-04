@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -57,10 +58,11 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("Codigo de Usuario");
-		label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		label.setBounds(350, 33, 160, 34);
-		contentPane.add(label);
+		JLabel lblUsername = new JLabel("Codigo de usuario");
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblUsername.setBounds(350, 33, 160, 34);
+		contentPane.add(lblUsername);
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));

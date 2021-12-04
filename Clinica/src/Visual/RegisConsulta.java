@@ -43,8 +43,8 @@ public class RegisConsulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegisConsulta() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Nicole Diaz\\git\\PFP1\\PFP1\\Clinica\\src\\Imgenes\\logitoventana.png"));
-		setBounds(100, 100, 941, 386);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisConsulta.class.getResource("/Imgenes/logitoventana.png")));
+		setBounds(100, 100, 918, 386);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -61,7 +61,7 @@ public class RegisConsulta extends JDialog {
 				panel.add(lblNewLabel);
 			}
 			{
-				JLabel lblcodconsulta = new JLabel("Codigo");
+				JLabel lblcodconsulta = new JLabel("Codigo:");
 				lblcodconsulta.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				lblcodconsulta.setBounds(193, 36, 173, 25);
 				panel.add(lblcodconsulta);
@@ -73,19 +73,20 @@ public class RegisConsulta extends JDialog {
 				panel.add(lblenfermedad);
 			}
 			{
-				JLabel lbldiagnostico = new JLabel("Diagnostico");
+				JLabel lbldiagnostico = new JLabel("Diagnostico:");
 				lbldiagnostico.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				lbldiagnostico.setBounds(193, 155, 173, 25);
 				panel.add(lbldiagnostico);
 			}
 			{
-				JLabel lblNewLabel_4 = new JLabel("Fecha de Consulta");
+				JLabel lblNewLabel_4 = new JLabel("Fecha de Consulta:");
 				lblNewLabel_4.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				lblNewLabel_4.setBounds(193, 199, 173, 25);
 				panel.add(lblNewLabel_4);
 			}
 			{
 				txtconsulta = new JTextField();
+				txtconsulta.setEditable(false);
 				txtconsulta.setBounds(376, 36, 245, 25);
 				panel.add(txtconsulta);
 				txtconsulta.setColumns(10);
@@ -102,7 +103,7 @@ public class RegisConsulta extends JDialog {
 				panel.add(cbxenfermedad);
 			}
 			{
-				JLabel lblNewLabel_1 = new JLabel("Sintomas");
+				JLabel lblNewLabel_1 = new JLabel("Sintomas:");
 				lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				lblNewLabel_1.setBounds(193, 72, 173, 25);
 				panel.add(lblNewLabel_1);
