@@ -48,12 +48,26 @@ public class ListCitasDelMedico extends JDialog {
 	private JRadioButton btncancelada;
 	private JButton okButton;
 	private JButton btnSave;
+	
 	private static DefaultTableModel modeloTabla;
 	private static Object[] row;//Arreglo de objeto.
 	private JTextField TxtcodBusqueda;
+	
+	private static DefaultTableModel modeloTablarealizada;
+	private static Object[] rowrelizado;//Arreglo de objeto.
+	
+	private static DefaultTableModel modeloTablacancelada;
+	private static Object[] rowcancelada;//Arreglo de objeto.
+	
 	private CitaMedica selected=null; 
 	private JTable table;
 	private JButton btnVisualizar;
+	private JTextField txtCodCitaRealizada;
+	private JTable table_1;
+	private JButton btnBuscarealiza;
+	private JTextField txtCodCancelada;
+	private JTable table_2;
+	private JButton btnBuscaCancelada;
 	
 	/**
 	 * Launch the application.
@@ -72,7 +86,6 @@ public class ListCitasDelMedico extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListCitasDelMedico() {
-		System.out.println(VistaMedico.elmedico.getCodigoUsuario());
 		setBounds(100, 100, 920, 542);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -201,6 +214,21 @@ public class ListCitasDelMedico extends JDialog {
 		}
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(tabbedPane.getSelectedIndex()==2) {
+					
+					limpiardatos();
+				}
+				if(tabbedPane.getSelectedIndex()==1) {
+					
+					limpiardatos();
+				}
+			}
+
+			
+		});
 		tabbedPane.setBounds(12, 20, 449, 430);
 		contentPanel.add(tabbedPane);
 		
@@ -279,9 +307,132 @@ public class ListCitasDelMedico extends JDialog {
 		
 		JPanel panelRealizadas = new JPanel();
 		tabbedPane.addTab("Citas Realizadas", null, panelRealizadas, null);
+		panelRealizadas.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Citas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(0, 0, 444, 393);
+		panelRealizadas.add(panel);
+		
+		JLabel label = new JLabel("Cod. Cita:");
+		label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		label.setBounds(15, 37, 98, 26);
+		panel.add(label);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(15, 76, 402, 302);
+		panel.add(panel_2);
+		panel_2.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_2.add(scrollPane_1, BorderLayout.CENTER);
+		
+		table_1 = new JTable();
+		table_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnVisualizar.setEnabled(true);
+				int select = table_1.getSelectedRow();
+				
+				if(select !=-1 ) {
+					selected=Clinica.getInstance().buscarCitaPorCodigo((String) table_1.getValueAt(select,0));
+				}
+				
+			}
+		});
+		modeloTablarealizada =  new DefaultTableModel();
+		String[] colum = {"Codigo", "Nombre","Fecha","Horario"};
+		modeloTablarealizada.setColumnIdentifiers(colum);
+		table_1.setModel(modeloTablarealizada);
+		scrollPane_1.setViewportView(table_1);
+		
+		txtCodCitaRealizada = new JTextField();
+		txtCodCitaRealizada.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtCodCitaRealizada.setColumns(10);
+		txtCodCitaRealizada.setBounds(110, 35, 180, 30);
+		panel.add(txtCodCitaRealizada);
+		
+		btnBuscarealiza = new JButton("Buscar");
+		btnBuscarealiza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadtableRealizadas(txtCodCitaRealizada.getText(), 2);
+			}
+
+			
+		});
+		btnBuscarealiza.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnBuscarealiza.setIcon(icono);
+		btnBuscarealiza.setBounds(302, 38, 111, 25);
+		panel.add(btnBuscarealiza);
 		
 		JPanel PanelCanceladas = new JPanel();
 		tabbedPane.addTab("Citas Canceladas", null, PanelCanceladas, null);
+		PanelCanceladas.setLayout(null);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setLayout(null);
+		panel_3.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Citas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_3.setBounds(0, 0, 444, 393);
+		PanelCanceladas.add(panel_3);
+		
+		JLabel label_1 = new JLabel("Cod. Cita:");
+		label_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		label_1.setBounds(15, 37, 98, 26);
+		panel_3.add(label_1);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBounds(15, 76, 402, 302);
+		panel_3.add(panel_4);
+		panel_4.setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_4.add(scrollPane_2, BorderLayout.CENTER);
+		
+		table_2 = new JTable();
+		table_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnVisualizar.setEnabled(true);
+				int select = table_2.getSelectedRow();
+				
+				if(select !=-1 ) {
+					selected=Clinica.getInstance().buscarCitaPorCodigo((String) table_2.getValueAt(select,0));
+				}
+				
+			}
+		});
+		modeloTablacancelada =  new DefaultTableModel();
+		String[] co = {"Codigo", "Nombre","Fecha","Horario"};
+		modeloTablacancelada.setColumnIdentifiers(co);
+		table_2.setModel(modeloTablacancelada);
+		
+		
+		
+		scrollPane_2.setViewportView(table_2);
+		
+		txtCodCancelada = new JTextField();
+		txtCodCancelada.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtCodCancelada.setColumns(10);
+		txtCodCancelada.setBounds(110, 35, 180, 30);
+		panel_3.add(txtCodCancelada);
+		
+		btnBuscaCancelada = new JButton("Buscar");
+		btnBuscaCancelada.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadtablecancelada(txtCodCancelada.getText(), 2);
+			}
+
+			
+		});
+		btnBuscaCancelada.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnBuscaCancelada.setBounds(302, 38, 111, 25);
+		btnBuscaCancelada.setIcon(icono);
+		panel_3.add(btnBuscaCancelada);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -348,6 +499,8 @@ public class ListCitasDelMedico extends JDialog {
 			}
 		
 			loadTable("",1);
+			loadtableRealizadas("",1);
+			loadtablecancelada("",1);
 		}
 	}
 
@@ -422,6 +575,126 @@ public class ListCitasDelMedico extends JDialog {
 							row[2] = fecha;
 							row[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
 						modeloTabla.addRow(row);
+						}
+					}	
+				}
+			}
+			
+		}
+		
+	}
+	public void loadtableRealizadas(String busqueda, int opcion) {
+		modeloTablarealizada.setRowCount(0);
+		rowrelizado = new Object[modeloTablarealizada.getColumnCount()];
+		if(opcion == 1) {
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				
+				if(Clinica.getInstance().getCitasMedicas().get(i).getMedico().getCodigoUsuario().equalsIgnoreCase(VistaMedico.elmedico.getCodigoUsuario())) {
+					if(Clinica.getInstance().getCitasMedicas().get(i).getEstado().equalsIgnoreCase("Realizada")) {
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+						String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+						rowrelizado[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+						rowrelizado[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+						rowrelizado[2] = fecha;
+						rowrelizado[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+						modeloTablarealizada.addRow(rowrelizado);
+					}
+				
+				}
+			
+			}
+		}else if (opcion == 2) {
+			
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				if(Clinica.getInstance().getCitasMedicas().get(i).getMedico().getCodigoUsuario().equalsIgnoreCase(VistaMedico.elmedico.getCodigoUsuario())) {
+					if(Clinica.getInstance().getCitasMedicas().get(i).getEstado().equalsIgnoreCase("Realizada")) {
+						
+						String codigo = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+						if( codigo .equalsIgnoreCase(busqueda)) {
+							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							rowrelizado[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+							rowrelizado[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+							rowrelizado[2] = fecha;
+							rowrelizado[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+							modeloTablarealizada.addRow(rowrelizado);
+						}else if(busqueda .equalsIgnoreCase("")) {
+							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							rowrelizado[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+							rowrelizado[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+							rowrelizado[2] = fecha;
+							rowrelizado[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+							modeloTablarealizada.addRow(rowrelizado);
+						}
+					}	
+				}
+			}
+			
+		}
+		
+	}
+	public void limpiardatos() {
+		txtCodigo.setText("");
+		txthorario.setText("");
+		txtNombre.setText("");
+		txtTelefono.setText("");
+		dateFechaCita.setDate(null);
+		btnpendiente.setSelected(false);
+		btncancelada.setSelected(false);
+		btnrealizada.setSelected(false);
+		okButton.setEnabled(false);
+		okButton.setVisible(false);
+		
+		
+	}
+	public void loadtablecancelada(String busqueda, int opcion) {
+		modeloTablacancelada.setRowCount(0);
+		rowcancelada = new Object[modeloTablacancelada.getColumnCount()];
+		if(opcion == 1) {
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				
+				if(Clinica.getInstance().getCitasMedicas().get(i).getMedico().getCodigoUsuario().equalsIgnoreCase(VistaMedico.elmedico.getCodigoUsuario())) {
+					if(Clinica.getInstance().getCitasMedicas().get(i).getEstado().equalsIgnoreCase("Cancelada")) {
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+						String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+						rowcancelada[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+						rowcancelada[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+						rowcancelada[2] = fecha;
+						rowcancelada[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+					modeloTablacancelada.addRow(rowcancelada);
+					}
+				
+				}
+			
+			}
+		}else if (opcion == 2) {
+			
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				if(Clinica.getInstance().getCitasMedicas().get(i).getMedico().getCodigoUsuario().equalsIgnoreCase(VistaMedico.elmedico.getCodigoUsuario())) {
+					if(Clinica.getInstance().getCitasMedicas().get(i).getEstado().equalsIgnoreCase("Cancelada")) {
+						
+						String codigo = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+						if( codigo .equalsIgnoreCase(busqueda)) {
+							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							rowcancelada[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+							rowcancelada[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+							rowcancelada[2] = fecha;
+							rowcancelada[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+						modeloTablacancelada.addRow(rowcancelada);
+						}else if(busqueda .equalsIgnoreCase("")) {
+							SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+							sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+							rowcancelada[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+							rowcancelada[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+							rowcancelada[2] = fecha;
+							rowcancelada[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+						modeloTablacancelada.addRow(rowcancelada);
 						}
 					}	
 				}
