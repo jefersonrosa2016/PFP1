@@ -66,9 +66,7 @@ public class RegistrarUsuario extends JDialog {
 	 */
 	public RegistrarUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Imgenes/logitoventana.png")));
-
-
-	setBounds(100, 100, 879, 515);
+		setBounds(100, 100, 879, 515);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
