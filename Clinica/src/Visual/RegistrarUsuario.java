@@ -343,7 +343,7 @@ public class RegistrarUsuario extends JDialog {
 		txttelef.setText("");
 		txtusername.setText("");
 		btnAdmins.setSelected(false);
-		btnMedico.setSelected(true);
+		btnMedico.setSelected(false);
 		btnSecretaria.setSelected(false);
 		
 	}
