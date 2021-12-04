@@ -45,15 +45,16 @@ public class RegistrarUsuario extends JDialog {
 	private JTextField txtpassword;
 	private JLabel lblTelef;
 	private JTextField txttelef;
-	private JLabel lblPuesto;
 	private JLabel lblMed;
-	private JTextField txtPuesto;
 	private JTextField txtEspecialidad;
 	private JLabel imagendemedico;
 	private JLabel imagendeadmin;
 	private JPanel panel_1;
 	private JLabel lblApellidos;
 	private JTextField txtapellidos;
+	private JTextField txtPuesto;
+	private JLabel puesto;
+	private JRadioButton btnSecretaria;
 
 	/**
 	 * Launch the application.
@@ -65,7 +66,10 @@ public class RegistrarUsuario extends JDialog {
 	 */
 	public RegistrarUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 686, 500);
+
+
+	setBounds(100, 100, 879, 515);
+
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -86,17 +90,17 @@ public class RegistrarUsuario extends JDialog {
 						if(btnAdmins.isSelected()) {
 							lblMed.setVisible(false);	
 							txtEspecialidad.setVisible(false);
-							lblPuesto.setVisible(true);
-							txtPuesto.setVisible(true);
 							btnMedico.setSelected(false);
+							txtPuesto.setVisible(true);
+							puesto.setVisible(true);
 							ImageIcon admins =new ImageIcon(getClass().getResource("/Imgenes/iconoAdmin.png"));
-							Icon adminst= new ImageIcon(admins.getImage().getScaledInstance((int)181,(int)174,Image.SCALE_DEFAULT));
+							Icon adminst= new ImageIcon(admins.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 							imagendemedico.setIcon(adminst);
 							}
 					}
 				});
 				btnAdmins.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				btnAdmins.setBounds(16, 23, 147, 23);
+				btnAdmins.setBounds(343, 23, 166, 23);
 				panel.add(btnAdmins);
 			}
 			{
@@ -106,12 +110,11 @@ public class RegistrarUsuario extends JDialog {
 						if(btnMedico.isSelected()) {
 						lblMed.setVisible(true);	
 						txtEspecialidad.setVisible(true);
-						lblPuesto.setVisible(false);
-						txtPuesto.setVisible(false);
 						btnAdmins.setSelected(false);
-						
+						txtPuesto.setVisible(false);
+						puesto.setVisible(false);
 						ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
-						Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)181,(int)174,Image.SCALE_DEFAULT));
+						Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 						imagendemedico.setIcon(medi);
 						}
 					}
@@ -119,9 +122,25 @@ public class RegistrarUsuario extends JDialog {
 				});
 				btnMedico.setSelected(true);
 				btnMedico.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				btnMedico.setBounds(368, 23, 109, 23);
+				btnMedico.setBounds(63, 23, 109, 23);
 				panel.add(btnMedico);
 			}
+			
+			btnSecretaria = new JRadioButton("Secretaria");
+			btnSecretaria.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					txtPuesto.setVisible(false);
+					puesto.setVisible(false);
+					lblMed.setVisible(false);	
+					txtEspecialidad.setVisible(false);
+					btnAdmins.setSelected(false);
+					btnMedico.setSelected(false);
+					
+				}
+			});
+			btnSecretaria.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			btnSecretaria.setBounds(643, 24, 166, 23);
+			panel.add(btnSecretaria);
 			{
 				{
 				}
@@ -188,9 +207,10 @@ public class RegistrarUsuario extends JDialog {
 				panel.add(txtpassword);
 			}
 			{
-				lblTelef = new JLabel("Telef.:");
+				lblTelef = new JLabel("Telefono:");
 				lblTelef.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblTelef.setBounds(257, 224, 76, 26);
+
+				lblTelef.setBounds(350, 224, 89, 26);
 				panel.add(lblTelef);
 			}
 			{
@@ -204,7 +224,7 @@ public class RegistrarUsuario extends JDialog {
 				imagendemedico = new JLabel("");
 				imagendemedico.setBounds(21, 42, 181, 190);
 				ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
-				Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)181,(int)174,Image.SCALE_DEFAULT));
+				Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 				imagendemedico.setIcon(medi);
 				panel.add(imagendemedico);
 			}
@@ -229,37 +249,52 @@ public class RegistrarUsuario extends JDialog {
 		}
 		{
 			panel_1 = new JPanel();
-			panel_1.setBorder(null);
-			panel_1.setBounds(12, 351, 648, 66);
+
+			panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBounds(12, 351, 817, 67);
 			contentPanel.add(panel_1);
 			panel_1.setLayout(null);
 			{
-				lblPuesto = new JLabel("Puesto");
+
+				JLabel lblPuesto = new JLabel("Puesto");
 				lblPuesto.setBounds(180, 21, 55, 26);
 				panel_1.add(lblPuesto);
 				lblPuesto.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				{
+{
+
 					txtPuesto = new JTextField();
 					txtPuesto.setBounds(266, 19, 244, 30);
 					panel_1.add(txtPuesto);
 					txtPuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 					txtPuesto.setColumns(10);
+
 					{
-						lblMed = new JLabel("Especialidad");
-						lblMed.setBounds(132, 21, 114, 26);
+
+						lblMed = new JLabel("Especialidad:");
+						lblMed.setBounds(60, 17, 114, 26);
 						panel_1.add(lblMed);
 						lblMed.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 					}
 					{
 						txtEspecialidad = new JTextField();
-						txtEspecialidad.setBounds(266, 17, 244, 30);
+						txtEspecialidad.setBounds(186, 15, 244, 30);
 						panel_1.add(txtEspecialidad);
 						txtEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 18));
 						txtEspecialidad.setColumns(10);
 					}
-					txtPuesto.setVisible(false);
 				}
-				lblPuesto.setVisible(false);
+			}
+			
+			puesto = new JLabel("Puesto:");
+			puesto.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			puesto.setBounds(70, 17, 114, 26);
+			panel_1.add(puesto);
+			{
+				txtPuesto = new JTextField();
+				txtPuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				txtPuesto.setColumns(10);
+				txtPuesto.setBounds(186, 15, 244, 30);
+				panel_1.add(txtPuesto);
 			}
 		}
 		{
@@ -276,6 +311,9 @@ public class RegistrarUsuario extends JDialog {
 						}
 						if(btnAdmins.isSelected()) {
 							u = new Administrador(txtCodigo.getText(), txtusername.getText(), txtpassword.getText(), txtnombre.getText(), txtapellidos.getText(), txttelef.getText(), txtPuesto.getText());
+						}
+						if(btnSecretaria.isSelected()) {
+							u = new Administrador(txtCodigo.getText(), txtusername.getText(), txtpassword.getText(), txtnombre.getText(), txtapellidos.getText(), txttelef.getText(), "Secretaria");
 						}
 						Clinica.getInstance().ingresarUsuario(u);
 						JOptionPane.showMessageDialog(null, "Usuario Ingresado CORRECTAMENTE");
@@ -294,9 +332,21 @@ public class RegistrarUsuario extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		limpiarCampos();
 	}
 	
-	private void limpiarCampos() {
+	public void limpiarCampos() {
+		txtapellidos.setText("");
+		txtCodigo.setText("USR"+Clinica.getInstance().getCodigodeusuario());
+		txtEspecialidad.setText("");
+		txtnombre.setText("");
+		txtpassword.setText("");
+		txtPuesto.setText("");
+		txttelef.setText("");
+		txtusername.setText("");
+		btnAdmins.setSelected(false);
+		btnMedico.setSelected(true);
+		btnSecretaria.setSelected(false);
 		
 	}
 }

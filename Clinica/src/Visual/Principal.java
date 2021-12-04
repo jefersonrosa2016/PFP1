@@ -7,6 +7,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Logico.Administrador;
+import Logico.Usuario;
+
 import java.awt.Toolkit;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,6 +23,12 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class Principal extends JFrame {
 
@@ -32,7 +42,7 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					Principal frame = new Principal(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +51,7 @@ public class Principal extends JFrame {
 		});
 	}
 
-	public Principal() {
+	public Principal(Administrador usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Gestion de Clinica");
 		dimension= getToolkit().getScreenSize();
@@ -155,6 +165,12 @@ public class Principal extends JFrame {
 		menuBar.add(menuCitas);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Crear");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCitas cita=  new CrearCitas();
+				cita.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_5.setIcon(regii);
 		mntmNewMenuItem_5.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuCitas.add(mntmNewMenuItem_5);
@@ -163,6 +179,12 @@ public class Principal extends JFrame {
 		menuCitas.add(separator_3);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListCitas siiiiiuuuu = new ListCitas();
+				siiiiiuuuu.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_6.setIcon(liti);
 		mntmNewMenuItem_6.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuCitas.add(mntmNewMenuItem_6);
@@ -228,5 +250,37 @@ public class Principal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Cuenta", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(1579, 13, 311, 164);
+		contentPane.add(panel);
+		
+		JLabel nombre = new JLabel("");
+		nombre.setHorizontalAlignment(SwingConstants.CENTER);
+		nombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		nombre.setBounds(12, 26, 287, 32);
+		nombre.setText(usuario.getNombre()+" "+usuario.getApellidos());
+		panel.add(nombre);
+		
+		JLabel TipodeCuenta = new JLabel("");
+		TipodeCuenta.setHorizontalAlignment(SwingConstants.CENTER);
+		TipodeCuenta.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		TipodeCuenta.setBounds(12, 69, 287, 32);
+		TipodeCuenta.setText(usuario.getPuestoLaboral());
+		panel.add(TipodeCuenta);
+		
+		JButton button = new JButton("Cerrar seccion");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login salida = new Login();
+				dispose();
+				salida.setVisible(true);
+			}
+		});
+		button.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		button.setBounds(78, 114, 159, 25);
+		panel.add(button);
 	}
 }

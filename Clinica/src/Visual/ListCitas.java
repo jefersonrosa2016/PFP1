@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,32 +23,31 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import Logico.CitaMedica;
 import Logico.Clinica;
-import Logico.Usuario;
-
-import javax.swing.UIManager;
-import java.awt.Color;
 
 
-public class ListUsuario extends JDialog {
+public class ListCitas extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
+	
 	private static DefaultTableModel modeloTabla;
 	private static Object[] row;//Arreglo de objeto.
 	private JTextField TxtcodBusqueda;
-	private Usuario selected=null; 
+	private CitaMedica selected=null; 
 	private JButton btnVisualizar_1;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ListUsuario dialog = new ListUsuario();
+			ListCitas dialog = new ListCitas();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -57,11 +58,10 @@ public class ListUsuario extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListUsuario() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
-		setResizable(false);
+	public ListCitas() {
 		setModal(true);
-		setTitle("Listado de Usuario");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
+		setTitle("Listado de Citas");
 		setBounds(100, 100, 601, 469);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -69,21 +69,21 @@ public class ListUsuario extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(15, 16, 565, 358);
-		contentPanel.add(panel);
-		panel.setLayout(null);
+		JPanel panelCitas = new JPanel();
+		panelCitas.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Citas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelCitas.setBounds(15, 16, 565, 358);
+		contentPanel.add(panelCitas);
+		panelCitas.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Nombre:");
+		JLabel lblNewLabel = new JLabel("Cod. Cita:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		lblNewLabel.setBounds(35, 37, 86, 26);
-		panel.add(lblNewLabel);
+		lblNewLabel.setBounds(33, 37, 98, 26);
+		panelCitas.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(15, 97, 535, 245);
-		panel.add(panel_1);
+		panelCitas.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -99,12 +99,12 @@ public class ListUsuario extends JDialog {
 				int select = table.getSelectedRow();
 				
 				if(select !=-1 ) {
-					//
+					selected=Clinica.getInstance().buscarCitaPorCodigo((String) table.getValueAt(select,0));
 				}
 			}
 		});
 		modeloTabla =  new DefaultTableModel();
-		String[] columnas = {"Codigo", "Nombre","Apellidos","Telefono"};
+		String[] columnas = {"Codigo", "Nombre","Fecha","Horario","Estado","Medico"};
 		modeloTabla.setColumnIdentifiers(columnas);
 		table.setModel(modeloTabla);
 		
@@ -113,7 +113,7 @@ public class ListUsuario extends JDialog {
 		TxtcodBusqueda = new JTextField();
 		TxtcodBusqueda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		TxtcodBusqueda.setBounds(133, 35, 244, 30);
-		panel.add(TxtcodBusqueda);
+		panelCitas.add(TxtcodBusqueda);
 		TxtcodBusqueda.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Buscar");
@@ -127,7 +127,7 @@ public class ListUsuario extends JDialog {
 		btnNewButton.setIcon(icono);
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		btnNewButton.setBounds(404, 38, 116, 25);
-		panel.add(btnNewButton);
+		panelCitas.add(btnNewButton);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -139,6 +139,7 @@ public class ListUsuario extends JDialog {
 						dispose();
 					}
 				});
+				loadTable("", 1);
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/visualizarIcono.png"));
@@ -146,7 +147,10 @@ public class ListUsuario extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						VerCita elOella = new VerCita(selected);
 						
+						dispose();
+						elOella.setVisible(true);
 					}
 				});
 				btnVisualizar_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -159,49 +163,54 @@ public class ListUsuario extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTable("", 1);
+		
 	}
 	
 	public void loadTable(String busqueda, int opcion) {
 		modeloTabla.setRowCount(0);
 		row = new Object[modeloTabla.getColumnCount()];
 		if(opcion == 1) {
-			for (int i = 0; 
-					i<Clinica.getInstance().getMisUsuarios().size(); i++) {
-				row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-				row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-				row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-				row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono();
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+				String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+				row[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+				row[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+				row[2] = fecha;
+				row[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+				row[4] = Clinica.getInstance().getCitasMedicas().get(i).getEstado();
+				row[5] = Clinica.getInstance().getCitasMedicas().get(i).getMedico().getNombre();
 			modeloTabla.addRow(row);
 			}
 		}else if (opcion == 2) {
 			
-			for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
-				String codigo = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
+			for (int i = 0; i<Clinica.getInstance().getCitasMedicas().size(); i++) {
+				String codigo = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
 				if( codigo .equalsIgnoreCase(busqueda)) {
-					row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-					row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-					row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-					row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono();
-					modeloTabla.addRow(row);
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+					row[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+					row[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+					row[2] = fecha;
+					row[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+					row[4] = Clinica.getInstance().getCitasMedicas().get(i).getEstado();
+					row[5] = Clinica.getInstance().getCitasMedicas().get(i).getMedico().getNombre();
+				modeloTabla.addRow(row);
 				}else if(busqueda .equalsIgnoreCase("")) {
-					row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-					row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-					row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-					row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono(); 
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+					String fecha =sdf.format(Clinica.getInstance().getCitasMedicas().get(i).getFechaCita());
+					row[0] = Clinica.getInstance().getCitasMedicas().get(i).getCodigoCita();
+					row[1] = Clinica.getInstance().getCitasMedicas().get(i).getNombrePersona();
+					row[2] = fecha;
+					row[3] = Clinica.getInstance().getCitasMedicas().get(i).getHorario();
+					row[4] = Clinica.getInstance().getCitasMedicas().get(i).getEstado();
+					row[5] = Clinica.getInstance().getCitasMedicas().get(i).getMedico().getNombre();
 				modeloTabla.addRow(row);
 				}
 			}
 			
 		}
 		
-		
-			{
-		}
 	}
-
-	public Usuario getSelected() {
-		return selected;
-	}
-
 }

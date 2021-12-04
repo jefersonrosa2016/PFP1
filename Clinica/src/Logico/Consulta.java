@@ -8,14 +8,16 @@ public class Consulta {
 	private String sintomas;
 	private String diagnostico;
 	private Enfermedad enfermedad;
+	private String medico;
 	public Consulta(String codigoConsulta, String sintomas, String diagnostico,
-			Enfermedad enfermedad) {
+			Enfermedad enfermedad, String medico) {
 		super();
 		this.codigoConsulta = codigoConsulta;
 		this.fechaConsulta = new Date();
 		this.sintomas = sintomas;
 		this.diagnostico = diagnostico;
 		this.enfermedad = enfermedad;
+		this.medico= medico;
 	}
 	public Date getFechaConsulta() {
 		return fechaConsulta;
@@ -43,5 +45,11 @@ public class Consulta {
 	}
 	public String getCodigoConsulta() {
 		return codigoConsulta;
+	}
+	public String getMedico() {
+		return medico;
+	}
+	public void setMedico(String medico) {
+		this.medico = medico;
 	}
 }

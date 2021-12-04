@@ -241,7 +241,7 @@ public class Clinica {
 			return null;
 		}
 
-		public Usuario ingresarUsuario(String codigo) {
+		public Usuario BuscarUsuarioPorCodigo(String codigo) {
 			for(Usuario u: misUsuarios) {
 				if(u != null) {
 					if(u.getCodigoUsuario().equalsIgnoreCase(codigo)) {
@@ -253,7 +253,7 @@ public class Clinica {
 		}
 
 
-		public Consulta ingresarconsulta(Consulta cod) {
+		public Consulta buscarconsulta(Consulta cod) {
 			for(Consulta c: misConsultas) {
 				if(c != null) {
 					if(c.getCodigoConsulta().equalsIgnoreCase(cod.getCodigoConsulta())) {
@@ -266,6 +266,37 @@ public class Clinica {
 
 	
 }
+		public CitaMedica buscarCitaPorCodigo(String cod) {
+	for(CitaMedica c: citasMedicas) {
+		if(c != null) {
+			if(c.getCodigoCita().equalsIgnoreCase(cod)) {
+				return c;
+			}
+		}
+	}
+	return null;
+}
+
+
+		public int indicedecitaBycod(String codigo) {
+			int posicion= -1; 
+			int i = 0;
+			boolean encontrado = false;
+			
+			while (!encontrado && i < citasMedicas.size() ) {
+				if (citasMedicas.get(i).getCodigoCita().equalsIgnoreCase(codigo)) {
+					encontrado = true;
+					posicion= i;
+					
+				}
+				i++; 
+			}
+					
+			// TODO Auto-generated method stub
+			return posicion;
+		}
+		
+		
 }	
 		
 		

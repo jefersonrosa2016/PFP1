@@ -1,6 +1,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,32 +22,31 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Logico.Clinica;
-import Logico.Usuario;
+import Logico.Medico;
+import Logico.Paciente;
 
-import javax.swing.UIManager;
-import java.awt.Color;
-
-
-public class ListUsuario extends JDialog {
+public class ListadepacientesMedico extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
+	
 	private static DefaultTableModel modeloTabla;
 	private static Object[] row;//Arreglo de objeto.
 	private JTextField TxtcodBusqueda;
-	private Usuario selected=null; 
+	private Paciente selected=null; 
 	private JButton btnVisualizar_1;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ListUsuario dialog = new ListUsuario();
+			ListadepacientesMedico dialog = new ListadepacientesMedico();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -57,11 +57,10 @@ public class ListUsuario extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListUsuario() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
-		setResizable(false);
+	public ListadepacientesMedico() {
 		setModal(true);
-		setTitle("Listado de Usuario");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListVacunas.class.getResource("/Imgenes/logitoventana.png")));
+		setTitle("Listado de Pacientes");
 		setBounds(100, 100, 601, 469);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -70,7 +69,7 @@ public class ListUsuario extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Pacientes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(15, 16, 565, 358);
 		contentPanel.add(panel);
 		panel.setLayout(null);
@@ -99,12 +98,12 @@ public class ListUsuario extends JDialog {
 				int select = table.getSelectedRow();
 				
 				if(select !=-1 ) {
-					//
+					selected=Clinica.getInstance().Buscarpaciente((String) table.getValueAt(select,0));
 				}
 			}
 		});
 		modeloTabla =  new DefaultTableModel();
-		String[] columnas = {"Codigo", "Nombre","Apellidos","Telefono"};
+		String[] columnas = {"Codigo", "Nombre","Apellidos","Cedula","Telefono"};
 		modeloTabla.setColumnIdentifiers(columnas);
 		table.setModel(modeloTabla);
 		
@@ -139,6 +138,7 @@ public class ListUsuario extends JDialog {
 						dispose();
 					}
 				});
+				loadTable("", 1);
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
 				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/visualizarIcono.png"));
@@ -146,9 +146,24 @@ public class ListUsuario extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected);
+						dispose();
+						vi.setVisible(true);
+						
 						
 					}
 				});
+				
+				JButton btnNewButton_1 = new JButton("A\u00F1adir");
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						RegisPaciente paci= new RegisPaciente();
+						dispose();
+						paci.setVisible(true);
+					}
+				});
+				btnNewButton_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				buttonPane.add(btnNewButton_1);
 				btnVisualizar_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				btnVisualizar_1.setIcon(ver);
 				btnVisualizar_1.setEnabled(false);
@@ -159,49 +174,43 @@ public class ListUsuario extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
-		loadTable("", 1);
+		
 	}
 	
 	public void loadTable(String busqueda, int opcion) {
 		modeloTabla.setRowCount(0);
 		row = new Object[modeloTabla.getColumnCount()];
 		if(opcion == 1) {
-			for (int i = 0; 
-					i<Clinica.getInstance().getMisUsuarios().size(); i++) {
-				row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-				row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-				row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-				row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono();
+			for (int i = 0; i<Clinica.getInstance().getMisPacientes().size(); i++) {
+				row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
+				row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
+				row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
+				row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
+				row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 			modeloTabla.addRow(row);
 			}
 		}else if (opcion == 2) {
 			
-			for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
-				String codigo = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
+			for (int i = 0; i<Clinica.getInstance().getMisPacientes().size(); i++) {
+				String codigo = Clinica.getInstance().getMisPacientes().get(i).getNombre();
 				if( codigo .equalsIgnoreCase(busqueda)) {
-					row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-					row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-					row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-					row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono();
+					row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
+					row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
+					row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
+					row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
+					row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 					modeloTabla.addRow(row);
 				}else if(busqueda .equalsIgnoreCase("")) {
-					row[0] = Clinica.getInstance().getMisUsuarios().get(i).getCodigoUsuario();
-					row[1] = Clinica.getInstance().getMisUsuarios().get(i).getNombre();
-					row[2] = Clinica.getInstance().getMisUsuarios().get(i).getApellidos();
-					row[3] = Clinica.getInstance().getMisUsuarios().get(i).getTelefono(); 
+					row[0] = Clinica.getInstance().getMisPacientes().get(i).getCodigopaciente();
+					row[1] = Clinica.getInstance().getMisPacientes().get(i).getNombre();
+					row[2] = Clinica.getInstance().getMisPacientes().get(i).getApellidos();
+					row[3] = Clinica.getInstance().getMisPacientes().get(i).getCedula();
+					row[4] = Clinica.getInstance().getMisPacientes().get(i).getTelefono();
 				modeloTabla.addRow(row);
 				}
 			}
 			
 		}
 		
-		
-			{
-		}
 	}
-
-	public Usuario getSelected() {
-		return selected;
-	}
-
 }

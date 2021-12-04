@@ -22,8 +22,17 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+
+import Logico.Clinica;
+import Logico.Paciente;
+
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 public class Verpaciente extends JDialog {
 
@@ -40,7 +49,7 @@ public class Verpaciente extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Verpaciente dialog = new Verpaciente();
+			Verpaciente dialog = new Verpaciente(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -50,11 +59,13 @@ public class Verpaciente extends JDialog {
 
 	/**
 	 * Create the dialog.
+	 * @param selected 
 	 */
-	public Verpaciente() {
+	public Verpaciente(Paciente selected) {
+		setAlwaysOnTop(true);
 		setTitle("Vizualizacion del Paciente");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisPaciente.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 941, 386);
+		setBounds(100, 100, 941, 391);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -201,6 +212,11 @@ public class Verpaciente extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));

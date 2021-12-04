@@ -16,9 +16,20 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
+
+import Logico.Administrador;
+import Logico.Clinica;
+import Logico.Medico;
+import Logico.Usuario;
+
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+
 import javax.swing.SwingConstants;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 public class Login extends JFrame {
 
@@ -46,6 +57,12 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		if(Clinica.getInstance().getMisUsuarios().size()==0) {
+			Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
+			Clinica.getInstance().ingresarUsuario(admin);
+		}
+		
+		
 		setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		setTitle("Inicio de seccion ");
 		setResizable(false);
@@ -58,10 +75,12 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+
 		JLabel lblUsername = new JLabel("Codigo de usuario");
 		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblUsername.setBounds(350, 33, 160, 34);
+
 		contentPane.add(lblUsername);
 		
 		txtUsuario = new JTextField();
@@ -72,7 +91,7 @@ public class Login extends JFrame {
 		
 		JLabel label_1 = new JLabel("Contrase\u00F1a");
 		label_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		label_1.setBounds(379, 127, 153, 26);
+		label_1.setBounds(381, 127, 107, 26);
 		contentPane.add(label_1);
 		
 		contraseña = new JPasswordField();
@@ -81,8 +100,16 @@ public class Login extends JFrame {
 		contentPane.add(contraseña);
 		
 		JButton button = new JButton("Conectar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 String contra= new String (contraseña.getPassword());
+				verificaciondecuenta(txtUsuario.getText(),contra);
+			}
+
+			
+		});
 		button.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		button.setBounds(369, 222, 124, 25);
+		button.setBounds(372, 222, 124, 25);
 		contentPane.add(button);
 		
 		JLabel logo = new JLabel("");
@@ -91,5 +118,25 @@ public class Login extends JFrame {
 		logo.setIcon(icono);
 		logo.setBounds(36, 49, 237, 187);
 		contentPane.add(logo);
+	}
+	public void verificaciondecuenta(String user, String pass) {
+		for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
+			if(user.equals(Clinica.getInstance().getMisUsuarios().get(i).getLogin()) && pass.equals(Clinica.getInstance().getMisUsuarios().get(i).getPassword())) {
+				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Administrador) {
+					Principal adminviu = new Principal((Administrador) Clinica.getInstance().getMisUsuarios().get(i));
+					dispose();
+					adminviu.setVisible(true);
+				}
+				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Medico) {
+					VistaMedico medicoviu= new VistaMedico(Clinica.getInstance().getMisUsuarios().get(i));
+					dispose();
+					medicoviu.setVisible(true);
+				}
+				
+				
+			}
+			
+		}
+		
 	}
 }
