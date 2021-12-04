@@ -254,7 +254,7 @@ public class Principal extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Cuenta", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(1579, 13, 311, 164);
+		panel.setBounds(12, 13, 311, 164);
 		contentPane.add(panel);
 		
 		JLabel nombre = new JLabel("");
