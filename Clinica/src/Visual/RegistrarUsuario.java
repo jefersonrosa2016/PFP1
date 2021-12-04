@@ -66,7 +66,10 @@ public class RegistrarUsuario extends JDialog {
 	 */
 	public RegistrarUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 879, 515);
+
+
+	setBounds(100, 100, 879, 515);
+
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLocationRelativeTo(null);
@@ -78,7 +81,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setLayout(null);
 			panel.setToolTipText("");
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(12, 287, 817, 53);
+			panel.setBounds(12, 287, 648, 53);
 			contentPanel.add(panel);
 			{
 				btnAdmins = new JRadioButton("Administrador");
@@ -148,12 +151,12 @@ public class RegistrarUsuario extends JDialog {
 			panel.setForeground(Color.GRAY);
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(10, 11, 819, 265);
+			panel.setBounds(10, 11, 650, 265);
 			contentPanel.add(panel);
 			{
 				lblCodUsuario = new JLabel("Codigo:");
 				lblCodUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblCodUsuario.setBounds(350, 21, 76, 26);
+				lblCodUsuario.setBounds(257, 21, 76, 26);
 				panel.add(lblCodUsuario);
 			}
 			{
@@ -161,51 +164,52 @@ public class RegistrarUsuario extends JDialog {
 				txtCodigo.setEditable(false);
 				txtCodigo.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtCodigo.setColumns(10);
-				txtCodigo.setBounds(482, 21, 244, 30);
+				txtCodigo.setBounds(389, 21, 244, 30);
 				panel.add(txtCodigo);
 			}
 			{
 				lblnombre = new JLabel("Nombre:");
 				lblnombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblnombre.setBounds(350, 60, 76, 26);
+				lblnombre.setBounds(257, 60, 76, 26);
 				panel.add(lblnombre);
 			}
 			{
 				txtnombre = new JTextField();
 				txtnombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtnombre.setColumns(10);
-				txtnombre.setBounds(482, 60, 244, 30);
+				txtnombre.setBounds(389, 60, 244, 30);
 				panel.add(txtnombre);
 			}
 			{
 				lblUsername = new JLabel("Username:");
 				lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblUsername.setBounds(350, 146, 122, 26);
+				lblUsername.setBounds(257, 146, 122, 26);
 				panel.add(lblUsername);
 			}
 			{
 				txtusername = new JTextField();
 				txtusername.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtusername.setColumns(10);
-				txtusername.setBounds(482, 146, 244, 30);
+				txtusername.setBounds(389, 146, 244, 30);
 				panel.add(txtusername);
 			}
 			{
 				lblPassword = new JLabel("Password:");
 				lblPassword.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblPassword.setBounds(350, 185, 122, 26);
+				lblPassword.setBounds(257, 185, 122, 26);
 				panel.add(lblPassword);
 			}
 			{
 				txtpassword = new JTextField();
 				txtpassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtpassword.setColumns(10);
-				txtpassword.setBounds(482, 185, 244, 30);
+				txtpassword.setBounds(389, 185, 244, 30);
 				panel.add(txtpassword);
 			}
 			{
 				lblTelef = new JLabel("Telefono:");
 				lblTelef.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+
 				lblTelef.setBounds(350, 224, 89, 26);
 				panel.add(lblTelef);
 			}
@@ -213,12 +217,12 @@ public class RegistrarUsuario extends JDialog {
 				txttelef = new JTextField();
 				txttelef.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txttelef.setColumns(10);
-				txttelef.setBounds(482, 224, 244, 30);
+				txttelef.setBounds(389, 224, 244, 30);
 				panel.add(txttelef);
 			}
 			{
 				imagendemedico = new JLabel("");
-				imagendemedico.setBounds(64, 21, 211, 215);
+				imagendemedico.setBounds(21, 42, 181, 190);
 				ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
 				Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 				imagendemedico.setIcon(medi);
@@ -232,26 +236,40 @@ public class RegistrarUsuario extends JDialog {
 			{
 				lblApellidos = new JLabel("Apellidos:");
 				lblApellidos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				lblApellidos.setBounds(350, 105, 89, 26);
+				lblApellidos.setBounds(257, 105, 89, 26);
 				panel.add(lblApellidos);
 			}
 			{
 				txtapellidos = new JTextField();
 				txtapellidos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtapellidos.setColumns(10);
-				txtapellidos.setBounds(482, 105, 244, 30);
+				txtapellidos.setBounds(389, 105, 244, 30);
 				panel.add(txtapellidos);
 			}
 		}
 		{
 			panel_1 = new JPanel();
+
 			panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_1.setBounds(12, 351, 817, 67);
 			contentPanel.add(panel_1);
 			panel_1.setLayout(null);
 			{
-				{
+
+				JLabel lblPuesto = new JLabel("Puesto");
+				lblPuesto.setBounds(180, 21, 55, 26);
+				panel_1.add(lblPuesto);
+				lblPuesto.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+{
+
+					txtPuesto = new JTextField();
+					txtPuesto.setBounds(266, 19, 244, 30);
+					panel_1.add(txtPuesto);
+					txtPuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+					txtPuesto.setColumns(10);
+
 					{
+
 						lblMed = new JLabel("Especialidad:");
 						lblMed.setBounds(60, 17, 114, 26);
 						panel_1.add(lblMed);

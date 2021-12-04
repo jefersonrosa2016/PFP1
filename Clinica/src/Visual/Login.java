@@ -24,8 +24,12 @@ import Logico.Usuario;
 
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 public class Login extends JFrame {
 
@@ -71,9 +75,12 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblUsername = new JLabel("Usuario");
+
+		JLabel lblUsername = new JLabel("Codigo de usuario");
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		lblUsername.setBounds(397, 33, 74, 34);
+		lblUsername.setBounds(350, 33, 160, 34);
+
 		contentPane.add(lblUsername);
 		
 		txtUsuario = new JTextField();
