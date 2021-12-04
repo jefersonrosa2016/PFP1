@@ -175,6 +175,7 @@ public class Clinica {
 			int indice = IndiceDelPacienteByCodigo (codigopaciente);
 			if (indice != -1) {
 				misPacientes.get(indice).añadirConsulta(consulta);
+				misConsultas.add(consulta);
 				codigoConsulta++;
 			}
 			
@@ -253,10 +254,10 @@ public class Clinica {
 		}
 
 
-		public Consulta buscarconsulta(Consulta cod) {
+		public Consulta buscarconsulta(String string) {
 			for(Consulta c: misConsultas) {
 				if(c != null) {
-					if(c.getCodigoConsulta().equalsIgnoreCase(cod.getCodigoConsulta())) {
+					if(c.getCodigoConsulta().equalsIgnoreCase(string)) {
 					
 						return c;
 					}

@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JDateChooser;
 
 import Logico.Clinica;
+import Logico.Consulta;
 import Logico.Medico;
 import Logico.Paciente;
 import Logico.Vacuna;
@@ -40,6 +41,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.awt.Toolkit;
 
 public class VistadelPacienteMedico extends JDialog {
 
@@ -70,7 +72,19 @@ public class VistadelPacienteMedico extends JDialog {
 	private static DefaultTableModel modeloTablaCONSULTAS;
 	private static Object[] rowCONSULTAS;//Arreglo de objeto.
 	
+	private static DefaultTableModel modeloTablaHistorialClinico;
+	private static Object[] rowHistorialClinico;//Arreglo de objeto.
+	
+	
+	
 	private JTable TabladeConsultas;
+	private JTextField txtSintomasMiConsulta;
+	private JTextField txtdiagnosticoMiConsulta;
+	private JTextField txtCodhistorialdeConsultas;
+	private JTable TablaHistorialClinico;
+	private JButton btnBuscarhistorialConsulta;
+	private JTextField txtSintomasHistorial;
+	private JTextField txtDiagnosticoHistorial;
 	
 
 	/**
@@ -91,6 +105,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 * @param selected 
 	 */
 	public VistadelPacienteMedico(Paciente selected) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VistadelPacienteMedico.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 960, 512);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -225,6 +240,16 @@ public class VistadelPacienteMedico extends JDialog {
 				txtTipoSangre.setColumns(10);
 				txtTipoSangre.setBounds(355, 215, 181, 30);
 				panelPaciente.add(txtTipoSangre);
+				
+				JPanel panel = new JPanel();
+				panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel.setBounds(12, 68, 182, 233);
+				panelPaciente.add(panel);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBounds(193, 68, 708, 233);
+				panelPaciente.add(panel_1);
 								
 				infodelpaciente(selected);
 				
@@ -237,7 +262,7 @@ public class VistadelPacienteMedico extends JDialog {
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
 				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Consultas Realizadas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-				panel.setBounds(12, 0, 502, 358);
+				panel.setBounds(0, 0, 484, 371);
 				panelConsultas.add(panel);
 				
 				JLabel lblCodigoDeConsulta = new JLabel("Codigo de Consulta:");
@@ -247,7 +272,7 @@ public class VistadelPacienteMedico extends JDialog {
 				
 				JPanel panel_1 = new JPanel();
 				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_1.setBounds(15, 75, 475, 270);
+				panel_1.setBounds(15, 75, 457, 270);
 				panel.add(panel_1);
 				panel_1.setLayout(new BorderLayout(0, 0));
 				
@@ -256,6 +281,19 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_1.add(scrollPane, BorderLayout.CENTER);
 				
 				TabladeConsultas = new JTable();
+				TabladeConsultas.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int select = TabladeConsultas.getSelectedRow();
+						
+						if(select !=-1 ) {
+							Consulta laConsulta = Clinica.getInstance().buscarconsulta((String) TabladeConsultas.getValueAt(select,0));
+							cargardatosMisConsultas(laConsulta);
+							
+						}
+					}
+
+				});
 				modeloTablaCONSULTAS =  new DefaultTableModel();
 				String[] colum = {"Codigo", "Fecha","Enfermedad"};
 				modeloTablaCONSULTAS.setColumnIdentifiers(colum);
@@ -267,7 +305,7 @@ public class VistadelPacienteMedico extends JDialog {
 				txtcodconsulta = new JTextField();
 				txtcodconsulta.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtcodconsulta.setColumns(10);
-				txtcodconsulta.setBounds(171, 34, 191, 30);
+				txtcodconsulta.setBounds(171, 34, 178, 30);
 				panel.add(txtcodconsulta);
 				
 				JButton btnBuscarC = new JButton("Buscar");
@@ -279,8 +317,42 @@ public class VistadelPacienteMedico extends JDialog {
 				
 				});
 				btnBuscarC.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-				btnBuscarC.setBounds(374, 37, 116, 25);
+				btnBuscarC.setBounds(361, 37, 111, 25);
 				panel.add(btnBuscarC);
+				
+				JPanel panel_2 = new JPanel();
+				panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_2.setBounds(490, 13, 411, 343);
+				panelConsultas.add(panel_2);
+				panel_2.setLayout(null);
+				
+				JPanel panel_3 = new JPanel();
+				panel_3.setBorder(new TitledBorder(null, "Sintomas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_3.setBounds(12, 13, 387, 125);
+				panel_2.add(panel_3);
+				panel_3.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane_1 = new JScrollPane();
+				panel_3.add(scrollPane_1, BorderLayout.CENTER);
+				
+				txtSintomasMiConsulta = new JTextField();
+				txtSintomasMiConsulta.setEditable(false);
+				scrollPane_1.setViewportView(txtSintomasMiConsulta);
+				txtSintomasMiConsulta.setColumns(10);
+				
+				JPanel panel_4 = new JPanel();
+				panel_4.setBorder(new TitledBorder(null, "Diagn\u00F3stico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_4.setBounds(12, 151, 387, 179);
+				panel_2.add(panel_4);
+				panel_4.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane_2 = new JScrollPane();
+				panel_4.add(scrollPane_2, BorderLayout.CENTER);
+				
+				txtdiagnosticoMiConsulta = new JTextField();
+				txtdiagnosticoMiConsulta.setEditable(false);
+				scrollPane_2.setViewportView(txtdiagnosticoMiConsulta);
+				txtdiagnosticoMiConsulta.setColumns(10);
 			}
 			{
 				JPanel panelVacunas = new JPanel();
@@ -422,15 +494,112 @@ public class VistadelPacienteMedico extends JDialog {
 				//poner loadtablevacuna
 				loadTableVacunasPendientes(selected,1,"");
 				loadTableVacuna(selected, 1, "");
+				loadtableMisConsultas(selected,"",1);
 			}
 			{
 				JPanel panelHistorialClinico = new JPanel();
 				tabbedPane.addTab("Historial Clinico", null, panelHistorialClinico, null);
+				panelHistorialClinico.setLayout(null);
+				
+				JPanel panel = new JPanel();
+				panel.setLayout(null);
+				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Historial de Consultas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+				panel.setBounds(0, 0, 484, 371);
+				panelHistorialClinico.add(panel);
+				
+				JLabel label = new JLabel("Codigo de Consulta:");
+				label.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+				label.setBounds(15, 36, 164, 26);
+				panel.add(label);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBounds(15, 75, 457, 270);
+				panel.add(panel_1);
+				panel_1.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane = new JScrollPane();
+				panel_1.add(scrollPane, BorderLayout.CENTER);
+				
+				TablaHistorialClinico = new JTable();
+				TablaHistorialClinico.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						int select = TablaHistorialClinico.getSelectedRow();
+						
+						if(select !=-1 ) {
+							Consulta laConsulta = Clinica.getInstance().buscarconsulta((String) TablaHistorialClinico.getValueAt(select,0));
+							CargardatosHistorialConsultas(laConsulta);
+						}
+						
+					}
+
+					
+				});
+				modeloTablaHistorialClinico =  new DefaultTableModel();
+				String[] colummm = {"Codigo", "Fecha","Enfermedad","Medico"};
+				modeloTablaHistorialClinico.setColumnIdentifiers(colummm);
+				TablaHistorialClinico.setModel(modeloTablaHistorialClinico);
+				
+				
+				scrollPane.setViewportView(TablaHistorialClinico);
+				
+				txtCodhistorialdeConsultas = new JTextField();
+				txtCodhistorialdeConsultas.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				txtCodhistorialdeConsultas.setColumns(10);
+				txtCodhistorialdeConsultas.setBounds(171, 34, 178, 30);
+				panel.add(txtCodhistorialdeConsultas);
+				
+				btnBuscarhistorialConsulta = new JButton("Buscar");
+				btnBuscarhistorialConsulta.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						loadtableHistorialConsultas(selected,txtCodhistorialdeConsultas.getText(),2);
+					}
+
+					
+				});
+				btnBuscarhistorialConsulta.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+				btnBuscarhistorialConsulta.setBounds(361, 37, 111, 25);
+				panel.add(btnBuscarhistorialConsulta);
+				
+				JPanel panel_2 = new JPanel();
+				panel_2.setLayout(null);
+				panel_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_2.setBounds(490, 13, 411, 343);
+				panelHistorialClinico.add(panel_2);
+				
+				JPanel panel_3 = new JPanel();
+				panel_3.setBorder(new TitledBorder(null, "Sintomas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_3.setBounds(12, 13, 387, 125);
+				panel_2.add(panel_3);
+				panel_3.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane_1 = new JScrollPane();
+				panel_3.add(scrollPane_1, BorderLayout.CENTER);
+				
+				txtSintomasHistorial = new JTextField();
+				txtSintomasHistorial.setEditable(false);
+				scrollPane_1.setViewportView(txtSintomasHistorial);
+				txtSintomasHistorial.setColumns(10);
+				
+				JPanel panel_4 = new JPanel();
+				panel_4.setBorder(new TitledBorder(null, "Diagn\u00F3stico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_4.setBounds(12, 151, 387, 179);
+				panel_2.add(panel_4);
+				panel_4.setLayout(new BorderLayout(0, 0));
+				
+				JScrollPane scrollPane_2 = new JScrollPane();
+				panel_4.add(scrollPane_2, BorderLayout.CENTER);
+				
+				txtDiagnosticoHistorial = new JTextField();
+				txtDiagnosticoHistorial.setEditable(false);
+				scrollPane_2.setViewportView(txtDiagnosticoHistorial);
+				txtDiagnosticoHistorial.setColumns(10);
 			}
 			
 			JPanel Paneldiagnostico = new JPanel();
 			Paneldiagnostico.setToolTipText("");
-			tabbedPane.addTab("New tab", null, Paneldiagnostico, null);
+			tabbedPane.addTab("Diagnosticar", null, Paneldiagnostico, null);
 			
 			
 		}
@@ -440,17 +609,13 @@ public class VistadelPacienteMedico extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
+		loadtableHistorialConsultas(selected,"",1);
+		
 	}
 
 	public void infodelpaciente(Paciente selected) {
@@ -594,4 +759,62 @@ public class VistadelPacienteMedico extends JDialog {
 		}
 		
 	}
+
+	public void cargardatosMisConsultas(Consulta laConsulta) {
+		txtdiagnosticoMiConsulta.setText(laConsulta.getDiagnostico());
+		txtSintomasMiConsulta.setText(laConsulta.getSintomas());
+	}
+	public void loadtableHistorialConsultas(Paciente selected, String busqueda, int opcion) {
+		modeloTablaHistorialClinico.setRowCount(0);
+		rowHistorialClinico = new Object[modeloTablaHistorialClinico.getColumnCount()];
+		if(opcion == 1) {
+			for (int i = 0; i<selected.getHistorial().getMisConsultas().size(); i++) {
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						String fecha =sdf.format(selected.getHistorial().getMisConsultas().get(i).getFechaConsulta());
+						rowHistorialClinico[0] = selected.getHistorial().getMisConsultas().get(i).getCodigoConsulta();
+						rowHistorialClinico[1] = fecha;
+						rowHistorialClinico[2] = selected.getHistorial().getMisConsultas().get(i).getEnfermedad().getNombreEnfermedad();
+						rowHistorialClinico[3] = selected.getHistorial().getMisConsultas().get(i).getMedico().getNombre();
+						modeloTablaHistorialClinico.addRow(rowHistorialClinico);
+				
+			
+			}
+		}else if (opcion == 2) {
+			
+			for (int i = 0; i<selected.getHistorial().getMisConsultas().size(); i++) {
+					String codigo = selected.getMisConsultas().get(i).getCodigoConsulta();
+					if( codigo .equalsIgnoreCase(busqueda)) {
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						String fecha =sdf.format(selected.getHistorial().getMisConsultas().get(i).getFechaConsulta());
+						rowHistorialClinico[0] = selected.getHistorial().getMisConsultas().get(i).getCodigoConsulta();
+						rowHistorialClinico[1] = fecha;
+						rowHistorialClinico[2] = selected.getHistorial().getMisConsultas().get(i).getEnfermedad().getNombreEnfermedad();
+						rowHistorialClinico[3] = selected.getHistorial().getMisConsultas().get(i).getMedico().getNombre();
+						modeloTablaHistorialClinico.addRow(rowHistorialClinico);
+					}else if(busqueda .equalsIgnoreCase("")) {
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						String fecha =sdf.format(selected.getHistorial().getMisConsultas().get(i).getFechaConsulta());
+						rowHistorialClinico[0] = selected.getHistorial().getMisConsultas().get(i).getCodigoConsulta();
+						rowHistorialClinico[1] = fecha;
+						rowHistorialClinico[2] = selected.getHistorial().getMisConsultas().get(i).getEnfermedad().getNombreEnfermedad();
+						rowHistorialClinico[3] = selected.getHistorial().getMisConsultas().get(i).getMedico().getNombre();
+						modeloTablaHistorialClinico.addRow(rowHistorialClinico);
+					}
+					
+				
+						
+				
+			}
+			
+		}
+		
+	}
+	public void CargardatosHistorialConsultas(Consulta laConsulta) {
+		txtSintomasHistorial.setText(laConsulta.getSintomas());
+		txtDiagnosticoHistorial.setText(laConsulta.getDiagnostico());
+		
+	}
+	
+	
+	
 }
