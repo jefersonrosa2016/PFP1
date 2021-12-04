@@ -95,7 +95,7 @@ public class VistaMedico extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion Cuenta", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(1579, 13, 311, 164);
+		panel.setBounds(12, 13, 311, 164);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
