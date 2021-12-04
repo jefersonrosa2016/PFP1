@@ -65,6 +65,13 @@ public class VistaMedico extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Citas");
+		mnNewMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ListCitasDelMedico miscitas= new ListCitasDelMedico();
+				miscitas.setVisible(true);
+			}
+		});
 		ImageIcon Cita =new ImageIcon(getClass().getResource("/Imgenes/IconoCita.png"));
 		Icon citita= new ImageIcon(Cita.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
 		mnNewMenu.setIcon(citita);

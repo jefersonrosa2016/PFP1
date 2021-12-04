@@ -69,21 +69,21 @@ public class ListCitas extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Citas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(15, 16, 565, 358);
-		contentPanel.add(panel);
-		panel.setLayout(null);
+		JPanel panelCitas = new JPanel();
+		panelCitas.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Citas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelCitas.setBounds(15, 16, 565, 358);
+		contentPanel.add(panelCitas);
+		panelCitas.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Cod. Cita:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblNewLabel.setBounds(33, 37, 98, 26);
-		panel.add(lblNewLabel);
+		panelCitas.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1.setBounds(15, 97, 535, 245);
-		panel.add(panel_1);
+		panelCitas.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -113,7 +113,7 @@ public class ListCitas extends JDialog {
 		TxtcodBusqueda = new JTextField();
 		TxtcodBusqueda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		TxtcodBusqueda.setBounds(133, 35, 244, 30);
-		panel.add(TxtcodBusqueda);
+		panelCitas.add(TxtcodBusqueda);
 		TxtcodBusqueda.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Buscar");
@@ -127,7 +127,7 @@ public class ListCitas extends JDialog {
 		btnNewButton.setIcon(icono);
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		btnNewButton.setBounds(404, 38, 116, 25);
-		panel.add(btnNewButton);
+		panelCitas.add(btnNewButton);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
