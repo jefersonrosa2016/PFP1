@@ -42,6 +42,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.awt.Toolkit;
+import javax.swing.JRadioButton;
+import javax.swing.JCheckBox;
+import javax.swing.JEditorPane;
 
 public class VistadelPacienteMedico extends JDialog {
 
@@ -78,13 +81,15 @@ public class VistadelPacienteMedico extends JDialog {
 	
 	
 	private JTable TabladeConsultas;
-	private JTextField txtSintomasMiConsulta;
-	private JTextField txtdiagnosticoMiConsulta;
 	private JTextField txtCodhistorialdeConsultas;
 	private JTable TablaHistorialClinico;
 	private JButton btnBuscarhistorialConsulta;
-	private JTextField txtSintomasHistorial;
-	private JTextField txtDiagnosticoHistorial;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JEditorPane txtSintomasHistorial;
+	private JEditorPane txtDiagnosticoHistorial;
+	private JEditorPane txtSintomasMiConsulta;
+	private JEditorPane txtdiagnosticoMiConsulta;
 	
 
 	/**
@@ -262,7 +267,7 @@ public class VistadelPacienteMedico extends JDialog {
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
 				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado Consultas Realizadas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-				panel.setBounds(0, 0, 484, 371);
+				panel.setBounds(0, 0, 484, 356);
 				panelConsultas.add(panel);
 				
 				JLabel lblCodigoDeConsulta = new JLabel("Codigo de Consulta:");
@@ -335,10 +340,9 @@ public class VistadelPacienteMedico extends JDialog {
 				JScrollPane scrollPane_1 = new JScrollPane();
 				panel_3.add(scrollPane_1, BorderLayout.CENTER);
 				
-				txtSintomasMiConsulta = new JTextField();
-				txtSintomasMiConsulta.setEditable(false);
+				txtSintomasMiConsulta = new JEditorPane();
+				txtSintomasMiConsulta.setEnabled(false);
 				scrollPane_1.setViewportView(txtSintomasMiConsulta);
-				txtSintomasMiConsulta.setColumns(10);
 				
 				JPanel panel_4 = new JPanel();
 				panel_4.setBorder(new TitledBorder(null, "Diagn\u00F3stico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -349,10 +353,9 @@ public class VistadelPacienteMedico extends JDialog {
 				JScrollPane scrollPane_2 = new JScrollPane();
 				panel_4.add(scrollPane_2, BorderLayout.CENTER);
 				
-				txtdiagnosticoMiConsulta = new JTextField();
-				txtdiagnosticoMiConsulta.setEditable(false);
+				txtdiagnosticoMiConsulta = new JEditorPane();
+				txtdiagnosticoMiConsulta.setEnabled(false);
 				scrollPane_2.setViewportView(txtdiagnosticoMiConsulta);
-				txtdiagnosticoMiConsulta.setColumns(10);
 			}
 			{
 				JPanel panelVacunas = new JPanel();
@@ -504,7 +507,7 @@ public class VistadelPacienteMedico extends JDialog {
 				JPanel panel = new JPanel();
 				panel.setLayout(null);
 				panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Historial de Consultas", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-				panel.setBounds(0, 0, 484, 371);
+				panel.setBounds(0, 0, 484, 356);
 				panelHistorialClinico.add(panel);
 				
 				JLabel label = new JLabel("Codigo de Consulta:");
@@ -577,10 +580,9 @@ public class VistadelPacienteMedico extends JDialog {
 				JScrollPane scrollPane_1 = new JScrollPane();
 				panel_3.add(scrollPane_1, BorderLayout.CENTER);
 				
-				txtSintomasHistorial = new JTextField();
-				txtSintomasHistorial.setEditable(false);
+				txtSintomasHistorial = new JEditorPane();
+				txtSintomasHistorial.setEnabled(false);
 				scrollPane_1.setViewportView(txtSintomasHistorial);
-				txtSintomasHistorial.setColumns(10);
 				
 				JPanel panel_4 = new JPanel();
 				panel_4.setBorder(new TitledBorder(null, "Diagn\u00F3stico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -591,15 +593,96 @@ public class VistadelPacienteMedico extends JDialog {
 				JScrollPane scrollPane_2 = new JScrollPane();
 				panel_4.add(scrollPane_2, BorderLayout.CENTER);
 				
-				txtDiagnosticoHistorial = new JTextField();
-				txtDiagnosticoHistorial.setEditable(false);
+				txtDiagnosticoHistorial = new JEditorPane();
+				txtDiagnosticoHistorial.setEnabled(false);
 				scrollPane_2.setViewportView(txtDiagnosticoHistorial);
-				txtDiagnosticoHistorial.setColumns(10);
 			}
 			
 			JPanel Paneldiagnostico = new JPanel();
 			Paneldiagnostico.setToolTipText("");
 			tabbedPane.addTab("Diagnosticar", null, Paneldiagnostico, null);
+			Paneldiagnostico.setLayout(null);
+			
+			JPanel panel = new JPanel();
+			panel.setBorder(new TitledBorder(null, "Informacion de Consulta", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBounds(12, 13, 889, 343);
+			Paneldiagnostico.add(panel);
+			panel.setLayout(null);
+			
+			textField = new JTextField();
+			textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			textField.setEditable(false);
+			textField.setColumns(10);
+			textField.setBounds(98, 39, 244, 30);
+			panel.add(textField);
+			
+			JLabel label = new JLabel("Codigo:");
+			label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			label.setBounds(12, 41, 76, 26);
+			panel.add(label);
+			
+			JDateChooser dateChooser = new JDateChooser();
+			dateChooser.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			dateChooser.setEnabled(false);
+			dateChooser.setBounds(98, 101, 244, 30);
+			panel.add(dateChooser);
+			
+			JLabel lblFecha = new JLabel("Fecha:");
+			lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			lblFecha.setBounds(12, 101, 76, 26);
+			panel.add(lblFecha);
+			
+			JCheckBox chckbxNewCheckBox = new JCheckBox("Agregar Consulta Al Historial Clinico");
+			chckbxNewCheckBox.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+			chckbxNewCheckBox.setBounds(12, 309, 304, 25);
+			panel.add(chckbxNewCheckBox);
+			
+			textField_1 = new JTextField();
+			textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			textField_1.setEditable(false);
+			textField_1.setColumns(10);
+			textField_1.setBounds(12, 194, 330, 30);
+			panel.add(textField_1);
+			
+			JLabel lblEnfermedad = new JLabel("Enfermedad:");
+			lblEnfermedad.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			lblEnfermedad.setBounds(12, 155, 118, 26);
+			panel.add(lblEnfermedad);
+			
+			JPanel panel_1 = new JPanel();
+			panel_1.setBorder(new TitledBorder(null, "Sintomas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1.setBounds(378, 13, 499, 143);
+			panel.add(panel_1);
+			panel_1.setLayout(new BorderLayout(0, 0));
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			panel_1.add(scrollPane, BorderLayout.CENTER);
+			
+			JEditorPane editorPane = new JEditorPane();
+			scrollPane.setViewportView(editorPane);
+			
+			JButton btnNewButton_1 = new JButton("Seleccionar");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			btnNewButton_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+			btnNewButton_1.setBounds(215, 156, 127, 25);
+			panel.add(btnNewButton_1);
+			
+			JPanel panel_2 = new JPanel();
+			panel_2.setBorder(new TitledBorder(null, "Diagn\u00F3stico", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_2.setBounds(378, 169, 499, 174);
+			panel.add(panel_2);
+			panel_2.setLayout(new BorderLayout(0, 0));
+			
+			JScrollPane scrollPane_1 = new JScrollPane();
+			panel_2.add(scrollPane_1, BorderLayout.CENTER);
+			
+			JEditorPane editorPane_1 = new JEditorPane();
+			scrollPane_1.setViewportView(editorPane_1);
 			
 			
 		}
@@ -608,8 +691,13 @@ public class VistadelPacienteMedico extends JDialog {
 			buttonPane.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			JButton btnNewButton_2 = new JButton("Guardar");
+			btnNewButton_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+			buttonPane.add(btnNewButton_2);
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -814,7 +902,4 @@ public class VistadelPacienteMedico extends JDialog {
 		txtDiagnosticoHistorial.setText(laConsulta.getDiagnostico());
 		
 	}
-	
-	
-	
 }
