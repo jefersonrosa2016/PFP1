@@ -90,6 +90,8 @@ public class VistadelPacienteMedico extends JDialog {
 	private JEditorPane txtDiagnosticoHistorial;
 	private JEditorPane txtSintomasMiConsulta;
 	private JEditorPane txtdiagnosticoMiConsulta;
+	private JEditorPane SintomasConsultaCreada;
+	private JEditorPane DiagnosticoConsultaCreada;
 	
 
 	/**
@@ -659,8 +661,8 @@ public class VistadelPacienteMedico extends JDialog {
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 			panel_1.add(scrollPane, BorderLayout.CENTER);
 			
-			JEditorPane editorPane = new JEditorPane();
-			scrollPane.setViewportView(editorPane);
+			SintomasConsultaCreada = new JEditorPane();
+			scrollPane.setViewportView(SintomasConsultaCreada);
 			
 			JButton btnNewButton_1 = new JButton("Seleccionar");
 			btnNewButton_1.addActionListener(new ActionListener() {
@@ -681,8 +683,8 @@ public class VistadelPacienteMedico extends JDialog {
 			JScrollPane scrollPane_1 = new JScrollPane();
 			panel_2.add(scrollPane_1, BorderLayout.CENTER);
 			
-			JEditorPane editorPane_1 = new JEditorPane();
-			scrollPane_1.setViewportView(editorPane_1);
+			DiagnosticoConsultaCreada = new JEditorPane();
+			scrollPane_1.setViewportView(DiagnosticoConsultaCreada);
 			
 			
 		}
