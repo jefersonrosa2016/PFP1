@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Logico.Clinica;
 import Logico.Medico;
 import Logico.Usuario;
 
@@ -21,6 +22,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
@@ -54,6 +62,25 @@ public class VistaMedico extends JFrame {
 	 * @param usuario 
 	 */
 	public VistaMedico(Usuario usuario) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream clinica2;
+				ObjectOutputStream clinicaWrite;
+				try {
+					clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+					clinicaWrite = new ObjectOutputStream(clinica2);
+					clinicaWrite.writeObject(Clinica.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		elmedico=(Medico) usuario;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

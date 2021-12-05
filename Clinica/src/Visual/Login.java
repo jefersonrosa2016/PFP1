@@ -28,6 +28,14 @@ import java.awt.Window.Type;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 
 
@@ -43,6 +51,43 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				FileInputStream clinica;
+				FileOutputStream clinica2;
+				ObjectInputStream clinicaRead;
+				ObjectOutputStream clinicaWrite;
+				try {
+					clinica = new FileInputStream ("LaInfoClinica.dat");
+					clinicaRead = new ObjectInputStream(clinica);
+					Clinica temp = (Clinica)clinicaRead.readObject();
+					Clinica.setInstanciaGlobal(temp);
+					clinica.close();
+					clinicaRead.close();
+				} catch (FileNotFoundException e) {
+					try {
+						clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+						clinicaWrite = new ObjectOutputStream(clinica2);
+						Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
+						Clinica.getInstance().ingresarUsuario(admin);
+						clinicaWrite.writeObject(Clinica.getInstance());
+						clinica2.close();
+						clinicaWrite.close();
+					} catch (FileNotFoundException e1) {
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+					}
+				} catch (IOException e) {
+					
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
@@ -57,10 +102,27 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		if(Clinica.getInstance().getMisUsuarios().size()==0) {
-			Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
-			Clinica.getInstance().ingresarUsuario(admin);
-		}
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream clinica2;
+				ObjectOutputStream clinicaWrite;
+				try {
+					clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+					clinicaWrite = new ObjectOutputStream(clinica2);
+					clinicaWrite.writeObject(Clinica.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		
+		
 		
 		
 		setFont(new Font("Comic Sans MS", Font.PLAIN, 12));

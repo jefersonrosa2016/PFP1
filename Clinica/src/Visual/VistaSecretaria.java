@@ -9,6 +9,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -26,6 +32,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import Logico.Administrador;
+import Logico.Clinica;
 
 public class VistaSecretaria extends JFrame {
 
@@ -52,6 +59,25 @@ public class VistaSecretaria extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaSecretaria(Administrador usuario) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				FileOutputStream clinica2;
+				ObjectOutputStream clinicaWrite;
+				try {
+					clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+					clinicaWrite = new ObjectOutputStream(clinica2);
+					clinicaWrite.writeObject(Clinica.getInstance());
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imgenes/logitoventana.png")));
 		setTitle("Clinica");
 		dimension= getToolkit().getScreenSize();
