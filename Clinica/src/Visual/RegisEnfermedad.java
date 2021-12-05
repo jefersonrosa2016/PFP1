@@ -136,9 +136,9 @@ public class RegisEnfermedad extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent arg0) {
-						Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),cbxtipos.getSelectedItem(), txtDescripcion.getText());
-						Clinica.getInstance().ingresarEnfermedad(aux);
-						JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
+					//	Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),(String) cbxtipos.getSelectedItem(), txtDescripcion.getText());
+					//	Clinica.getInstance().ingresarEnfermedad(aux);
+					//	JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
 						limpiarCampos ();
 					}
 				});

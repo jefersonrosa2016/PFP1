@@ -5,16 +5,14 @@ public class Enfermedad {
 	private String nombreEnfermedad;
 	private String tipoEnfermedad;
 	private String descripcionEnfermedad;
-	public Enfermedad(String codigoEnfermedad, String nombreEnfermedad, String descripcionEnfermedad) {
+	public Enfermedad(String codigoEnfermedad, String nombreEnfermedad,String tipoEnfermedad, String descripcionEnfermedad) {
 		super();
 		this.codigoEnfermedad = codigoEnfermedad;
 		this.nombreEnfermedad = nombreEnfermedad;
 		this.tipoEnfermedad = tipoEnfermedad;
 		this.descripcionEnfermedad = descripcionEnfermedad;
 	}
-	public Enfermedad(String text, String text2, Object selectedItem, String text3) {
-		// TODO Auto-generated constructor stub
-	}
+
 	public String getCodigoEnfermedad() {
 		return codigoEnfermedad;
 	}
