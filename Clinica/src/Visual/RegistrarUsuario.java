@@ -79,7 +79,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setLayout(null);
 			panel.setToolTipText("");
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(12, 287, 648, 53);
+			panel.setBounds(12, 287, 817, 53);
 			contentPanel.add(panel);
 			{
 				btnAdmins = new JRadioButton("Administrador");
@@ -148,8 +148,8 @@ public class RegistrarUsuario extends JDialog {
 			JPanel panel = new JPanel();
 			panel.setForeground(Color.GRAY);
 			panel.setLayout(null);
-			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(10, 11, 650, 265);
+			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panel.setBounds(98, 11, 650, 265);
 			contentPanel.add(panel);
 			{
 				lblCodUsuario = new JLabel("Codigo:");
@@ -208,7 +208,7 @@ public class RegistrarUsuario extends JDialog {
 				lblTelef = new JLabel("Telefono:");
 				lblTelef.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 
-				lblTelef.setBounds(350, 224, 89, 26);
+				lblTelef.setBounds(257, 226, 122, 26);
 				panel.add(lblTelef);
 			}
 			{
@@ -253,29 +253,18 @@ public class RegistrarUsuario extends JDialog {
 			contentPanel.add(panel_1);
 			panel_1.setLayout(null);
 			{
-
-				JLabel lblPuesto = new JLabel("Puesto");
-				lblPuesto.setBounds(180, 21, 55, 26);
-				panel_1.add(lblPuesto);
-				lblPuesto.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 {
 
 					txtPuesto = new JTextField();
+					txtPuesto.setVisible(false);
 					txtPuesto.setBounds(266, 19, 244, 30);
 					panel_1.add(txtPuesto);
 					txtPuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
 					txtPuesto.setColumns(10);
-
-					{
-
-						lblMed = new JLabel("Especialidad:");
-						lblMed.setBounds(60, 17, 114, 26);
-						panel_1.add(lblMed);
-						lblMed.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-					}
 					{
 						txtEspecialidad = new JTextField();
-						txtEspecialidad.setBounds(186, 15, 244, 30);
+						txtEspecialidad.setVisible(false);
+						txtEspecialidad.setBounds(266, 19, 244, 30);
 						panel_1.add(txtEspecialidad);
 						txtEspecialidad.setFont(new Font("Tahoma", Font.PLAIN, 18));
 						txtEspecialidad.setColumns(10);
@@ -284,16 +273,19 @@ public class RegistrarUsuario extends JDialog {
 			}
 			
 			puesto = new JLabel("Puesto:");
+			puesto.setVisible(false);
 			puesto.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			puesto.setBounds(70, 17, 114, 26);
+			puesto.setBounds(177, 21, 114, 26);
 			panel_1.add(puesto);
-			{
-				txtPuesto = new JTextField();
-				txtPuesto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtPuesto.setColumns(10);
-				txtPuesto.setBounds(186, 15, 244, 30);
-				panel_1.add(txtPuesto);
-			}
+			
+					{
+			
+									lblMed = new JLabel("Especialidad:");
+									lblMed.setVisible(false);
+									lblMed.setBounds(142, 21, 114, 26);
+									panel_1.add(lblMed);
+									lblMed.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+								}
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -339,7 +331,6 @@ public class RegistrarUsuario extends JDialog {
 		txtEspecialidad.setText("");
 		txtnombre.setText("");
 		txtpassword.setText("");
-		txtPuesto.setText("");
 		txttelef.setText("");
 		txtusername.setText("");
 		btnAdmins.setSelected(false);

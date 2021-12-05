@@ -4,14 +4,16 @@ public class Enfermedad {
 	private String codigoEnfermedad;
 	private String nombreEnfermedad;
 	private String tipoEnfermedad;
-	private String descipcionEnfermedad;
-	public Enfermedad(String codigoEnfermedad, String nombreEnfermedad, String tipoEnfermedad,
-			String descipcionEnfermedad) {
+	private String descripcionEnfermedad;
+	public Enfermedad(String codigoEnfermedad, String nombreEnfermedad, String descripcionEnfermedad) {
 		super();
 		this.codigoEnfermedad = codigoEnfermedad;
 		this.nombreEnfermedad = nombreEnfermedad;
 		this.tipoEnfermedad = tipoEnfermedad;
-		this.descipcionEnfermedad = descipcionEnfermedad;
+		this.descripcionEnfermedad = descripcionEnfermedad;
+	}
+	public Enfermedad(String text, String text2, Object selectedItem, String text3) {
+		// TODO Auto-generated constructor stub
 	}
 	public String getCodigoEnfermedad() {
 		return codigoEnfermedad;
@@ -31,10 +33,10 @@ public class Enfermedad {
 	public void setTipoEnfermedad(String tipoEnfermedad) {
 		this.tipoEnfermedad = tipoEnfermedad;
 	}
-	public String getDescipcionEnfermedad() {
-		return descipcionEnfermedad;
+	public String getDescripcionEnfermedad() {
+		return descripcionEnfermedad;
 	}
 	public void setDescipcionEnfermedad(String descipcionEnfermedad) {
-		this.descipcionEnfermedad = descipcionEnfermedad;
+		this.descripcionEnfermedad = descipcionEnfermedad;
 	}
 }
