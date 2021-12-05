@@ -39,6 +39,7 @@ public class Clinica {
 		this.misEnfermedades= new ArrayList <Enfermedad>();
 		this.misUsuarios= new ArrayList <Usuario>();
 		this.misVacunas= new ArrayList <Vacuna>();
+		this.misConsultas= new ArrayList <Consulta>();
 		this.codigocita=1;
 		this.codigomedico=1;
 		this.codigoenfermedad=1;
@@ -149,12 +150,6 @@ public class Clinica {
 		misUsuarios.add(usuario);
 		codigodeusuario++;
 		
-		if (usuario instanceof Medico ) {
-			codigomedico++;
-			
-			
-		}
-		
 	}
 	public void ingresarCitaMedica (CitaMedica citamedica) {
 		citasMedicas.add(citamedica);
@@ -171,7 +166,7 @@ public class Clinica {
 			codigodevacunacion++;
 			
 		}
-		public void añadirConsultaPaciente (String codigopaciente, Consulta consulta) {
+	public void añadirConsultaPaciente (String codigopaciente, Consulta consulta) {
 			int indice = IndiceDelPacienteByCodigo (codigopaciente);
 			if (indice != -1) {
 				misPacientes.get(indice).añadirConsulta(consulta);
@@ -295,6 +290,16 @@ public class Clinica {
 					
 			// TODO Auto-generated method stub
 			return posicion;
+		}
+		public Enfermedad buscarEnfermedadPorCodigo(String cod) {
+			for(Enfermedad e: misEnfermedades) {
+				if(e != null) {
+					if(e.getCodigoEnfermedad().equalsIgnoreCase(cod)) {
+						return e;
+					}
+				}
+			}
+			return null;
 		}
 		
 		

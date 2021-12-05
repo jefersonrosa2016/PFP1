@@ -41,6 +41,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.Toolkit;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
@@ -84,14 +85,16 @@ public class VistadelPacienteMedico extends JDialog {
 	private JTextField txtCodhistorialdeConsultas;
 	private JTable TablaHistorialClinico;
 	private JButton btnBuscarhistorialConsulta;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtCodigodelaConsultaNueva;
 	private JEditorPane txtSintomasHistorial;
 	private JEditorPane txtDiagnosticoHistorial;
 	private JEditorPane txtSintomasMiConsulta;
 	private JEditorPane txtdiagnosticoMiConsulta;
 	private JEditorPane SintomasConsultaCreada;
 	private JEditorPane DiagnosticoConsultaCreada;
+	private JButton btnNewButton_2;
+	private JCheckBox btnAgregarAlHistorial;
+	private JDateChooser datefecha;
 	
 
 	/**
@@ -123,6 +126,18 @@ public class VistadelPacienteMedico extends JDialog {
 		Icon paci= new ImageIcon(pacien.getImage().getScaledInstance((int)158,(int)202,Image.SCALE_DEFAULT));
 		{
 			JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(tabbedPane.getSelectedIndex()==4) {
+						btnNewButton_2.setEnabled(true);
+						reiniciardatosConsultaNueva();
+						
+					}else {
+						btnNewButton_2.setEnabled(false);
+					}
+				}
+			});
 			tabbedPane.setBounds(12, 13, 918, 399);
 			
 			contentPanel.add(tabbedPane);
@@ -611,44 +626,37 @@ public class VistadelPacienteMedico extends JDialog {
 			Paneldiagnostico.add(panel);
 			panel.setLayout(null);
 			
-			textField = new JTextField();
-			textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField.setEditable(false);
-			textField.setColumns(10);
-			textField.setBounds(98, 39, 244, 30);
-			panel.add(textField);
+			txtCodigodelaConsultaNueva = new JTextField();
+			txtCodigodelaConsultaNueva.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtCodigodelaConsultaNueva.setEditable(false);
+			txtCodigodelaConsultaNueva.setColumns(10);
+			txtCodigodelaConsultaNueva.setBounds(98, 46, 244, 30);
+			panel.add(txtCodigodelaConsultaNueva);
 			
 			JLabel label = new JLabel("Codigo:");
 			label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			label.setBounds(12, 41, 76, 26);
+			label.setBounds(8, 46, 76, 26);
 			panel.add(label);
 			
-			JDateChooser dateChooser = new JDateChooser();
-			dateChooser.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			dateChooser.setEnabled(false);
-			dateChooser.setBounds(98, 101, 244, 30);
-			panel.add(dateChooser);
+			datefecha = new JDateChooser();
+			datefecha.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			datefecha.setEnabled(false);
+			datefecha.setBounds(98, 122, 244, 30);
+			panel.add(datefecha);
 			
 			JLabel lblFecha = new JLabel("Fecha:");
 			lblFecha.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblFecha.setBounds(12, 101, 76, 26);
+			lblFecha.setBounds(8, 122, 76, 26);
 			panel.add(lblFecha);
 			
-			JCheckBox chckbxNewCheckBox = new JCheckBox("Agregar Consulta Al Historial Clinico");
-			chckbxNewCheckBox.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-			chckbxNewCheckBox.setBounds(12, 309, 304, 25);
-			panel.add(chckbxNewCheckBox);
-			
-			textField_1 = new JTextField();
-			textField_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			textField_1.setEditable(false);
-			textField_1.setColumns(10);
-			textField_1.setBounds(12, 194, 330, 30);
-			panel.add(textField_1);
+			btnAgregarAlHistorial = new JCheckBox("Agregar Consulta Al Historial Clinico");
+			btnAgregarAlHistorial.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+			btnAgregarAlHistorial.setBounds(8, 269, 334, 25);
+			panel.add(btnAgregarAlHistorial);
 			
 			JLabel lblEnfermedad = new JLabel("Enfermedad:");
 			lblEnfermedad.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblEnfermedad.setBounds(12, 155, 118, 26);
+			lblEnfermedad.setBounds(8, 196, 118, 26);
 			panel.add(lblEnfermedad);
 			
 			JPanel panel_1 = new JPanel();
@@ -667,11 +675,16 @@ public class VistadelPacienteMedico extends JDialog {
 			JButton btnNewButton_1 = new JButton("Seleccionar");
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					SeleccionarEnfermedad selecciona= new SeleccionarEnfermedad();
+					selecciona.setVisible(true);
+						Cargarenfermedad();
 					
 				}
+
+			
 			});
 			btnNewButton_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-			btnNewButton_1.setBounds(215, 156, 127, 25);
+			btnNewButton_1.setBounds(215, 198, 127, 25);
 			panel.add(btnNewButton_1);
 			
 			JPanel panel_2 = new JPanel();
@@ -694,7 +707,38 @@ public class VistadelPacienteMedico extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			JButton btnNewButton_2 = new JButton("Guardar");
+			btnNewButton_2 = new JButton("Guardar");
+			btnNewButton_2.setEnabled(false);
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(!(SintomasConsultaCreada.getText().equalsIgnoreCase("")) && !(DiagnosticoConsultaCreada.getText().equalsIgnoreCase(""))) {
+						if(Clinica.getInstance().buscarEnfermedadPorCodigo(SeleccionarEnfermedad.seleccionada.getCodigoEnfermedad())!=null) {
+						Consulta aux = new Consulta(txtCodigodelaConsultaNueva.getText(),SintomasConsultaCreada.getText(),DiagnosticoConsultaCreada.getText(),Clinica.getInstance().buscarEnfermedadPorCodigo(SeleccionarEnfermedad.seleccionada.getCodigoEnfermedad()) ,VistaMedico.elmedico);
+						
+						Clinica.getInstance().añadirConsultaPaciente(selected.getCodigopaciente(), aux);
+						
+						if(btnAgregarAlHistorial.isSelected()) {
+						int indicepaciende=Clinica.getInstance().IndiceDelPacienteByCodigo(selected.getCodigopaciente());
+						System.out.println(indicepaciende);
+						
+						if (indicepaciende!=-1) {
+							Clinica.getInstance().getMisPacientes().get(indicepaciende).getHistorial().getMisConsultas().add(aux);
+						} 
+						
+						
+						}
+						
+						reiniciardatosConsultaNueva();
+						loadtableHistorialConsultas(selected,"",1);
+						loadtableMisConsultas(selected,"",1);
+						}
+							
+				
+					}else {
+						JOptionPane.showMessageDialog(null, "Asegurese de Completar el Diagnostico");
+					}
+				}
+			});
 			btnNewButton_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 			buttonPane.add(btnNewButton_2);
 			{
@@ -902,6 +946,20 @@ public class VistadelPacienteMedico extends JDialog {
 	public void CargardatosHistorialConsultas(Consulta laConsulta) {
 		txtSintomasHistorial.setText(laConsulta.getSintomas());
 		txtDiagnosticoHistorial.setText(laConsulta.getDiagnostico());
+		
+	}
+	public void Cargarenfermedad() {
+	
+		
+	}
+	public void reiniciardatosConsultaNueva() {
+	
+		SintomasConsultaCreada.setText("");
+		DiagnosticoConsultaCreada.setText("");
+		btnAgregarAlHistorial.setSelected(false);
+		txtCodigodelaConsultaNueva.setText("CNS"+Clinica.getInstance().getCodigoConsulta());
+		datefecha.setDate(new Date());
+		
 		
 	}
 }
