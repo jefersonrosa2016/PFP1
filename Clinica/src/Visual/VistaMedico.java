@@ -68,7 +68,7 @@ public class VistaMedico extends JFrame {
 				FileOutputStream clinica2;
 				ObjectOutputStream clinicaWrite;
 				try {
-					clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+					clinica2 = new  FileOutputStream("src/Ficheros/LaInfoClinica.dat");
 					clinicaWrite = new ObjectOutputStream(clinica2);
 					clinicaWrite.writeObject(Clinica.getInstance());
 				} catch (FileNotFoundException e1) {

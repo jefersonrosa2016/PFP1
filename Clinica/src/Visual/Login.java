@@ -56,7 +56,7 @@ public class Login extends JFrame {
 				ObjectInputStream clinicaRead;
 				ObjectOutputStream clinicaWrite;
 				try {
-					clinica = new FileInputStream ("LaInfoClinica.dat");
+					clinica = new FileInputStream ("src/Ficheros/LaInfoClinica.dat");
 					clinicaRead = new ObjectInputStream(clinica);
 					Clinica temp = (Clinica)clinicaRead.readObject();
 					Clinica.setInstanciaGlobal(temp);
@@ -64,7 +64,7 @@ public class Login extends JFrame {
 					clinicaRead.close();
 				} catch (FileNotFoundException e) {
 					try {
-						clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+						clinica2 = new  FileOutputStream("src/Ficheros/LaInfoClinica.dat");
 						clinicaWrite = new ObjectOutputStream(clinica2);
 						Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
 						Clinica.getInstance().ingresarUsuario(admin);
@@ -108,7 +108,7 @@ public class Login extends JFrame {
 				FileOutputStream clinica2;
 				ObjectOutputStream clinicaWrite;
 				try {
-					clinica2 = new  FileOutputStream("LaInfoClinica.dat");
+					clinica2 = new  FileOutputStream("src/Ficheros/LaInfoClinica.dat");
 					clinicaWrite = new ObjectOutputStream(clinica2);
 					clinicaWrite.writeObject(Clinica.getInstance());
 				} catch (FileNotFoundException e1) {
