@@ -59,11 +59,11 @@ public class RegisEnfermedad extends JDialog {
 	 */
 	public RegisEnfermedad() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
-		setLocationRelativeTo(null);
 		setBounds(100, 100, 617, 384);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setLocationRelativeTo(null);
 		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
@@ -138,10 +138,19 @@ public class RegisEnfermedad extends JDialog {
 					
 					public void actionPerformed(ActionEvent arg0) {
 
-					//	Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),(String) cbxtipos.getSelectedItem(), txtDescripcion.getText());
-					//	Clinica.getInstance().ingresarEnfermedad(aux);
-					//	JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
+						Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),(String) cbxtipos.getSelectedItem(), txtDescripcion.getText());
+						Clinica.getInstance().ingresarEnfermedad(aux);
+						JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
 						limpiarCampos();
+						for (int j = 0; j < Clinica.getInstance().getMisEnfermedades().size(); j++) {
+							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getCodigoEnfermedad());
+							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getNombreEnfermedad());
+							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getTipoEnfermedad());
+							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getDescripcionEnfermedad());
+							
+					
+						}
+						
 
 					}
 				});
