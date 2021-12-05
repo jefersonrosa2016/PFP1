@@ -36,7 +36,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField contraseña;
-
+	public static Administrador lasecre=null;
 	/**
 	 * Launch the application.
 	 */
@@ -125,7 +125,7 @@ public class Login extends JFrame {
 				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Administrador) {
 					
 					Administrador admin= (Administrador) Clinica.getInstance().getMisUsuarios().get(i);
-					
+					lasecre=admin;
 					if(admin.getPuestoLaboral().equalsIgnoreCase("Secretaria")) {
 						VistaSecretaria lasecre= new VistaSecretaria(admin);
 						dispose();

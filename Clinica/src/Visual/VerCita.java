@@ -257,6 +257,7 @@ public class VerCita extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						btncancelada.setEnabled(true);
+						okButton.setVisible(false);
 						
 					}
 				});
@@ -294,7 +295,10 @@ public class VerCita extends JDialog {
 			btnpendiente.setSelected(true);
 			btncancelada.setSelected(false);
 			btnrealizada.setSelected(false);
-			okButton.setVisible(true);
+			if(Login.lasecre.getPuestoLaboral().equalsIgnoreCase("Secretaria")) {
+				okButton.setVisible(true);
+			}
+			
 			
 		}
 		if (selected.getEstado().equalsIgnoreCase("Realizada")) {

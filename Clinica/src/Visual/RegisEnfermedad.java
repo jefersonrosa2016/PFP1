@@ -142,16 +142,6 @@ public class RegisEnfermedad extends JDialog {
 						Clinica.getInstance().ingresarEnfermedad(aux);
 						JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
 						limpiarCampos();
-						for (int j = 0; j < Clinica.getInstance().getMisEnfermedades().size(); j++) {
-							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getCodigoEnfermedad());
-							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getNombreEnfermedad());
-							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getTipoEnfermedad());
-							System.out.println(Clinica.getInstance().getMisEnfermedades().get(j).getDescripcionEnfermedad());
-							
-					
-						}
-						
-
 					}
 				});
 				okButton.setActionCommand("OK");
