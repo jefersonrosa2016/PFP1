@@ -59,7 +59,7 @@ public class RegisEnfermedad extends JDialog {
 	 */
 	public RegisEnfermedad() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 617, 384);
+		setBounds(100, 100, 640, 443);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -74,17 +74,17 @@ public class RegisEnfermedad extends JDialog {
 			
 			JLabel lblCod = new JLabel("Codigo");
 			lblCod.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblCod.setBounds(144, 23, 69, 24);
+			lblCod.setBounds(179, 29, 69, 24);
 			panel.add(lblCod);
 			
 			JLabel lblNombre = new JLabel("Nombre ");
 			lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblNombre.setBounds(144, 58, 84, 24);
+			lblNombre.setBounds(179, 64, 84, 24);
 			panel.add(lblNombre);
 			
 			JLabel lblTipos = new JLabel("Tipos ");
 			lblTipos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblTipos.setBounds(144, 93, 59, 24);
+			lblTipos.setBounds(179, 99, 59, 24);
 			panel.add(lblTipos);
 			
 			txtCodigo = new JTextField();
@@ -107,15 +107,15 @@ public class RegisEnfermedad extends JDialog {
 			
 			JLabel lblNewLabel_2 = new JLabel("New label");
 			ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/Enfermedad.png"));
-			Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)124,(int)101,Image.SCALE_DEFAULT));
+			Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)130,(int)109,Image.SCALE_DEFAULT));
 			lblNewLabel_2.setIcon(medi);
-			lblNewLabel_2.setBounds(10, 31, 124, 101);
+			lblNewLabel_2.setBounds(23, 25, 130, 109);
 			panel.add(lblNewLabel_2);
 		}
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Descripci\u00F3n", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 178, 581, 121);
+		panel.setBounds(10, 178, 581, 155);
 		contentPanel.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
