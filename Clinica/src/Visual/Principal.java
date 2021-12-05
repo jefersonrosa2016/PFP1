@@ -173,10 +173,37 @@ public class Principal extends JFrame {
 		mntmNewMenuItem_10.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuVacuna.add(mntmNewMenuItem_10);
 		
-		JMenu mnNewMenu = new JMenu("Enfermedades");
-		mnNewMenu.setHorizontalAlignment(SwingConstants.RIGHT);
-		mnNewMenu.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		menuBar.add(mnNewMenu);
+		JMenu menuEnfer = new JMenu("Enfermedades");
+		ImageIcon Enfer = new ImageIcon(getClass().getResource("/Imgenes/iconoEnfermedad.png"));
+		Icon enferme = new ImageIcon(Enfer.getImage().getScaledInstance((int)70,(int)70, Image.SCALE_DEFAULT));
+		menuEnfer.setHorizontalAlignment(SwingConstants.RIGHT);
+		menuEnfer.setIcon(enferme);
+		menuEnfer.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		
+		menuBar.add(menuEnfer);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Registrar ");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegisEnfermedad enferme = new RegisEnfermedad();
+				enferme.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_2.setIcon(regii);
+		mntmNewMenuItem_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		menuEnfer.add(mntmNewMenuItem_2);
+		
+		JSeparator separator_2 = new JSeparator();
+		menuEnfer.add(separator_2);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Listado ");
+		mntmNewMenuItem_4.setIcon(liti);
+		mntmNewMenuItem_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		menuEnfer.add(mntmNewMenuItem_4);
+		
+		JSeparator separator_1 = new JSeparator();
+		menuEnfer.add(separator_1);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

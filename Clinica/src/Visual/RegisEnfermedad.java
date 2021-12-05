@@ -31,13 +31,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
+import javax.swing.JEditorPane;
 
 public class RegisEnfermedad extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtCodigo;
 	private JTextField txtNombre;
-	private JTextField txtDescripcion;
 	private JComboBox cbxtipos;
 
 	/**
@@ -58,7 +58,7 @@ public class RegisEnfermedad extends JDialog {
 	 */
 	public RegisEnfermedad() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 617, 342);
+		setBounds(100, 100, 617, 384);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -72,17 +72,17 @@ public class RegisEnfermedad extends JDialog {
 			
 			JLabel lblCod = new JLabel("Codigo");
 			lblCod.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblCod.setBounds(144, 23, 143, 24);
+			lblCod.setBounds(144, 23, 69, 24);
 			panel.add(lblCod);
 			
 			JLabel lblNombre = new JLabel("Nombre ");
 			lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblNombre.setBounds(144, 58, 143, 24);
+			lblNombre.setBounds(144, 58, 84, 24);
 			panel.add(lblNombre);
 			
 			JLabel lblTipos = new JLabel("Tipos ");
 			lblTipos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblTipos.setBounds(144, 93, 143, 24);
+			lblTipos.setBounds(144, 93, 59, 24);
 			panel.add(lblTipos);
 			
 			txtCodigo = new JTextField();
@@ -113,16 +113,15 @@ public class RegisEnfermedad extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Descripci\u00F3n", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 178, 581, 71);
+		panel.setBounds(10, 178, 581, 121);
 		contentPanel.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, BorderLayout.CENTER);
 		
-		txtDescripcion = new JTextField();
-		scrollPane.setViewportView(txtDescripcion);
-		txtDescripcion.setColumns(10);
+		JEditorPane editorPane = new JEditorPane();
+		scrollPane.setViewportView(editorPane);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -136,10 +135,10 @@ public class RegisEnfermedad extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent arg0) {
-						Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),cbxtipos.getSelectedItem(), txtDescripcion.getText());
-						Clinica.getInstance().ingresarEnfermedad(aux);
-						JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
-						limpiarCampos ();
+						//Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),cbxtipos.getSelectedItem(), txtDescripcion.getText());
+					//	Clinica.getInstance().ingresarEnfermedad(aux);
+						//JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
+						//limpiarCampos ();
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -166,70 +165,8 @@ public class RegisEnfermedad extends JDialog {
 		txtCodigo.setText("EF" + Clinica.getInstance().getCodigoenfermedad());
 		txtNombre.setText ("");
 		cbxtipos.setSelectedIndex(0);
-		txtDescripcion.setText("");
 		
 		
 	
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
