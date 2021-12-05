@@ -39,6 +39,7 @@ public class RegisEnfermedad extends JDialog {
 	private JTextField txtCodigo;
 	private JTextField txtNombre;
 	private JComboBox cbxtipos;
+	private JEditorPane txtDescripcion;
 
 	/**
 	 * Launch the application.
@@ -58,6 +59,7 @@ public class RegisEnfermedad extends JDialog {
 	 */
 	public RegisEnfermedad() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 617, 384);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -120,8 +122,8 @@ public class RegisEnfermedad extends JDialog {
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, BorderLayout.CENTER);
 		
-		JEditorPane editorPane = new JEditorPane();
-		scrollPane.setViewportView(editorPane);
+		txtDescripcion = new JEditorPane();
+		scrollPane.setViewportView(txtDescripcion);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -135,10 +137,12 @@ public class RegisEnfermedad extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					
 					public void actionPerformed(ActionEvent arg0) {
-						//Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),cbxtipos.getSelectedItem(), txtDescripcion.getText());
+
+					//	Enfermedad aux = new Enfermedad(txtCodigo.getText(), txtNombre.getText(),(String) cbxtipos.getSelectedItem(), txtDescripcion.getText());
 					//	Clinica.getInstance().ingresarEnfermedad(aux);
-						//JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
-						//limpiarCampos ();
+					//	JOptionPane.showMessageDialog(null, "Enfermedad Ingresada CORRECTAMENTE");
+						limpiarCampos();
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -147,6 +151,11 @@ public class RegisEnfermedad extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+				});
 				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				ImageIcon j =new ImageIcon(getClass().getResource("/Imgenes/IconoSalir.png"));
 				Icon sal= new ImageIcon(j.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
@@ -165,6 +174,7 @@ public class RegisEnfermedad extends JDialog {
 		txtCodigo.setText("EF" + Clinica.getInstance().getCodigoenfermedad());
 		txtNombre.setText ("");
 		cbxtipos.setSelectedIndex(0);
+		txtDescripcion.setText("");
 		
 		
 	
