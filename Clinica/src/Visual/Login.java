@@ -123,9 +123,19 @@ public class Login extends JFrame {
 		for (int i = 0; i<Clinica.getInstance().getMisUsuarios().size(); i++) {
 			if(user.equals(Clinica.getInstance().getMisUsuarios().get(i).getLogin()) && pass.equals(Clinica.getInstance().getMisUsuarios().get(i).getPassword())) {
 				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Administrador) {
-					Principal adminviu = new Principal((Administrador) Clinica.getInstance().getMisUsuarios().get(i));
-					dispose();
-					adminviu.setVisible(true);
+					
+					Administrador admin= (Administrador) Clinica.getInstance().getMisUsuarios().get(i);
+					
+					if(admin.getPuestoLaboral().equalsIgnoreCase("Secretaria")) {
+						VistaSecretaria lasecre= new VistaSecretaria(admin);
+						dispose();
+						lasecre.setVisible(true);
+					}else {
+						Principal adminviu = new Principal((Administrador) Clinica.getInstance().getMisUsuarios().get(i));
+						dispose();
+						adminviu.setVisible(true);
+					}
+					
 				}
 				if(Clinica.getInstance().getMisUsuarios().get(i) instanceof Medico) {
 					VistaMedico medicoviu= new VistaMedico(Clinica.getInstance().getMisUsuarios().get(i));

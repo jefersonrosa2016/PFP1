@@ -1,36 +1,33 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Logico.Administrador;
-import Logico.Usuario;
-
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.Font;
-import java.awt.Image;
-
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
-public class Principal extends JFrame {
+import Logico.Administrador;
+
+public class VistaSecretaria extends JFrame {
 
 	private JPanel contentPane;
 	private Dimension dimension;
@@ -42,7 +39,7 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal(null);
+					VistaSecretaria frame = new VistaSecretaria(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,9 +48,12 @@ public class Principal extends JFrame {
 		});
 	}
 
-	public Principal(Administrador usuario) {
+	/**
+	 * Create the frame.
+	 */
+	public VistaSecretaria(Administrador usuario) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/Imgenes/logitoventana.png")));
-		setTitle("Gestion de Clinica");
+		setTitle("Clinica");
 		dimension= getToolkit().getScreenSize();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -62,60 +62,14 @@ public class Principal extends JFrame {
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
-		JMenu menuUsuarios = new JMenu("Usuarios");
 		ImageIcon imagen =new ImageIcon(getClass().getResource("/Imgenes/UsuarioJoven.png"));
 		Icon icono= new ImageIcon(imagen.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
-		menuUsuarios.setIcon(icono);
-		menuUsuarios.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		menuBar.add(menuUsuarios);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Registrar");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			RegistrarUsuario a= new RegistrarUsuario();
-			a.setVisible(true);
-			}
-		});
 		ImageIcon regi =new ImageIcon(getClass().getResource("/Imgenes/RegistrarUsuarioIcono.png"));
 		Icon regii= new ImageIcon(regi.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
-		mntmNewMenuItem.setIcon(regii);
-		mntmNewMenuItem.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		menuUsuarios.add(mntmNewMenuItem);
-		
-		JSeparator separator = new JSeparator();
-		menuUsuarios.add(separator);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Listado");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListUsuario b= new ListUsuario ();
-				b.setVisible(true);
-			}
-		});
 		ImageIcon lsit =new ImageIcon(getClass().getResource("/Imgenes/ListadoIcono.png"));
 		Icon liti= new ImageIcon(lsit.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
-		mntmNewMenuItem_1.setIcon(liti);
-		mntmNewMenuItem_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		menuUsuarios.add(mntmNewMenuItem_1);
-		
-		JMenu menuPacientes = new JMenu("Pacientes");
 		ImageIcon pacienteee =new ImageIcon(getClass().getResource("/Imgenes/PacienteIcono.png"));
 		Icon pacien= new ImageIcon(pacienteee.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
-		menuPacientes.setIcon(pacien);
-		menuPacientes.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		menuBar.add(menuPacientes);
-		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Listado");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListPacientes lispaci = new ListPacientes();
-				lispaci.setVisible(true);
-			}
-		});
-		mntmNewMenuItem_3.setIcon(liti);
-		mntmNewMenuItem_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		menuPacientes.add(mntmNewMenuItem_3);
 		ImageIcon vacc =new ImageIcon(getClass().getResource("/Imgenes/vacunaColocar.png"));
 		Icon vaco= new ImageIcon(vacc.getImage().getScaledInstance((int)50,(int)50,Image.SCALE_DEFAULT));
 		ImageIcon his =new ImageIcon(getClass().getResource("/Imgenes/IconoHistorial.png"));
@@ -127,6 +81,20 @@ public class Principal extends JFrame {
 		menuCitas.setIcon(citita);
 		menuCitas.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		menuBar.add(menuCitas);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Crear");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CrearCitas cita=  new CrearCitas();
+				cita.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_5.setIcon(regii);
+		mntmNewMenuItem_5.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		menuCitas.add(mntmNewMenuItem_5);
+		
+		JSeparator separator_3 = new JSeparator();
+		menuCitas.add(separator_3);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Listado");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
@@ -140,43 +108,8 @@ public class Principal extends JFrame {
 		menuCitas.add(mntmNewMenuItem_6);
 		ImageIcon consul =new ImageIcon(getClass().getResource("/Imgenes/IconoConsulta.png"));
 		Icon consultita= new ImageIcon(consul.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
-		
-		JMenu menuVacuna = new JMenu("Vacunas");
 		ImageIcon vacu =new ImageIcon(getClass().getResource("/Imgenes/IconoVacuna.png"));
 		Icon vacunii= new ImageIcon(vacu.getImage().getScaledInstance((int)70,(int)70,Image.SCALE_DEFAULT));
-		menuVacuna.setIcon(vacunii);
-		menuVacuna.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		menuBar.add(menuVacuna);
-		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Registrar");
-		mntmNewMenuItem_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisVacuna vacu = new RegisVacuna();
-				vacu.setVisible(true);
-			}
-		});
-		mntmNewMenuItem_9.setIcon(regii);
-		mntmNewMenuItem_9.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		menuVacuna.add(mntmNewMenuItem_9);
-		
-		JSeparator separator_5 = new JSeparator();
-		menuVacuna.add(separator_5);
-		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Listado");
-		mntmNewMenuItem_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListVacunas lisvacu = new ListVacunas();
-				lisvacu.setVisible(true);
-			}
-		});
-		mntmNewMenuItem_10.setIcon(liti);
-		mntmNewMenuItem_10.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		menuVacuna.add(mntmNewMenuItem_10);
-		
-		JMenu mnNewMenu = new JMenu("Enfermedades");
-		mnNewMenu.setHorizontalAlignment(SwingConstants.RIGHT);
-		mnNewMenu.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		menuBar.add(mnNewMenu);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
