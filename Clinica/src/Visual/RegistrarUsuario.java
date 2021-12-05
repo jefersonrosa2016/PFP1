@@ -3,6 +3,7 @@ package Visual;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,7 +67,7 @@ public class RegistrarUsuario extends JDialog {
 	 */
 	public RegistrarUsuario() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 879, 515);
+		setBounds(100, 100, 838, 493);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,7 +80,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setLayout(null);
 			panel.setToolTipText("");
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(12, 287, 817, 53);
+			panel.setBounds(50, 287, 655, 53);
 			contentPanel.add(panel);
 			{
 				btnAdmins = new JRadioButton("Administrador");
@@ -91,6 +92,8 @@ public class RegistrarUsuario extends JDialog {
 							btnMedico.setSelected(false);
 							txtPuesto.setVisible(true);
 							puesto.setVisible(true);
+							btnSecretaria.setSelected(false);
+							
 							ImageIcon admins =new ImageIcon(getClass().getResource("/Imgenes/iconoAdmin.png"));
 							Icon adminst= new ImageIcon(admins.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 							imagendemedico.setIcon(adminst);
@@ -98,7 +101,7 @@ public class RegistrarUsuario extends JDialog {
 					}
 				});
 				btnAdmins.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				btnAdmins.setBounds(343, 23, 166, 23);
+				btnAdmins.setBounds(261, 23, 166, 23);
 				panel.add(btnAdmins);
 			}
 			{
@@ -111,6 +114,7 @@ public class RegistrarUsuario extends JDialog {
 						btnAdmins.setSelected(false);
 						txtPuesto.setVisible(false);
 						puesto.setVisible(false);
+						btnSecretaria.setSelected(false);
 						ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
 						Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
 						imagendemedico.setIcon(medi);
@@ -133,11 +137,14 @@ public class RegistrarUsuario extends JDialog {
 					txtEspecialidad.setVisible(false);
 					btnAdmins.setSelected(false);
 					btnMedico.setSelected(false);
-					
+					//ImageIcon secretaria = new ImageIcon(getClass().getResource("/Imgenes/secretaria.png"));
+					//Icon secre = new ImageIcon(secretaria.getImage().getScaledInstance((int)211,(int)215, Image.SCALE_DEFAULT));
+					//AbstractButton imagendesecretaria = null;
+					//imagendesecretaria.setIcon(secre);
 				}
 			});
 			btnSecretaria.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			btnSecretaria.setBounds(643, 24, 166, 23);
+			btnSecretaria.setBounds(470, 23, 166, 23);
 			panel.add(btnSecretaria);
 			{
 				{
@@ -149,7 +156,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setForeground(Color.GRAY);
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(98, 11, 650, 265);
+			panel.setBounds(55, 11, 650, 265);
 			contentPanel.add(panel);
 			{
 				lblCodUsuario = new JLabel("Codigo:");
@@ -230,6 +237,16 @@ public class RegistrarUsuario extends JDialog {
 				imagendeadmin = new JLabel("");
 				imagendeadmin.setBounds(84, 21, 181, 174);
 				panel.add(imagendeadmin);
+				
+				{
+				}
+				//JLabel imagendesecretaria = new JLabel("");
+				//imagendesecretaria.setBounds (21,42,181,174);
+				//ImageIcon secretaria = new ImageIcon(getClass().getResource("/Imgenes/secretaria.png"));
+				//Icon secre = new ImageIcon(secretaria.getImage().getScaledInstance((int)211,(int)215, Image.SCALE_DEFAULT));
+				
+				
+				
 			}
 			{
 				lblApellidos = new JLabel("Apellidos:");
@@ -249,7 +266,7 @@ public class RegistrarUsuario extends JDialog {
 			panel_1 = new JPanel();
 
 			panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(12, 351, 817, 67);
+			panel_1.setBounds(50, 351, 655, 67);
 			contentPanel.add(panel_1);
 			panel_1.setLayout(null);
 			{
@@ -318,6 +335,16 @@ public class RegistrarUsuario extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("SALIR");
+				cancelButton.addActionListener(new ActionListener() {
+			
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						// TODO Auto-generated method stub
+						
+					}
+				});
+				
+				
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
