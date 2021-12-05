@@ -53,6 +53,10 @@ public class SeleccionarEnfermedad extends JDialog {
 	
 	private static DefaultTableModel modeloTabla;
 	private static Object[] row;//Arreglo de objeto.
+	
+	
+	
+	
 	private JEditorPane txtDescripcion;
 	private JButton btnSeleccionada;
 
@@ -77,6 +81,7 @@ public class SeleccionarEnfermedad extends JDialog {
 		setBounds(100, 100, 830, 525);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setLocationRelativeTo(null);
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
@@ -95,7 +100,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelNombre.setVisible(false);
 						panelTipo.setVisible(false);
 						loadTable("",1);
-					
+						limpiardatos();
 						btnSeleccionada.setEnabled(false);	
 					}
 				});
@@ -113,7 +118,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelNombre.setVisible(true);
 						panelTipo.setVisible(false);
 						loadTable("",1);
-						
+						limpiardatos();
 						btnSeleccionada.setEnabled(false);	
 						
 					}
@@ -132,7 +137,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelNombre.setVisible(false);
 						panelTipo.setVisible(true);
 						loadTable("",1);
-						
+						limpiardatos();
 						btnSeleccionada.setEnabled(false);	
 					}
 				});
@@ -382,6 +387,9 @@ public class SeleccionarEnfermedad extends JDialog {
 	}
 	public void limpiardatos() {
 		txtDescripcion.setText("");
+		txtCod.setText("");
+		txtNombre.setText("");
+		cbxTipo.setSelectedIndex(0);
 		
 	}
 }

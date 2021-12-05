@@ -44,6 +44,8 @@ public class Verpaciente extends JDialog {
 	private JTextField txtTelefono;
 	private JTextField txtDireccion;
 	private JDateChooser fechamedico;
+	private JTextField txtGenero;
+	private JTextField txtTipoSangre;
 	/**
 	 * Launch the application.
 	 */
@@ -156,16 +158,9 @@ public class Verpaciente extends JDialog {
 			lblGenero.setBounds(206, 114, 76, 26);
 			panel_1.add(lblGenero);
 			
-			JComboBox cbxGenero = new JComboBox();
-			cbxGenero.setEnabled(false);
-			cbxGenero.setModel(new DefaultComboBoxModel(new String[] {"<<Seleccione>>", "Hombre", "Mujer", "Otros"}));
-			cbxGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			cbxGenero.setBounds(292, 112, 244, 30);
-			panel_1.add(cbxGenero);
-			
-			JLabel lblFechaDeNacimiento = new JLabel("Fecha de Nacimiento:");
+			JLabel lblFechaDeNacimiento = new JLabel("F. de Nacimiento:");
 			lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-			lblFechaDeNacimiento.setBounds(206, 153, 200, 26);
+			lblFechaDeNacimiento.setBounds(549, 155, 200, 26);
 			panel_1.add(lblFechaDeNacimiento);
 			
 			JLabel lblDireccion = new JLabel("Direccion:");
@@ -185,10 +180,30 @@ public class Verpaciente extends JDialog {
 			fechamedico = new JDateChooser();
 			fechamedico.setEnabled(false);
 			fechamedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			fechamedico.setBounds(406, 155, 474, 30);
+			fechamedico.setBounds(718, 155, 162, 30);
 			
 			
 			panel_1.add(fechamedico);
+			
+			txtGenero = new JTextField();
+			txtGenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtGenero.setEditable(false);
+			txtGenero.setColumns(10);
+			txtGenero.setBounds(292, 112, 244, 30);
+			panel_1.add(txtGenero);
+			
+			JLabel label = new JLabel("Tipo de Sangre:");
+			label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			label.setBounds(206, 156, 148, 26);
+			panel_1.add(label);
+			
+			txtTipoSangre = new JTextField();
+			txtTipoSangre.setText((String) null);
+			txtTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtTipoSangre.setEditable(false);
+			txtTipoSangre.setColumns(10);
+			txtTipoSangre.setBounds(355, 153, 181, 30);
+			panel_1.add(txtTipoSangre);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -196,19 +211,8 @@ public class Verpaciente extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnModificar = new JButton("Modificar");
-				btnModificar.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				ImageIcon i =new ImageIcon(getClass().getResource("/Imgenes/modificacion.png"));
 				Icon modifica= new ImageIcon(i.getImage().getScaledInstance((int)25,(int)25,Image.SCALE_DEFAULT));
-				btnModificar.setIcon(modifica);
-				btnModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-					}
-				});
-				btnModificar.setActionCommand("OK");
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
@@ -225,6 +229,18 @@ public class Verpaciente extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		cargardatospaciente(selected);
 	}
 
+	public void cargardatospaciente(Paciente selected) {
+		txtApellido.setText(selected.getApellidos());
+		txtCedula.setText(selected.getCedula());
+		txtCodigoCliente.setText(selected.getCodigopaciente());
+		txtDireccion.setText(selected.getDireccion());
+		txtGenero.setText(selected.getGenero());
+		txtnombrePaciente.setText(selected.getNombre());
+		txtTelefono.setText(selected.getTelefono());
+		txtTipoSangre.setText(selected.getTipoSangre());
+		
+	}
 }
