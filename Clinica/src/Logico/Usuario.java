@@ -1,6 +1,12 @@
 package Logico;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8369107208480140355L;
 	private String codigoUsuario;
 	private String login;
 	

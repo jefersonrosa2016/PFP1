@@ -1,11 +1,16 @@
 package Logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Clinica {
+public class Clinica implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4774322222455056087L;
 	private ArrayList <Paciente> misPacientes;
 	private ArrayList <Usuario> misUsuarios;
 	private ArrayList <CitaMedica> citasMedicas;
@@ -300,6 +305,11 @@ public class Clinica {
 				}
 			}
 			return null;
+		}
+
+
+		public static void setInstanciaGlobal(Clinica instanciaGlobal) {
+			Clinica.instanciaGlobal = instanciaGlobal;
 		}
 		
 		

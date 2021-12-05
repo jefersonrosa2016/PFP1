@@ -2,6 +2,10 @@ package Logico;
 
 public class Medico extends Usuario {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 209313086106624727L;
 	private String especialidad;
 	public Medico(String codigoUsuario, String login, String password, String nombre,
 			String apellidos, String telefono,String especialidad ) {
