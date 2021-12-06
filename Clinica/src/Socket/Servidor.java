@@ -37,7 +37,7 @@ public class Servidor {
 				
 				
 				
-				Respaldo = new  FileOutputStream("Respaldo/LaInfoClinica.dat");
+				Respaldo = new  FileOutputStream("Respaldo/LaInfoClinicaRespaldo.dat");
 				RespaldoWrite = new ObjectOutputStream(Respaldo);
 				
 				RespaldoWrite.writeObject(lectura.readObject());
