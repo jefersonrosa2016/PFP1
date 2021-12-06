@@ -241,6 +241,7 @@ public class Verpaciente extends JDialog {
 		txtnombrePaciente.setText(selected.getNombre());
 		txtTelefono.setText(selected.getTelefono());
 		txtTipoSangre.setText(selected.getTipoSangre());
+		fechamedico.setDate(selected.getFechadenacimiento());
 		
 	}
 }
