@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
@@ -229,6 +230,37 @@ public class Principal extends JFrame {
 		
 		JSeparator separator_1 = new JSeparator();
 		menuEnfer.add(separator_1);
+		
+		JMenu Sistema = new JMenu("Sistema");
+		menuBar.add(Sistema);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Respaldo");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Respaldo de informacion
+
+				ObjectOutputStream respaldoWrite;
+				try {
+					Socket sc= new Socket("127.0.0.1",7000);
+					
+					
+					respaldoWrite = new ObjectOutputStream(sc.getOutputStream());
+					respaldoWrite.writeObject(Clinica.getInstance());
+					
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+				
+			}
+		});
+		Sistema.add(mntmNewMenuItem_5);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
