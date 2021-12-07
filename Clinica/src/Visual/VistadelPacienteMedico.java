@@ -358,6 +358,7 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_3.add(scrollPane_1, BorderLayout.CENTER);
 				
 				txtSintomasMiConsulta = new JEditorPane();
+				txtSintomasMiConsulta.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtSintomasMiConsulta.setEnabled(false);
 				scrollPane_1.setViewportView(txtSintomasMiConsulta);
 				
@@ -371,6 +372,7 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_4.add(scrollPane_2, BorderLayout.CENTER);
 				
 				txtdiagnosticoMiConsulta = new JEditorPane();
+				txtdiagnosticoMiConsulta.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtdiagnosticoMiConsulta.setEnabled(false);
 				scrollPane_2.setViewportView(txtdiagnosticoMiConsulta);
 			}
@@ -598,6 +600,7 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_3.add(scrollPane_1, BorderLayout.CENTER);
 				
 				txtSintomasHistorial = new JEditorPane();
+				txtSintomasHistorial.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtSintomasHistorial.setEnabled(false);
 				scrollPane_1.setViewportView(txtSintomasHistorial);
 				
@@ -611,6 +614,7 @@ public class VistadelPacienteMedico extends JDialog {
 				panel_4.add(scrollPane_2, BorderLayout.CENTER);
 				
 				txtDiagnosticoHistorial = new JEditorPane();
+				txtDiagnosticoHistorial.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtDiagnosticoHistorial.setEnabled(false);
 				scrollPane_2.setViewportView(txtDiagnosticoHistorial);
 			}
@@ -670,6 +674,7 @@ public class VistadelPacienteMedico extends JDialog {
 			panel_1.add(scrollPane, BorderLayout.CENTER);
 			
 			SintomasConsultaCreada = new JEditorPane();
+			SintomasConsultaCreada.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			scrollPane.setViewportView(SintomasConsultaCreada);
 			
 			JButton btnNewButton_1 = new JButton("Seleccionar");
@@ -697,6 +702,7 @@ public class VistadelPacienteMedico extends JDialog {
 			panel_2.add(scrollPane_1, BorderLayout.CENTER);
 			
 			DiagnosticoConsultaCreada = new JEditorPane();
+			DiagnosticoConsultaCreada.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			scrollPane_1.setViewportView(DiagnosticoConsultaCreada);
 			
 			
