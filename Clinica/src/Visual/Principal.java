@@ -243,7 +243,6 @@ public class Principal extends JFrame {
 				try {
 					Socket sc= new Socket("127.0.0.1",7000);
 					
-					
 					respaldoWrite = new ObjectOutputStream(sc.getOutputStream());
 					respaldoWrite.writeObject(Clinica.getInstance());
 					
