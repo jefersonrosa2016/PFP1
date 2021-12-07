@@ -30,16 +30,12 @@ public class Servidor {
 				FileOutputStream Respaldo;
 				ObjectOutputStream RespaldoWrite;
 				
-				
-				
 				Respaldo = new  FileOutputStream("Respaldo/LaInfoClinicaRespaldo.dat");
 				RespaldoWrite = new ObjectOutputStream(Respaldo);
 				
 				RespaldoWrite.writeObject(lectura.readObject());
 				Respaldo.close();
 				RespaldoWrite.close();
-				
-				
 				
 			} catch (IOException ioe) {
 				System.out.println("Error: " + ioe);
