@@ -123,8 +123,6 @@ public class Login extends JFrame {
 		});
 		
 		
-		
-		
 		setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		setTitle("Inicio de seccion ");
 		setResizable(false);
