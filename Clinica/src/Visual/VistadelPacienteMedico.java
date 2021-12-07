@@ -115,6 +115,7 @@ public class VistadelPacienteMedico extends JDialog {
 	 * @param selected 
 	 */
 	public VistadelPacienteMedico(Paciente selected) {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistadelPacienteMedico.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 960, 512);
 		getContentPane().setLayout(new BorderLayout());

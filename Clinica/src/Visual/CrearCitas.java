@@ -32,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CrearCitas extends JDialog {
 
@@ -106,6 +108,21 @@ public class CrearCitas extends JDialog {
 			}
 			{
 				txtNombre = new JTextField();
+				txtNombre.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						int key = e.getKeyChar();
+
+					    boolean mayusculas = key >= 65 && key <= 90;
+					    boolean minusculas = key >= 97 && key <= 122;
+					    boolean espacio = key == 32;
+					            
+					     if (!(minusculas || mayusculas || espacio))
+					    {
+					        e.consume();
+					    }
+					}
+				});
 				txtNombre.setText("");
 				txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtNombre.setColumns(10);
@@ -120,6 +137,15 @@ public class CrearCitas extends JDialog {
 			}
 			{
 				txtTelefono = new JTextField();
+				txtTelefono.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						char c = e.getKeyChar();
+	                    if((!(Character.isDigit(c))&&(c!='-'))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)) {
+	                        e.consume();
+	                    }
+					}
+				});
 				txtTelefono.setText("");
 				txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtTelefono.setColumns(10);

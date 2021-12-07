@@ -1,42 +1,38 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.JTextField;
 import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Logico.Clinica;
 import Logico.Enfermedad;
-import Logico.Paciente;
 
-import javax.swing.JRadioButton;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.UIManager;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-public class SeleccionarEnfermedad extends JDialog {
+public class ListEnferme extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+
 	private JRadioButton btnCodigo;
 	private JPanel panelNombre;
 	private JPanel panelTipo;
@@ -58,14 +54,13 @@ public class SeleccionarEnfermedad extends JDialog {
 	
 	
 	private JEditorPane txtDescripcion;
-	private JButton btnSeleccionada;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			SeleccionarEnfermedad dialog = new SeleccionarEnfermedad();
+			ListEnferme dialog = new ListEnferme();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -76,7 +71,7 @@ public class SeleccionarEnfermedad extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public SeleccionarEnfermedad() {
+	public ListEnferme() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SeleccionarEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 830, 525);
@@ -102,7 +97,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelTipo.setVisible(false);
 						loadTable("",1);
 						limpiardatos();
-						btnSeleccionada.setEnabled(false);	
+
 					}
 				});
 				btnCodigo.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -120,7 +115,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelTipo.setVisible(false);
 						loadTable("",1);
 						limpiardatos();
-						btnSeleccionada.setEnabled(false);	
+
 						
 					}
 				});
@@ -139,7 +134,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						panelTipo.setVisible(true);
 						loadTable("",1);
 						limpiardatos();
-						btnSeleccionada.setEnabled(false);	
+
 					}
 				});
 				btnTipo.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -167,7 +162,7 @@ public class SeleccionarEnfermedad extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						loadTable(txtCod.getText(),2);
 						
-						btnSeleccionada.setEnabled(false);	
+
 					}
 				});
 				btnBuscarCod.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -219,7 +214,7 @@ public class SeleccionarEnfermedad extends JDialog {
 						
 						loadTable(txtNombre.getText(),4);
 						limpiardatos();
-						btnSeleccionada.setEnabled(false);	
+
 					}
 				});
 				btnBuscarNombre.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
@@ -250,7 +245,7 @@ public class SeleccionarEnfermedad extends JDialog {
 				if(select !=-1 ) {
 					seleccionada= Clinica.getInstance().buscarEnfermedadPorCodigo((String) tableEnfermedades.getValueAt(select,0));
 					cargardatos(seleccionada);
-					btnSeleccionada.setEnabled(true);	
+
 				}
 				
 			}
@@ -284,30 +279,14 @@ public class SeleccionarEnfermedad extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnSeleccionada = new JButton("Seleccionar");
-				btnSeleccionada.addActionListener(new ActionListener() {
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(seleccionada!=null) {
-							  int n = JOptionPane.showConfirmDialog(null,"Seguro Que desea seleccionar: "+seleccionada.getNombreEnfermedad()+" Como Su enfermedad","Pregunta De Seguro",JOptionPane.YES_NO_OPTION);
-							  if(n==JOptionPane.OK_OPTION) {
-								  dispose();
-								 
-							  }else {
-									btnSeleccionada.setEnabled(false);
-									JOptionPane.showMessageDialog(null, "Asegurese de Seleccionar la enfermedad en la lista");
-								}
-							  
-						}else {
-							btnSeleccionada.setEnabled(false);
-							JOptionPane.showMessageDialog(null, "Asegurese de Seleccionar la enfermedad en la lista");
-						}
+						dispose();
 					}
 				});
-				btnSeleccionada.setEnabled(false);
-				btnSeleccionada.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-				btnSeleccionada.setActionCommand("OK");
-				buttonPane.add(btnSeleccionada);
-				getRootPane().setDefaultButton(btnSeleccionada);
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
 			}
 		}
 		loadTable("",1);

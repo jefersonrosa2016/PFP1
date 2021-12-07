@@ -30,6 +30,8 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegistrarUsuario extends JDialog {
 
@@ -48,8 +50,7 @@ public class RegistrarUsuario extends JDialog {
 	private JTextField txttelef;
 	private JLabel lblMed;
 	private JTextField txtEspecialidad;
-	private JLabel imagendemedico;
-	private JLabel imagendeadmin;
+	private JLabel imagenesacambiar;
 	private JPanel panel_1;
 	private JLabel lblApellidos;
 	private JTextField txtapellidos;
@@ -66,8 +67,9 @@ public class RegistrarUsuario extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarUsuario() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarUsuario.class.getResource("/Imgenes/logitoventana.png")));
-		setBounds(100, 100, 838, 493);
+		setBounds(100, 100, 696, 510);
 
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,7 +82,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setLayout(null);
 			panel.setToolTipText("");
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Usuario", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(50, 287, 655, 53);
+			panel.setBounds(12, 289, 655, 53);
 			contentPanel.add(panel);
 			{
 				btnAdmins = new JRadioButton("Administrador");
@@ -94,9 +96,9 @@ public class RegistrarUsuario extends JDialog {
 							puesto.setVisible(true);
 							btnSecretaria.setSelected(false);
 							
-							ImageIcon admins =new ImageIcon(getClass().getResource("/Imgenes/iconoAdmin.png"));
-							Icon adminst= new ImageIcon(admins.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
-							imagendemedico.setIcon(adminst);
+							ImageIcon admins =new ImageIcon(getClass().getResource("/Imgenes/administrador.png"));
+							Icon adminst= new ImageIcon(admins.getImage().getScaledInstance(211, 231,Image.SCALE_DEFAULT));
+							imagenesacambiar.setIcon(adminst);
 							}
 					}
 				});
@@ -115,9 +117,10 @@ public class RegistrarUsuario extends JDialog {
 						txtPuesto.setVisible(false);
 						puesto.setVisible(false);
 						btnSecretaria.setSelected(false);
-						ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
-						Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
-						imagendemedico.setIcon(medi);
+						ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/doctor.png"));
+						Icon medi= new ImageIcon(medico.getImage().getScaledInstance(211, 231,Image.SCALE_DEFAULT));
+						imagenesacambiar.setIcon(medi);
+						
 						}
 					}
 					
@@ -137,9 +140,9 @@ public class RegistrarUsuario extends JDialog {
 					txtEspecialidad.setVisible(false);
 					btnAdmins.setSelected(false);
 					btnMedico.setSelected(false);
-					//ImageIcon secretaria = new ImageIcon(getClass().getResource("/Imgenes/secretaria.png"));
-					//Icon secre = new ImageIcon(secretaria.getImage().getScaledInstance((int)211,(int)215, Image.SCALE_DEFAULT));
-					//AbstractButton imagendesecretaria = null;
+					ImageIcon secretaria = new ImageIcon(getClass().getResource("/Imgenes/secretario.png"));
+					Icon secre = new ImageIcon(secretaria.getImage().getScaledInstance(211, 231, Image.SCALE_DEFAULT));
+					imagenesacambiar.setIcon(secre);
 					//imagendesecretaria.setIcon(secre);
 				}
 			});
@@ -156,7 +159,7 @@ public class RegistrarUsuario extends JDialog {
 			panel.setForeground(Color.GRAY);
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informacion de Usuario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(55, 11, 650, 265);
+			panel.setBounds(17, 13, 650, 265);
 			contentPanel.add(panel);
 			{
 				lblCodUsuario = new JLabel("Codigo:");
@@ -180,6 +183,22 @@ public class RegistrarUsuario extends JDialog {
 			}
 			{
 				txtnombre = new JTextField();
+				txtnombre.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						int key = e.getKeyChar();
+
+					    boolean mayusculas = key >= 65 && key <= 90;
+					    boolean minusculas = key >= 97 && key <= 122;
+					    boolean espacio = key == 32;
+					            
+					     if (!(minusculas || mayusculas || espacio))
+					    {
+					        e.consume();
+					    }
+					 
+					}
+				});
 				txtnombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtnombre.setColumns(10);
 				txtnombre.setBounds(389, 60, 244, 30);
@@ -220,33 +239,29 @@ public class RegistrarUsuario extends JDialog {
 			}
 			{
 				txttelef = new JTextField();
+				txttelef.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						char c = e.getKeyChar();
+	                    if((!(Character.isDigit(c))&&(c!='-'))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)) {
+	                        e.consume();
+	                    }
+					}
+				});
 				txttelef.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txttelef.setColumns(10);
 				txttelef.setBounds(389, 224, 244, 30);
 				panel.add(txttelef);
 			}
 			{
-				imagendemedico = new JLabel("");
-				imagendemedico.setBounds(21, 42, 181, 190);
-				ImageIcon medico =new ImageIcon(getClass().getResource("/Imgenes/iconoMedico.png"));
-				Icon medi= new ImageIcon(medico.getImage().getScaledInstance((int)211,(int)215,Image.SCALE_DEFAULT));
-				imagendemedico.setIcon(medi);
-				panel.add(imagendemedico);
+				imagenesacambiar = new JLabel("");
+				imagenesacambiar.setBounds(21, 21, 211, 231);
+				panel.add(imagenesacambiar);
 			}
 			{
-				imagendeadmin = new JLabel("");
-				imagendeadmin.setBounds(84, 21, 181, 174);
-				panel.add(imagendeadmin);
 				
 				{
-				}
-				//JLabel imagendesecretaria = new JLabel("");
-				//imagendesecretaria.setBounds (21,42,181,174);
-				//ImageIcon secretaria = new ImageIcon(getClass().getResource("/Imgenes/secretaria.png"));
-				//Icon secre = new ImageIcon(secretaria.getImage().getScaledInstance((int)211,(int)215, Image.SCALE_DEFAULT));
-				
-				
-				
+				}		
 			}
 			{
 				lblApellidos = new JLabel("Apellidos:");
@@ -256,6 +271,23 @@ public class RegistrarUsuario extends JDialog {
 			}
 			{
 				txtapellidos = new JTextField();
+				txtapellidos.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyTyped(KeyEvent e) {
+						int key = e.getKeyChar();
+
+					    boolean mayusculas = key >= 65 && key <= 90;
+					    boolean minusculas = key >= 97 && key <= 122;
+					    boolean espacio = key == 32;
+					            
+					     if (!(minusculas || mayusculas || espacio))
+					    {
+					        e.consume();
+					    }
+
+						
+					}
+				});
 				txtapellidos.setFont(new Font("Tahoma", Font.PLAIN, 18));
 				txtapellidos.setColumns(10);
 				txtapellidos.setBounds(389, 105, 244, 30);
@@ -266,13 +298,28 @@ public class RegistrarUsuario extends JDialog {
 			panel_1 = new JPanel();
 
 			panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel_1.setBounds(50, 351, 655, 67);
+			panel_1.setBounds(12, 353, 655, 67);
 			contentPanel.add(panel_1);
 			panel_1.setLayout(null);
 			{
 {
 
 					txtPuesto = new JTextField();
+					txtPuesto.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyTyped(KeyEvent e) {
+							int key = e.getKeyChar();
+
+						    boolean mayusculas = key >= 65 && key <= 90;
+						    boolean minusculas = key >= 97 && key <= 122;
+						    boolean espacio = key == 32;
+						            
+						     if (!(minusculas || mayusculas || espacio))
+						    {
+						        e.consume();
+						    }
+						}
+					});
 					txtPuesto.setVisible(false);
 					txtPuesto.setBounds(266, 19, 244, 30);
 					panel_1.add(txtPuesto);
@@ -280,6 +327,21 @@ public class RegistrarUsuario extends JDialog {
 					txtPuesto.setColumns(10);
 					{
 						txtEspecialidad = new JTextField();
+						txtEspecialidad.addKeyListener(new KeyAdapter() {
+							@Override
+							public void keyTyped(KeyEvent e) {
+								int key = e.getKeyChar();
+
+							    boolean mayusculas = key >= 65 && key <= 90;
+							    boolean minusculas = key >= 97 && key <= 122;
+							    boolean espacio = key == 32;
+							            
+							     if (!(minusculas || mayusculas || espacio))
+							    {
+							        e.consume();
+							    }
+							}
+						});
 						txtEspecialidad.setVisible(false);
 						txtEspecialidad.setBounds(266, 19, 244, 30);
 						panel_1.add(txtEspecialidad);

@@ -30,6 +30,8 @@ import Logico.Paciente;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegisPaciente extends JDialog {
 
@@ -103,6 +105,23 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(txtCodigoCliente);
 			
 			txtnombrePaciente = new JTextField();
+			txtnombrePaciente.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					int key = e.getKeyChar();
+
+				    boolean mayusculas = key >= 65 && key <= 90;
+				    boolean minusculas = key >= 97 && key <= 122;
+				    boolean espacio = key == 32;
+				            
+				     if (!(minusculas || mayusculas || espacio))
+				    {
+				    	 e.consume();
+				    }
+				        
+				    
+				}
+			});
 			txtnombrePaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtnombrePaciente.setColumns(10);
 			txtnombrePaciente.setBounds(292, 69, 244, 30);
@@ -114,6 +133,21 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblNombre);
 			
 			txtApellido = new JTextField();
+			txtApellido.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					int key = e.getKeyChar();
+
+				    boolean mayusculas = key >= 65 && key <= 90;
+				    boolean minusculas = key >= 97 && key <= 122;
+				    boolean espacio = key == 32;
+				            
+				     if (!(minusculas || mayusculas || espacio))
+				    {
+				    	 e.consume();
+				    }
+				}
+			});
 			txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtApellido.setColumns(10);
 			txtApellido.setBounds(635, 69, 244, 30);
@@ -125,6 +159,15 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblApellidos);
 			
 			txtCedula = new JTextField();
+			txtCedula.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					char c = e.getKeyChar();
+                    if((!(Character.isDigit(c))&&(c!='-'))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)) {
+                        e.consume();
+                    }
+				}
+			});
 			txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtCedula.setColumns(10);
 			txtCedula.setBounds(635, 26, 244, 30);
@@ -136,6 +179,15 @@ public class RegisPaciente extends JDialog {
 			panel_1.add(lblCedula);
 			
 			txtTelefono = new JTextField();
+			txtTelefono.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					char c = e.getKeyChar();
+                    if((!(Character.isDigit(c))&&(c!='-'))||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE)) {
+                        e.consume();
+                    }
+				}
+			});
 			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtTelefono.setColumns(10);
 			txtTelefono.setBounds(635, 112, 244, 30);

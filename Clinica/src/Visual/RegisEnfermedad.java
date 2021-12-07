@@ -32,6 +32,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JEditorPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegisEnfermedad extends JDialog {
 
@@ -58,6 +60,7 @@ public class RegisEnfermedad extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegisEnfermedad() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisEnfermedad.class.getResource("/Imgenes/logitoventana.png")));
 		setBounds(100, 100, 640, 443);
 		getContentPane().setLayout(new BorderLayout());
@@ -95,6 +98,22 @@ public class RegisEnfermedad extends JDialog {
 			txtCodigo.setColumns(10);
 			
 			txtNombre = new JTextField();
+			txtNombre.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					int key = e.getKeyChar();
+
+				    boolean mayusculas = key >= 65 && key <= 90;
+				    boolean minusculas = key >= 97 && key <= 122;
+				    boolean espacio = key == 32;
+				            
+				     if (!(minusculas || mayusculas || espacio))
+				    {
+				        e.consume();
+				    }
+				}
+			});
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			txtNombre.setBounds(256, 63, 244, 30);
 			panel.add(txtNombre);
 			txtNombre.setColumns(10);
@@ -123,6 +142,7 @@ public class RegisEnfermedad extends JDialog {
 		panel.add(scrollPane, BorderLayout.CENTER);
 		
 		txtDescripcion = new JEditorPane();
+		txtDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		scrollPane.setViewportView(txtDescripcion);
 		{
 			JPanel buttonPane = new JPanel();

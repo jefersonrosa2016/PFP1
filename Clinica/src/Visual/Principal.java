@@ -224,17 +224,28 @@ public class Principal extends JFrame {
 		menuEnfer.add(separator_2);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Listado ");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			ListEnferme listienfermi=new ListEnferme();
+			listienfermi.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_4.setIcon(liti);
 		mntmNewMenuItem_4.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		menuEnfer.add(mntmNewMenuItem_4);
 		
-		JSeparator separator_1 = new JSeparator();
-		menuEnfer.add(separator_1);
-		
 		JMenu Sistema = new JMenu("Sistema");
+		ImageIcon sis = new ImageIcon(getClass().getResource("/Imgenes/sistemaIcono.png"));
+		Icon tema = new ImageIcon(sis.getImage().getScaledInstance((int)70,(int)70, Image.SCALE_DEFAULT));
+		Sistema.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		Sistema.setIcon(tema);
 		menuBar.add(Sistema);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Respaldo");
+		ImageIcon res = new ImageIcon(getClass().getResource("/Imgenes/RespaldoIcono.png"));
+		Icon paldo = new ImageIcon(res.getImage().getScaledInstance((int)50,(int)50, Image.SCALE_DEFAULT));
+		mntmNewMenuItem_5.setIcon(paldo);
+		mntmNewMenuItem_5.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Respaldo de informacion
