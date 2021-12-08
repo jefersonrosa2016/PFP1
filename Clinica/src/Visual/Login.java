@@ -66,7 +66,7 @@ public class Login extends JFrame {
 					try {
 						clinica2 = new  FileOutputStream("src/Ficheros/LaInfoClinica.dat");
 						clinicaWrite = new ObjectOutputStream(clinica2);
-						Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Supremo");
+						Administrador admin= new Administrador("USR"+Clinica.getInstance().getCodigodeusuario(),"admin", "admin", "Jerferson", "Rosa Tejada","809-838-8171", "Admnistrador");
 						Clinica.getInstance().ingresarUsuario(admin);
 						clinicaWrite.writeObject(Clinica.getInstance());
 						clinica2.close();

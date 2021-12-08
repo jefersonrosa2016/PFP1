@@ -99,7 +99,7 @@ public class ListUsuario extends JDialog {
 				int select = table.getSelectedRow();
 				
 				if(select !=-1 ) {
-					//
+					selected= Clinica.getInstance().BuscarUsuarioPorCodigo((String) table.getValueAt(select,0));
 				}
 			}
 		});
@@ -146,6 +146,10 @@ public class ListUsuario extends JDialog {
 				btnVisualizar_1 = new JButton("Visualizar");
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						VisualizarUsuario usu= new VisualizarUsuario(selected);
+						dispose();
+						usu.setVisible(true);
+
 						
 					}
 				});
@@ -200,8 +204,6 @@ public class ListUsuario extends JDialog {
 		}
 	}
 
-	public Usuario getSelected() {
-		return selected;
-	}
+	
 
 }

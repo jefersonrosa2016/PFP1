@@ -311,6 +311,24 @@ public class Clinica implements Serializable{
 		public static void setInstanciaGlobal(Clinica instanciaGlobal) {
 			Clinica.instanciaGlobal = instanciaGlobal;
 		}
+		public int IndiceDelUsuarioByCodigo(String codigo) {
+			int posicion= -1; 
+			int i = 0;
+			boolean encontrado = false;
+			
+			while (!encontrado && i < misUsuarios.size() ) {
+				if (misUsuarios.get(i).getCodigoUsuario().equalsIgnoreCase(codigo)) {
+					encontrado = true;
+					posicion= i;
+					
+				}
+				i++; 
+			}
+					
+			// TODO Auto-generated method stub
+			return posicion;
+		}
+
 		
 		
 }	

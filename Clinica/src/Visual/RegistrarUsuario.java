@@ -371,7 +371,8 @@ public class RegistrarUsuario extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("REGISTRAR");
+				JButton okButton = new JButton("Registrar");
+				okButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Usuario u = null;
@@ -396,7 +397,8 @@ public class RegistrarUsuario extends JDialog {
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("SALIR");
+				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				cancelButton.addActionListener(new ActionListener() {
 			
 					public void actionPerformed(ActionEvent e) {
@@ -425,6 +427,11 @@ public class RegistrarUsuario extends JDialog {
 		btnAdmins.setSelected(false);
 		btnMedico.setSelected(false);
 		btnSecretaria.setSelected(false);
+		lblMed.setVisible(false);	
+		txtEspecialidad.setVisible(false);
+		btnAdmins.setSelected(false);
+		txtPuesto.setVisible(false);
+		puesto.setVisible(false);
 		
 	}
 }
