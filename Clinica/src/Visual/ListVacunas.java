@@ -72,7 +72,7 @@ public class ListVacunas extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Codigo de Vacuna:");
+		JLabel lblNewLabel = new JLabel("C\u00F3digo de Vacuna:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblNewLabel.setBounds(15, 36, 164, 26);
 		panel.add(lblNewLabel);

@@ -87,10 +87,10 @@ public class CrearCitas extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
-				JLabel label = new JLabel("Codigo:");
-				label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				label.setBounds(12, 30, 76, 26);
-				panel.add(label);
+				JLabel lblCdigo = new JLabel("C\u00F3digo:");
+				lblCdigo.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+				lblCdigo.setBounds(12, 30, 76, 26);
+				panel.add(lblCdigo);
 			}
 			{
 				txtCodCita = new JTextField();
@@ -130,10 +130,10 @@ public class CrearCitas extends JDialog {
 				panel.add(txtNombre);
 			}
 			{
-				JLabel label = new JLabel("Telefono:");
-				label.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				label.setBounds(12, 112, 85, 26);
-				panel.add(label);
+				JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
+				lblTelfono.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+				lblTelfono.setBounds(12, 112, 85, 26);
+				panel.add(lblTelfono);
 			}
 			{
 				txtTelefono = new JTextField();

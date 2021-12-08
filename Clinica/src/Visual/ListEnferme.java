@@ -87,7 +87,7 @@ public class ListEnferme extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
-				btnCodigo = new JRadioButton("Codigo");
+				btnCodigo = new JRadioButton("C\u00F3digo");
 				btnCodigo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						btnNombre.setSelected(false);
@@ -281,6 +281,7 @@ public class ListEnferme extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

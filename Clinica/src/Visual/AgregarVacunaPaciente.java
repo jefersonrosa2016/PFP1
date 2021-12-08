@@ -100,7 +100,7 @@ public class AgregarVacunaPaciente extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Cedula:");
+		JLabel lblNewLabel = new JLabel("C\u00E9dula:");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblNewLabel.setBounds(195, 34, 64, 20);
 		panel.add(lblNewLabel);
@@ -152,7 +152,7 @@ public class AgregarVacunaPaciente extends JDialog {
 		panel.add(panelInfo);
 		panelInfo.setLayout(null);
 		
-		lblNombreCliente = new JLabel("Telefono:");
+		lblNombreCliente = new JLabel("Tel\u00E9fono:");
 		lblNombreCliente.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblNombreCliente.setBounds(12, 82, 96, 20);
 		panelInfo.add(lblNombreCliente);
@@ -202,10 +202,10 @@ public class AgregarVacunaPaciente extends JDialog {
 		txtapellido.setBounds(449, 40, 244, 30);
 		panelInfo.add(txtapellido);
 		
-		JLabel label_2 = new JLabel("Genero:");
-		label_2.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		label_2.setBounds(363, 79, 76, 26);
-		panelInfo.add(label_2);
+		JLabel lblGnero = new JLabel("G\u00E9nero:");
+		lblGnero.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblGnero.setBounds(363, 79, 76, 26);
+		panelInfo.add(lblGnero);
 		
 		txtGenerro = new JTextField();
 		txtGenerro.setEditable(false);

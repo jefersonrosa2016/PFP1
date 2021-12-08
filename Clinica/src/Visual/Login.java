@@ -138,7 +138,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 
-		JLabel lblUsername = new JLabel("Codigo de usuario");
+		JLabel lblUsername = new JLabel("C\u00F3digo de usuario");
 		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUsername.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblUsername.setBounds(350, 33, 160, 34);
