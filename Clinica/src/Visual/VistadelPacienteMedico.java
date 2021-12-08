@@ -143,136 +143,6 @@ public class VistadelPacienteMedico extends JDialog {
 			
 			contentPanel.add(tabbedPane);
 			{
-				JPanel panelPaciente = new JPanel();
-				tabbedPane.addTab("Paciente", null, panelPaciente, null);
-				panelPaciente.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panelPaciente.setLayout(null);
-				
-				JLabel Contenedorimagen = new JLabel("");
-				Contenedorimagen.setBounds(23, 81, 158, 202);
-				Contenedorimagen.setIcon(paci);
-				panelPaciente.add(Contenedorimagen);
-				
-				JLabel lblCodDePaciente = new JLabel("Codigo:");
-				lblCodDePaciente.setBounds(206, 85, 76, 26);
-				lblCodDePaciente.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblCodDePaciente);
-				
-				txtCodigoCliente = new JTextField();
-				txtCodigoCliente.setBounds(292, 83, 244, 30);
-				txtCodigoCliente.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtCodigoCliente.setEditable(false);
-				txtCodigoCliente.setColumns(10);
-				panelPaciente.add(txtCodigoCliente);
-				
-				txtnombrePaciente = new JTextField();
-				txtnombrePaciente.setBounds(292, 124, 244, 30);
-				txtnombrePaciente.setEditable(false);
-				txtnombrePaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtnombrePaciente.setColumns(10);
-				panelPaciente.add(txtnombrePaciente);
-				
-				JLabel lblNombre = new JLabel("Nombre:");
-				lblNombre.setBounds(206, 126, 76, 26);
-				lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblNombre);
-				
-				txtApellido = new JTextField();
-				txtApellido.setBounds(635, 124, 244, 30);
-				txtApellido.setEditable(false);
-				txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtApellido.setColumns(10);
-				panelPaciente.add(txtApellido);
-				
-				JLabel lblApellidos = new JLabel("Apellidos:");
-				lblApellidos.setBounds(549, 126, 85, 26);
-				lblApellidos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblApellidos);
-				
-				txtCedula = new JTextField();
-				txtCedula.setBounds(635, 81, 244, 30);
-				txtCedula.setEditable(false);
-				txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtCedula.setColumns(10);
-				panelPaciente.add(txtCedula);
-				
-				JLabel lblCedula = new JLabel("Cedula:");
-				lblCedula.setBounds(549, 83, 76, 26);
-				lblCedula.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblCedula);
-				
-				txtTelefono = new JTextField();
-				txtTelefono.setBounds(635, 167, 244, 30);
-				txtTelefono.setEditable(false);
-				txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtTelefono.setColumns(10);
-				panelPaciente.add(txtTelefono);
-				
-				JLabel lblTelefono = new JLabel("Telefono:");
-				lblTelefono.setBounds(549, 169, 85, 26);
-				lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblTelefono);
-				
-				JLabel lblGenero = new JLabel("Genero:");
-				lblGenero.setBounds(206, 169, 76, 26);
-				lblGenero.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblGenero);
-				
-				JLabel lblFechaDeNacimiento = new JLabel("F. de Nacimiento:");
-				lblFechaDeNacimiento.setBounds(549, 210, 158, 26);
-				lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblFechaDeNacimiento);
-				
-				JLabel lblDireccion = new JLabel("Direccion:");
-				lblDireccion.setBounds(206, 254, 95, 26);
-				lblDireccion.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblDireccion);
-				
-				txtDireccion = new JTextField();
-				txtDireccion.setBounds(292, 253, 588, 30);
-				txtDireccion.setEditable(false);
-				txtDireccion.setToolTipText("");
-				txtDireccion.setHorizontalAlignment(SwingConstants.LEFT);
-				txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtDireccion.setColumns(10);
-				panelPaciente.add(txtDireccion);
-				
-				fechamedico = new JDateChooser();
-				fechamedico.setBounds(707, 210, 173, 30);
-				fechamedico.setEnabled(false);
-				fechamedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				
-				
-				panelPaciente.add(fechamedico);
-				
-				JLabel lblTipoDeSangre = new JLabel("Tipo de Sangre:");
-				lblTipoDeSangre.setBounds(206, 217, 148, 26);
-				lblTipoDeSangre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-				panelPaciente.add(lblTipoDeSangre);
-				
-				txtgenero = new JTextField();
-				txtgenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtgenero.setEditable(false);
-				txtgenero.setColumns(10);
-				txtgenero.setBounds(292, 173, 244, 30);
-				panelPaciente.add(txtgenero);
-				
-				txtTipoSangre = new JTextField();
-				txtTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
-				txtTipoSangre.setEditable(false);
-				txtTipoSangre.setColumns(10);
-				txtTipoSangre.setBounds(355, 215, 181, 30);
-				panelPaciente.add(txtTipoSangre);
-				
-				JPanel panel = new JPanel();
-				panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel.setBounds(12, 68, 182, 233);
-				panelPaciente.add(panel);
-				
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel_1.setBounds(193, 68, 708, 233);
-				panelPaciente.add(panel_1);
 								
 				infodelpaciente(selected);
 				
@@ -619,6 +489,136 @@ public class VistadelPacienteMedico extends JDialog {
 				txtDiagnosticoHistorial.setEnabled(false);
 				scrollPane_2.setViewportView(txtDiagnosticoHistorial);
 			}
+			JPanel panelPaciente = new JPanel();
+			tabbedPane.addTab("Paciente", null, panelPaciente, null);
+			panelPaciente.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelPaciente.setLayout(null);
+			
+			JLabel Contenedorimagen = new JLabel("");
+			Contenedorimagen.setBounds(23, 81, 158, 202);
+			Contenedorimagen.setIcon(paci);
+			panelPaciente.add(Contenedorimagen);
+			
+			JLabel lblCodDePaciente = new JLabel("C\u00F3digo:");
+			lblCodDePaciente.setBounds(206, 85, 76, 26);
+			lblCodDePaciente.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblCodDePaciente);
+			
+			txtCodigoCliente = new JTextField();
+			txtCodigoCliente.setBounds(292, 83, 244, 30);
+			txtCodigoCliente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtCodigoCliente.setEditable(false);
+			txtCodigoCliente.setColumns(10);
+			panelPaciente.add(txtCodigoCliente);
+			
+			txtnombrePaciente = new JTextField();
+			txtnombrePaciente.setBounds(292, 124, 244, 30);
+			txtnombrePaciente.setEditable(false);
+			txtnombrePaciente.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtnombrePaciente.setColumns(10);
+			panelPaciente.add(txtnombrePaciente);
+			
+			JLabel lblNombre = new JLabel("Nombre:");
+			lblNombre.setBounds(206, 126, 76, 26);
+			lblNombre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblNombre);
+			
+			txtApellido = new JTextField();
+			txtApellido.setBounds(635, 124, 244, 30);
+			txtApellido.setEditable(false);
+			txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtApellido.setColumns(10);
+			panelPaciente.add(txtApellido);
+			
+			JLabel lblApellidos = new JLabel("Apellidos:");
+			lblApellidos.setBounds(549, 126, 85, 26);
+			lblApellidos.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblApellidos);
+			
+			txtCedula = new JTextField();
+			txtCedula.setBounds(635, 81, 244, 30);
+			txtCedula.setEditable(false);
+			txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtCedula.setColumns(10);
+			panelPaciente.add(txtCedula);
+			
+			JLabel lblCedula = new JLabel("C\u00E9dula:");
+			lblCedula.setBounds(549, 83, 76, 26);
+			lblCedula.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblCedula);
+			
+			txtTelefono = new JTextField();
+			txtTelefono.setBounds(635, 167, 244, 30);
+			txtTelefono.setEditable(false);
+			txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtTelefono.setColumns(10);
+			panelPaciente.add(txtTelefono);
+			
+			JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
+			lblTelefono.setBounds(549, 169, 85, 26);
+			lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblTelefono);
+			
+			JLabel lblGenero = new JLabel("G\u00E9nero:");
+			lblGenero.setBounds(206, 169, 76, 26);
+			lblGenero.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblGenero);
+			
+			JLabel lblFechaDeNacimiento = new JLabel("F. de Nacimiento:");
+			lblFechaDeNacimiento.setBounds(549, 210, 158, 26);
+			lblFechaDeNacimiento.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblFechaDeNacimiento);
+			
+			JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
+			lblDireccion.setBounds(206, 254, 95, 26);
+			lblDireccion.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblDireccion);
+			
+			txtDireccion = new JTextField();
+			txtDireccion.setBounds(292, 253, 588, 30);
+			txtDireccion.setEditable(false);
+			txtDireccion.setToolTipText("");
+			txtDireccion.setHorizontalAlignment(SwingConstants.LEFT);
+			txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtDireccion.setColumns(10);
+			panelPaciente.add(txtDireccion);
+			
+			fechamedico = new JDateChooser();
+			fechamedico.setBounds(707, 210, 173, 30);
+			fechamedico.setEnabled(false);
+			fechamedico.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			
+			
+			panelPaciente.add(fechamedico);
+			
+			JLabel lblTipoDeSangre = new JLabel("Tipo de Sangre:");
+			lblTipoDeSangre.setBounds(206, 217, 148, 26);
+			lblTipoDeSangre.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+			panelPaciente.add(lblTipoDeSangre);
+			
+			txtgenero = new JTextField();
+			txtgenero.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtgenero.setEditable(false);
+			txtgenero.setColumns(10);
+			txtgenero.setBounds(292, 173, 244, 30);
+			panelPaciente.add(txtgenero);
+			
+			txtTipoSangre = new JTextField();
+			txtTipoSangre.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtTipoSangre.setEditable(false);
+			txtTipoSangre.setColumns(10);
+			txtTipoSangre.setBounds(355, 215, 181, 30);
+			panelPaciente.add(txtTipoSangre);
+			
+			JPanel panel_3 = new JPanel();
+			panel_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_3.setBounds(12, 68, 182, 233);
+			panelPaciente.add(panel_3);
+			
+			JPanel panel_1_1 = new JPanel();
+			panel_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel_1_1.setBounds(193, 68, 708, 233);
+			panelPaciente.add(panel_1_1);
 			
 			JPanel Paneldiagnostico = new JPanel();
 			Paneldiagnostico.setToolTipText("");

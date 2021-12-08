@@ -93,7 +93,7 @@ public class Verpaciente extends JDialog {
 			Contenedorimagen.setIcon(paci);
 			panel.add(Contenedorimagen);
 			
-			JLabel lblCodDePaciente = new JLabel("Codigo:");
+			JLabel lblCodDePaciente = new JLabel("C\u00F3digo:");
 			lblCodDePaciente.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblCodDePaciente.setBounds(206, 30, 76, 26);
 			panel_1.add(lblCodDePaciente);
@@ -136,7 +136,7 @@ public class Verpaciente extends JDialog {
 			txtCedula.setBounds(635, 26, 244, 30);
 			panel_1.add(txtCedula);
 			
-			JLabel lblCedula = new JLabel("Cedula:");
+			JLabel lblCedula = new JLabel("C\u00E9dula:");
 			lblCedula.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblCedula.setBounds(549, 28, 76, 26);
 			panel_1.add(lblCedula);
@@ -148,12 +148,12 @@ public class Verpaciente extends JDialog {
 			txtTelefono.setBounds(635, 112, 244, 30);
 			panel_1.add(txtTelefono);
 			
-			JLabel lblTelefono = new JLabel("Telefono:");
+			JLabel lblTelefono = new JLabel("Tel\u00E9fono:");
 			lblTelefono.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblTelefono.setBounds(549, 114, 85, 26);
 			panel_1.add(lblTelefono);
 			
-			JLabel lblGenero = new JLabel("Genero:");
+			JLabel lblGenero = new JLabel("G\u00E9nero:");
 			lblGenero.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblGenero.setBounds(206, 114, 76, 26);
 			panel_1.add(lblGenero);
@@ -163,7 +163,7 @@ public class Verpaciente extends JDialog {
 			lblFechaDeNacimiento.setBounds(549, 155, 200, 26);
 			panel_1.add(lblFechaDeNacimiento);
 			
-			JLabel lblDireccion = new JLabel("Direccion:");
+			JLabel lblDireccion = new JLabel("Direcci\u00F3n:");
 			lblDireccion.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblDireccion.setBounds(206, 199, 95, 26);
 			panel_1.add(lblDireccion);

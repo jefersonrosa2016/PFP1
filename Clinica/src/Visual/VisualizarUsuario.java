@@ -115,7 +115,7 @@ public class VisualizarUsuario extends JDialog {
 				panel.add(btnAdmins);
 			}
 			{
-				btnMedico = new JRadioButton("Medico");
+				btnMedico = new JRadioButton("M\u00E9dico");
 				btnMedico.setEnabled(false);
 				btnMedico.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
@@ -167,7 +167,7 @@ public class VisualizarUsuario extends JDialog {
 			panel.setBounds(17, 13, 650, 265);
 			contentPanel.add(panel);
 			{
-				lblCodUsuario = new JLabel("Codigo:");
+				lblCodUsuario = new JLabel("C\u00F3digo:");
 				lblCodUsuario.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 				lblCodUsuario.setBounds(257, 21, 76, 26);
 				panel.add(lblCodUsuario);
@@ -239,7 +239,7 @@ public class VisualizarUsuario extends JDialog {
 				panel.add(txtpassword);
 			}
 			{
-				lblTelef = new JLabel("Telefono:");
+				lblTelef = new JLabel("Tel\u00E9fono:");
 				lblTelef.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 
 				lblTelef.setBounds(257, 226, 122, 26);

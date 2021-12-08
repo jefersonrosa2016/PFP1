@@ -140,7 +140,7 @@ public class VistaMedico extends JFrame {
 		TipodeCuenta.setText("Medico");
 		panel.add(TipodeCuenta);
 		
-		JButton btnNewButton = new JButton("Cerrar seccion");
+		JButton btnNewButton = new JButton("Cerrar secci\u00F3n");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login salir = new Login();

@@ -161,16 +161,16 @@ public class VistaSecretaria extends JFrame {
 		TipodeCuenta.setText(usuario.getPuestoLaboral());
 		panel.add(TipodeCuenta);
 		
-		JButton button = new JButton("Cerrar seccion");
-		button.addActionListener(new ActionListener() {
+		JButton btnCerrarSeccin = new JButton("Cerrar secci\u00F3n");
+		btnCerrarSeccin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Login salida = new Login();
 				dispose();
 				salida.setVisible(true);
 			}
 		});
-		button.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
-		button.setBounds(78, 114, 159, 25);
-		panel.add(button);
+		btnCerrarSeccin.setFont(new Font("Comic Sans MS", Font.PLAIN, 16));
+		btnCerrarSeccin.setBounds(78, 114, 159, 25);
+		panel.add(btnCerrarSeccin);
 	}
 }
