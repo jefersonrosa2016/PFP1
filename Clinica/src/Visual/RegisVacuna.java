@@ -67,7 +67,7 @@ public class RegisVacuna extends JDialog {
 		lblNewLabel.setBounds(12, 13, 283, 206);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Codigo de Vacuna:");
+		JLabel lblNewLabel_1 = new JLabel("C\u00F3digo de Vacuna:");
 		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		lblNewLabel_1.setBounds(370, 45, 177, 26);
 		contentPanel.add(lblNewLabel_1);
