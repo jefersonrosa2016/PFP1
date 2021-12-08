@@ -144,7 +144,7 @@ public class VistadelPacienteMedico extends JDialog {
 			contentPanel.add(tabbedPane);
 			{
 								
-				infodelpaciente(selected);
+			
 				
 			}
 			{
@@ -761,6 +761,7 @@ public class VistadelPacienteMedico extends JDialog {
 			}
 		}
 		loadtableHistorialConsultas(selected,"",1);
+		infodelpaciente(selected);
 		
 	}
 

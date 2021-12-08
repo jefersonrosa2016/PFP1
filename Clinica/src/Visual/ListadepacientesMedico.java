@@ -99,6 +99,7 @@ public class ListadepacientesMedico extends JDialog {
 				
 				if(select !=-1 ) {
 					selected=Clinica.getInstance().Buscarpaciente((String) table.getValueAt(select,0));
+					
 				}
 			}
 		});
@@ -147,6 +148,7 @@ public class ListadepacientesMedico extends JDialog {
 				btnVisualizar_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						VistadelPacienteMedico vi = new VistadelPacienteMedico(selected);
+						System.out.println(selected.getCodigopaciente());
 						dispose();
 						vi.setVisible(true);
 						
