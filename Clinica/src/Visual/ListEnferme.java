@@ -271,6 +271,7 @@ public class ListEnferme extends JDialog {
 		panel_2.add(scrollPane_1, BorderLayout.CENTER);
 		
 		txtDescripcion = new JEditorPane();
+		txtDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		txtDescripcion.setForeground(new Color(0, 0, 0));
 		txtDescripcion.setEnabled(false);
 		scrollPane_1.setViewportView(txtDescripcion);
