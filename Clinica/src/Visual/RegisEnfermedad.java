@@ -75,7 +75,7 @@ public class RegisEnfermedad extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
-			JLabel lblCod = new JLabel("Codigo");
+			JLabel lblCod = new JLabel("C\u00F3digo");
 			lblCod.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 			lblCod.setBounds(179, 29, 69, 24);
 			panel.add(lblCod);
